@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class GroundTile : MonoBehaviour
 {
-    GroundSpawner groundSpawnner;
+    GroundSpawner groundSpawner;
 
     void Start()
     {
-        groundSpawnner = FindObjectOfType<GroundSpawner>();
+        groundSpawner = FindObjectOfType<GroundSpawner>();
     }
 
     private void OnTriggerExit(Collider other) {
-        groundSpawnner.SpawnTile(true);
+        groundSpawner.SpawnTile(true);
         Destroy(gameObject, 2); // this will destroy the object 2 seconds after the player hits the trigger
     }
 
