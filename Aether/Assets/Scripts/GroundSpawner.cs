@@ -1,7 +1,7 @@
 using UnityEngine;
 
 public class GroundSpawner : MonoBehaviour {
-    public GameObject groundTile;
+    [SerializeField] GameObject groundTile;
     Vector3 nextSpawnPoint;
 
 
@@ -19,6 +19,10 @@ public class GroundSpawner : MonoBehaviour {
 
         if (curr == -20 || curr == 20) {
             nextSpawnPoint.z -= 7;
+        }
+
+        if (spawnItems) {
+            temp.GetComponent<GroundTile>().SpawnObstacles();
         }
     }
 
