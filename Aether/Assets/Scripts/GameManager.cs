@@ -1,5 +1,5 @@
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager inst;
@@ -15,4 +15,28 @@ public class GameManager : MonoBehaviour
     {
         
     }
+    public void PlayGame()
+    {
+        // Todo Update the index after integration
+        SceneManager.LoadScene(0);
+    }
+    
+    public void ResumeGame()
+    {
+        // Todo Update the index after integration
+        SceneManager.LoadScene(1);
+    }
+
+    public void NextLevel()
+    {
+        // Todo Update the index after integration
+        SceneManager.LoadScene(2);
+    }
+
+    public void EndGame()
+    {
+        // Todo Update the index after integration
+        SceneManager.LoadScene(3);
+    }
+    
 }
