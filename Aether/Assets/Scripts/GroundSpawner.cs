@@ -8,19 +8,20 @@ public class GroundSpawner : MonoBehaviour {
     [SerializeField] GameObject groundTileRed;
     [SerializeField] GameObject groundTileGreen;
     [SerializeField] GameObject groundTileYellow;
+    [SerializeField] GameObject groundTileFinish;
     Vector3 nextSpawnPoint;
 
 
     int[] arr = { 0, 0, 0, 0, 10, 10, 10, 10, 10, 0, 0, 0, 0, -10, -10, -10, -20, -20, 0, 0, 40 };
     List<(int Index, string Name)> pathCoordinates = new List<(int Index, string Name)>
       {
-          (0, "Blue"),(0, "Blue"),(0, "Blue"),(0, "Blue"),
+          (0, "Blue"),(0, "Blue"),(0, "Blue"),(0, "Blue"),(0, "Finish"),
           (10, "Red"),(10, "Red"),(10, "Red"),
           (-10,"Green"),(-10,"Green"),(-10,"Green"),(-10,"Green"),
           (0, "Blue"),(0, "Blue"),(0, "Blue"),(0, "Blue"),(0,"Blue"),
           (10,"Yellow"),(10,"Yellow"),
           (-10, "Red"),(-10, "Red"),(-10, "Red"),
-          (0, "Green"),(0, "Green")
+          (0, "Green"),(0, "Green"),(0, "Finish")
       };
     int i = 0;
 
@@ -40,6 +41,7 @@ public class GroundSpawner : MonoBehaviour {
                     case "Blue": tempGroundTileObject = Instantiate(groundTileBlue, nextSpawnPoint, Quaternion.identity); break;
                     case "Green": tempGroundTileObject = Instantiate(groundTileGreen, nextSpawnPoint, Quaternion.identity); break;
                     case "Yellow": tempGroundTileObject = Instantiate(groundTileYellow, nextSpawnPoint, Quaternion.identity); break;
+                    case "Finish": tempGroundTileObject = Instantiate(groundTileFinish, nextSpawnPoint, Quaternion.identity); break;
                 }
                 break;
             case 10:
@@ -49,6 +51,7 @@ public class GroundSpawner : MonoBehaviour {
                     case "Blue": tempGroundTileObject = Instantiate(groundTileBlue, nextSpawnPoint, Quaternion.identity); break;
                     case "Green": tempGroundTileObject = Instantiate(groundTileGreen, nextSpawnPoint, Quaternion.identity); break;
                     case "Yellow": tempGroundTileObject = Instantiate(groundTileYellow, nextSpawnPoint, Quaternion.identity); break;
+                    case "Finish": tempGroundTileObject = Instantiate(groundTileFinish, nextSpawnPoint, Quaternion.identity); break;
                 }
                 break;
             case -10:
@@ -58,6 +61,7 @@ public class GroundSpawner : MonoBehaviour {
                     case "Blue": tempGroundTileObject = Instantiate(groundTileBlue, nextSpawnPoint, Quaternion.identity); break;
                     case "Green": tempGroundTileObject = Instantiate(groundTileGreen, nextSpawnPoint, Quaternion.identity); break;
                     case "Yellow": tempGroundTileObject = Instantiate(groundTileYellow, nextSpawnPoint, Quaternion.identity); break;
+                    case "Finish": tempGroundTileObject = Instantiate(groundTileFinish, nextSpawnPoint, Quaternion.identity); break;
                 }
                 break;
         }
@@ -65,10 +69,6 @@ public class GroundSpawner : MonoBehaviour {
         nextSpawnPoint = tempGroundTileObject.transform.GetChild(1).transform.position;
         nextSpawnPoint.x = pathCoordinates[i + 1].Index;
         i++;
-
-        //if (curr != 0) {
-        //    nextSpawnPoint.z -= 15;
-        //}
 
         if (spawnItems) {
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();

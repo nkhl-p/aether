@@ -66,6 +66,9 @@ public class PlayerMovement : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().speed = 15;
         } else if (collider.gameObject.CompareTag("TileYellow")) {
             Die();
+        } else if (collider.gameObject.CompareTag("TileFinish")) {
+            // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
+            Debug.Log("Game Over! You proceed to the next level");
         } else {
             Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue and TileYellow");
             Die();
