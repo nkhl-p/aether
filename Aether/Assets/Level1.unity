@@ -152,7 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: edd9e476aa6b543d6b2b88bb6b6e4384, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  groundTile: {fileID: 8128862036757423918, guid: 8401e68945dd24f0aa489708bf9d8ca2, type: 3}
+  groundTileBlue: {fileID: 8128862036757423918, guid: 8401e68945dd24f0aa489708bf9d8ca2, type: 3}
+  groundTileRed: {fileID: 8128862036757423918, guid: afe9ec627070c4e78826853f0da1fe63, type: 3}
+  groundTileGreen: {fileID: 8128862036757423918, guid: daf478fcebc9c4335b57c37d1982aed4, type: 3}
+  groundTileYellow: {fileID: 8128862036757423918, guid: 1187e79c440b14be3b91adc08ccadab6, type: 3}
 --- !u!4 &176812755
 Transform:
   m_ObjectHideFlags: 0
@@ -488,7 +491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc9be23cc9fa845bbb8e4158f618487f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 5
   rb: {fileID: 1633124471}
   horizontalMultiplier: 1.7
   jumpForce: 600

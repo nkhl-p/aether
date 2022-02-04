@@ -93,7 +93,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7baa93182c79849ce8dbb87ba584c640, type: 2}
+  - {fileID: 2100000, guid: 83c654de202de488fa10d4187c23a7ba, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 3529639017288624994}
   - component: {fileID: 8951239524601588104}
   m_Layer: 6
-  m_Name: GroundTile
+  m_Name: GroundTileGreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -286,3 +286,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   obstaclePrefab: {fileID: 1811468335986346781, guid: 4868f103d6d2c48a3b7b2c8104649565, type: 3}
+  tallObstaclePrefab: {fileID: 1811468335986346781, guid: 4d1f291d9913e4bd2aa409b0da75e058, type: 3}
+  tallObstacleChance: 0.2
