@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
-{
+public class PlayerMovement : MonoBehaviour {
     public float speed = 5;
     [SerializeField] Rigidbody rb;
 
@@ -22,15 +21,8 @@ public class PlayerMovement : MonoBehaviour
         rb.MovePosition(rb.position + forwardMove + horizontalMovement);
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
-    void Update()
-    {
+    void Update() {
         horizontalInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -62,6 +54,21 @@ public class PlayerMovement : MonoBehaviour
         if (isGrounded) {
             rb.AddForce(Vector3.up * jumpForce);
         }
-            
+
+    }
+
+    private void OnTriggerEnter(Collider collider) {
+        if (collider.gameObject.CompareTag("TileRed")) {
+            FindObjectOfType<PlayerMovement>().speed = 5;
+        } else if (collider.gameObject.CompareTag("TileBlue")) {
+            FindObjectOfType<PlayerMovement>().speed = 10;
+        } else if (collider.gameObject.CompareTag("TileGreen")) {
+            FindObjectOfType<PlayerMovement>().speed = 15;
+        } else if (collider.gameObject.CompareTag("TileYellow")) {
+            Die();
+        } else {
+            Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue and TileYellow");
+            Die();
+        }
     }
 }
