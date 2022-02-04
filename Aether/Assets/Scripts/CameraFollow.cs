@@ -21,7 +21,7 @@ public class CameraFollow : MonoBehaviour
         Vector3 targetPos = player.position + offset;
 
         // Comment the following line if you want the camera to follow the player across the x-axis as well
-        targetPos.x = 0;
+        //targetPos.x = 0;
 
         transform.position = targetPos;
     }
