@@ -8,6 +8,7 @@ TagManager:
   - TileGreen
   - TileBlue
   - TileYellow
+  - TileFinish
   layers:
   - Default
   - TransparentFX
