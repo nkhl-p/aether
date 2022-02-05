@@ -10,11 +10,6 @@ public class GameManager : MonoBehaviour
         inst = this;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
     public void PlayGame()
     {
         // Todo Update the index after integration
@@ -38,5 +33,15 @@ public class GameManager : MonoBehaviour
         // Todo Update the index after integration
         SceneManager.LoadScene(3);
     }
-    
+
+    public void StartLevel1() {
+        // Todo Update the index after integration
+        SceneManager.LoadScene(1);
+    }
+
+    public void CloseApplicationOnMainMenuExit() {
+        Debug.Log("Quitting the application");
+        Application.Quit();
+    }
+
 }
