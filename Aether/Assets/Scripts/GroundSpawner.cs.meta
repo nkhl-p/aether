@@ -3,7 +3,12 @@ guid: edd9e476aa6b543d6b2b88bb6b6e4384
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - groundTileBlue: {fileID: 8128862036757423918, guid: 8401e68945dd24f0aa489708bf9d8ca2, type: 3}
+  - groundTileRed: {fileID: 8128862036757423918, guid: afe9ec627070c4e78826853f0da1fe63, type: 3}
+  - groundTileGreen: {fileID: 8128862036757423918, guid: daf478fcebc9c4335b57c37d1982aed4, type: 3}
+  - groundTileYellow: {fileID: 8128862036757423918, guid: 1187e79c440b14be3b91adc08ccadab6, type: 3}
+  - groundTileFinish: {fileID: 8128862036757423918, guid: 44d694ea3c75c4ed198f65588279057c, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
