@@ -13,14 +13,11 @@ public class Obstacle : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         // Kill the player
         if (collision.gameObject.name == "Player") {
+            AudioManager temp = FindObjectOfType<AudioManager>();
+            //temp.Play("Collision");
+            //temp.StopPlaying("SpaceTravel");
             playerMovement.Die();
         }
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
