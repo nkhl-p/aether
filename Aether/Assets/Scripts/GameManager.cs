@@ -25,7 +25,7 @@ public class GameManager : MonoBehaviour
     public void NextLevel()
     {
         // Todo Update the index after integration
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene(4);
     }
 
     public void EndGame()

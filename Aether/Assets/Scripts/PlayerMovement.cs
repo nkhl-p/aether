@@ -61,9 +61,9 @@ public class PlayerMovement : MonoBehaviour {
         if (collider.gameObject.CompareTag("TileRed")) {
             FindObjectOfType<PlayerMovement>().speed = 5;
         } else if (collider.gameObject.CompareTag("TileBlue")) {
-            FindObjectOfType<PlayerMovement>().speed = 10;
-        } else if (collider.gameObject.CompareTag("TileGreen")) {
             FindObjectOfType<PlayerMovement>().speed = 15;
+        } else if (collider.gameObject.CompareTag("TileGreen")) {
+            FindObjectOfType<PlayerMovement>().speed = 25;
         } else if (collider.gameObject.CompareTag("TileYellow")) {
             Die();
         } else if (collider.gameObject.CompareTag("TileFinish")) {
