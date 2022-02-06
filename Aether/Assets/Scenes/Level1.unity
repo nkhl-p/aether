@@ -230,7 +230,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 10s
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -326,10 +326,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 521829218}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 274dc17e9d6794dbf94ea5c05442c88e, type: 3}
+  m_Script: {fileID: 11500000, guid: 94065876354e4488382a72ebb544559c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 511308759}
+  scoreText: {fileID: 521829223}
+--- !u!114 &521829223 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1159255275570251768, guid: 24489603245644372b8eb424b2d5936f, type: 3}
+  m_PrefabInstance: {fileID: 1159255275283594396}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 521829218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1040272433
 GameObject:
   m_ObjectHideFlags: 0
@@ -878,7 +889,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1159255275570251768, guid: 24489603245644372b8eb424b2d5936f, type: 3}
       propertyPath: m_text
-      value: 
+      value: '10s
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 1159255275570251768, guid: 24489603245644372b8eb424b2d5936f, type: 3}
       propertyPath: m_fontSize
