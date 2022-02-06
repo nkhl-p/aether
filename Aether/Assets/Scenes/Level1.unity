@@ -184,7 +184,7 @@ GameObject:
   - component: {fileID: 511308760}
   - component: {fileID: 511308759}
   m_Layer: 5
-  m_Name: scoreText1
+  m_Name: ScoreText1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274dc17e9d6794dbf94ea5c05442c88e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreText: {fileID: 511308757}
+  scoreText: {fileID: 511308759}
 --- !u!1 &1040272433
 GameObject:
   m_ObjectHideFlags: 0
@@ -890,7 +890,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1159255275570251774, guid: 24489603245644372b8eb424b2d5936f, type: 3}
       propertyPath: m_Name
-      value: scoreText
+      value: ScoreText
       objectReference: {fileID: 0}
     - target: {fileID: 1159255275570251775, guid: 24489603245644372b8eb424b2d5936f, type: 3}
       propertyPath: m_Pivot.x
