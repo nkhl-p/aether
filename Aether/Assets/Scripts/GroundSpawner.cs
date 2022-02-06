@@ -23,7 +23,7 @@ public class GroundSpawner : MonoBehaviour {
           (-10, "Red"),(-10, "Red"),(-10, "Red"),
           (0, "Green"),(0, "Green"),(0, "Finish")
       };
-    int i = 0;
+    int i = 0; //thisisatest
 
 
     public void SpawnTile(bool spawnItems) {
