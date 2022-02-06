@@ -27,7 +27,7 @@ public class GroundSpawner : MonoBehaviour {
 
 
     public void SpawnTile(bool spawnItems) {
-        Debug.Log("Index - " + pathCoordinates[i].Index + " name - " + pathCoordinates[i].Name);
+        //Debug.Log("Index - " + pathCoordinates[i].Index + " name - " + pathCoordinates[i].Name);
         int curr = (int)nextSpawnPoint.x;
 
         GameObject tempGroundTileObject = null;
