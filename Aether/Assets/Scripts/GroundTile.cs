@@ -17,6 +17,10 @@ public class GroundTile : MonoBehaviour
         Destroy(gameObject, 2); // this will destroy the object 2 seconds after the player hits the trigger
     }
 
+    private void OnCollisionEnter(Collision collision) {
+        Debug.Log("Collision with: " + collision.gameObject.name);
+    }
+
     public void SpawnObstacles() {
         // Choose which obstacle to spawn
         GameObject obstacleToSpawn = obstaclePrefab;
