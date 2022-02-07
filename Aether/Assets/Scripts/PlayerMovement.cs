@@ -43,7 +43,7 @@ public class PlayerMovement : MonoBehaviour {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        FindObjectOfType<AudioManager>().Play("SpaceTravel");
+        // FindObjectOfType<AudioManager>().Play("SpaceTravel");
     }
 
     void Jump() {
