@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour {
     }
 
     void Start() {
-        Play("SpaceTravel");
+        //Play("SpaceTravel");
     }
 
     public void StopPlaying(string sound) {
