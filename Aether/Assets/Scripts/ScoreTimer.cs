@@ -3,7 +3,7 @@ using TMPro;
 
 public class ScoreTimer : MonoBehaviour {
     public float currentTime = 0f;
-    float startingTime = 120f;
+    float startingTime = 45f;
 
     public TMP_Text scoreText;
 
@@ -13,7 +13,7 @@ public class ScoreTimer : MonoBehaviour {
 
     void Update() {
         currentTime -= 1 * Time.deltaTime;
-        scoreText.text = currentTime.ToString("0");
+        scoreText.text = currentTime.ToString("0") + "s";
 
         if (currentTime < 0) {
             Debug.Log("Player Dead! Timer = 0");
