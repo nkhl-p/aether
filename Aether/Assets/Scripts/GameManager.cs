@@ -44,4 +44,9 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void HelpMenu() {
+        Debug.Log("Opening the help menu");
+        SceneManager.LoadScene(5);
+    }
+
 }

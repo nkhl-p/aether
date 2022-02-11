@@ -14,8 +14,8 @@ public class Obstacle : MonoBehaviour
         // Kill the player
         if (collision.gameObject.name == "Player") {
             AudioManager temp = FindObjectOfType<AudioManager>();
-            //temp.Play("Collision");
-            //temp.StopPlaying("SpaceTravel");
+            temp.Play("Collision");
+            temp.StopPlaying("SpaceTravel");
             playerMovement.Die();
         }
 
