@@ -69,6 +69,7 @@ public class GroundSpawner : MonoBehaviour {
 
         if (spawnItems) {
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
+            tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups();
         }
     }
 

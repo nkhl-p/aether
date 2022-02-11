@@ -329,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94065876354e4488382a72ebb544559c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentTime: 0
   scoreText: {fileID: 521829223}
 --- !u!114 &521829223 stripped
 MonoBehaviour:
@@ -701,7 +702,7 @@ GameObject:
   - component: {fileID: 1633124472}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
