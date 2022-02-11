@@ -92,8 +92,6 @@ public class PlayerMovement : MonoBehaviour {
 
     // For this to work, the Plane gameObject of the GroundTile prefab had to be assigned the different tags that were assigned to the GroundTile
     private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Collision with: " + collision.gameObject.name);
-
         if (collision.gameObject.CompareTag("TileRed")) {
             FindObjectOfType<PlayerMovement>().speed = 5;
         } else if (collision.gameObject.CompareTag("TileBlue")) {
