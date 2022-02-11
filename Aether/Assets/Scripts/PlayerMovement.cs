@@ -30,6 +30,8 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (transform.position.y < -5) {
+            AudioManager temp = FindObjectOfType<AudioManager>();
+            temp.Play("Fall");
             Die();
         }
     }
@@ -43,11 +45,14 @@ public class PlayerMovement : MonoBehaviour {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        // FindObjectOfType<AudioManager>().Play("SpaceTravel");
+        FindObjectOfType<AudioManager>().Play("SpaceTravel");
     }
 
     void Jump() {
         // Check whether the player is currently on the ground
+        AudioManager temp = FindObjectOfType<AudioManager>();
+        temp.Play("Jump");
+        // temp.StopPlaying("SpaceTravel");
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
 
@@ -102,6 +107,8 @@ public class PlayerMovement : MonoBehaviour {
             Die();
         } else if (collision.gameObject.CompareTag("TileFinish")) {
             // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
+            AudioManager temp = FindObjectOfType<AudioManager>();
+            temp.Play("Win");
             Debug.Log("Game Over! You proceed to the next level");
             SceneManager.LoadScene(3);
         } else {
