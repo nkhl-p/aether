@@ -15,14 +15,14 @@ public class PlayerMovement : MonoBehaviour {
 
     private Transform transformCache;
 
-    AudioManager temp = null;
+    AudioManager audioManagerInstance = null;
 
     private void Awake() {
         transformCache = transform;
     }
 
     private void Start() {
-        temp = FindObjectOfType<AudioManager>();
+        audioManagerInstance = FindObjectOfType<AudioManager>();
     }
 
     private void FixedUpdate() {
@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
         alive = false;
         if (transformCache.position.y < 0) {
             Debug.Log("The player is falling");
-            //temp.Play("Fall");
+            // temp.Play("Fall");
         }
         Invoke("Restart", 1);
     }
@@ -59,13 +59,13 @@ public class PlayerMovement : MonoBehaviour {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        temp.Play("SpaceTravel");
+        audioManagerInstance.Play("SpaceTravel");
     }
 
     void Jump() {
         // Check whether the player is currently on the ground
         
-        temp.Play("Jump");
+        audioManagerInstance.Play("Jump");
         // temp.StopPlaying("SpaceTravel");
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
@@ -118,6 +118,8 @@ public class PlayerMovement : MonoBehaviour {
         } else if (collision.gameObject.CompareTag("TileGreen")) {
             FindObjectOfType<PlayerMovement>().speed = 16;
         } else if (collision.gameObject.CompareTag("TileYellow")) {
+            audioManagerInstance.Play("YellowLose");
+            audioManagerInstance.StopPlaying("SpaceTravel");
             Die();
         } else if (collision.gameObject.CompareTag("TileFinish")) {
             // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)

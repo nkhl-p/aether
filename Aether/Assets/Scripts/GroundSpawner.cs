@@ -51,9 +51,15 @@ public class GroundSpawner : MonoBehaviour {
         (0,300,"Green",false),
         (0,310,"Green",false),
         (0,320,"Finish",false),
+        (0,330,"Finish",false),
+        (0,340,"Finish",false),
+        (0,350,"Finish",false),
+        (0,360,"Finish",false),
+        (0,370,"Finish",false),
+        (0,380,"Finish",false),
       };
     int i = 0;
-    HashSet<float> powerUpLocationSet = new HashSet<float>();
+
     bool isPowerUpEnabled = false;
     [SerializeField] float obstacleSpawningChance = 0.3f;
 
@@ -101,14 +107,29 @@ public class GroundSpawner : MonoBehaviour {
         }
 
         nextSpawnPoint = tempGroundTileObject.transform.GetChild(1).transform.position;
-        nextSpawnPoint.x = pathCoordinates[i + 1].X_Value;
-        nextSpawnPoint.z = pathCoordinates[i + 1].Z_Value;
+        if (i + 1 < pathCoordinates.Count) {
+            nextSpawnPoint.x = pathCoordinates[i + 1].X_Value;
+            nextSpawnPoint.z = pathCoordinates[i + 1].Z_Value;
+        } else {
+            Debug.Log("End of path");
+            return;
+        }
         i++;
 
         float randomObstacleChance = Random.Range(0f, 1f);
 
-        if (spawnItems && randomObstacleChance > obstacleSpawningChance) {
+        if (spawnItems &&
+            !pathCoordinates[i].IsPowerUpEnabled &&
+            randomObstacleChance > obstacleSpawningChance &&
+            !pathCoordinates[i].Name.Equals("Finish")) {
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
+        } else {
+            // enable the following log only if you wish to debug the tile disappearing issue
+
+            //Debug.Log("Random obstacle not spawned on tile with details " +
+            //    pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " +
+            //    pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled + " " +
+            //    " as random number is " + randomObstacleChance);
         }
     }
 

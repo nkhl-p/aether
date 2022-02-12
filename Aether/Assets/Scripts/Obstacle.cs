@@ -4,6 +4,8 @@ public class Obstacle : MonoBehaviour
 {
     PlayerMovement playerMovement;
 
+    public int test = 1;
+
     // Start is called before the first frame update
     void Start()
     {
