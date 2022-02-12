@@ -1,17 +1,14 @@
 using UnityEngine;
 
-public class GroundTile : MonoBehaviour
-{
+public class GroundTile : MonoBehaviour {
     GroundSpawner groundSpawner;
     [SerializeField] GameObject obstaclePrefab;
     [SerializeField] GameObject tallObstaclePrefab;
     [SerializeField] float tallObstacleChance = 0.2f;
-    [SerializeField] float obstacleSpawningChance = 0.3f;
 
     public GameObject powerupsPrefab;
 
-    void Start()
-    {
+    void Start() {
         groundSpawner = FindObjectOfType<GroundSpawner>();
     }
 
@@ -26,20 +23,18 @@ public class GroundTile : MonoBehaviour
 
     public void SpawnObstacles() {
         // Choose which obstacle to spawn
-        float randomObstacleChance = Random.Range(0f, 1f);
-        if(randomObstacleChance > obstacleSpawningChance) {
-            GameObject obstacleToSpawn = obstaclePrefab;
-            float random = Random.Range(0f, 1f);
-            if (random < tallObstacleChance) {
-                obstacleToSpawn = tallObstaclePrefab;
-            }
-            // Choose a random point to spawn the obstacle
-            int obstacleSpawnIndex = Random.Range(2, 5);
-            Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
-
-            // Spawn the obstacle at the position
-            Instantiate(obstacleToSpawn, spawnPoint.position, Quaternion.identity, transform);
+        GameObject obstacleToSpawn = obstaclePrefab;
+        float random = Random.Range(0f, 1f);
+        if (random < tallObstacleChance) {
+            obstacleToSpawn = tallObstaclePrefab;
         }
+        // Choose a random point to spawn the obstacle
+        int obstacleSpawnIndex = Random.Range(2, 5);
+        Transform spawnPoint = transform.GetChild(obstacleSpawnIndex).transform;
+
+        // Spawn the obstacle at the position
+        Instantiate(obstacleToSpawn, spawnPoint.position, Quaternion.identity, transform);
+
     }
 
     public void SpawnPowerups() {
@@ -49,9 +44,9 @@ public class GroundTile : MonoBehaviour
 
     Vector3 GetRandomPointInCollider(Collider collider) {
         Vector3 spawnPoint = new Vector3(
-            Random.Range(collider.bounds.min.x, collider.bounds.max.x),
-            Random.Range(collider.bounds.min.y, collider.bounds.max.y),
-            Random.Range(collider.bounds.min.z, collider.bounds.max.z)
+                Random.Range(collider.bounds.min.x, collider.bounds.max.x),
+                Random.Range(collider.bounds.min.y, collider.bounds.max.y),
+                Random.Range(collider.bounds.min.z, collider.bounds.max.z)
             );
 
         // It checks whether the random point we created is inside the collider or not. It should never be called

@@ -1,35 +1,43 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager inst;
+    [SerializeField] GameObject pauseMenu;
 
     // Start is called before the first frame update
-    void Start()
-    {
+    void Start() {
         inst = this;
     }
 
-    public void PlayGame()
-    {
+    public void PlayGame() {
         // Todo Update the index after integration
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
-    
-    public void ResumeGame()
-    {
-        // Todo Update the index after integration
+
+    public void StartGame() {
         SceneManager.LoadScene(1);
     }
 
-    public void NextLevel()
-    {
+    public void PauseGame() {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        //SceneManager.LoadScene(2);
+    }
+
+    public void ResumeGame() {
+        // Todo Update the index after integration
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        //SceneManager.LoadScene(1);
+    }
+
+    public void NextLevel() {
         // Todo Update the index after integration
         SceneManager.LoadScene(4);
     }
 
-    public void EndGame()
-    {
+    public void EndGame() {
         // Todo Update the index after integration
         SceneManager.LoadScene(4);
     }
