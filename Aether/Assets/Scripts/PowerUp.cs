@@ -27,6 +27,9 @@ public class PowerUp : MonoBehaviour {
     }
 
     void Pickup() {
+        // Play audio effect for power-up collection
+        FindObjectOfType<AudioManager>().Play("PowerUp");
+
         // Spawn a cool effect using Unity's Particle System
         //Instantiate(pickupEffect, transform.position, transform.rotation);
 
