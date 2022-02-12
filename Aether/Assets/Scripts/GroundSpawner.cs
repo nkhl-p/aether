@@ -105,9 +105,9 @@ public class GroundSpawner : MonoBehaviour {
         nextSpawnPoint.z = pathCoordinates[i + 1].Z_Value;
         i++;
 
-        //float randomObstacleChance = Random.Range(0f, 1f);
+        float randomObstacleChance = Random.Range(0f, 1f);
 
-        if (spawnItems) {
+        if (spawnItems && randomObstacleChance > obstacleSpawningChance) {
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
         }
     }

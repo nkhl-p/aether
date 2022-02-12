@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
         alive = false;
         if (transformCache.position.y < 0) {
             Debug.Log("The player is falling");
-            temp.Play("Fall");
+            //temp.Play("Fall");
         }
         Invoke("Restart", 1);
     }
