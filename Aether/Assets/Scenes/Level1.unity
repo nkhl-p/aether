@@ -924,33 +924,39 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: SpaceTravel
-    clip: {fileID: 8300000, guid: 861634f2160e8435182b67bf3d8fe2fc, type: 3}
+    clip: {fileID: 8300000, guid: 8440aaaac7ea841e2ad884bc06413fba, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
     source: {fileID: 0}
     loop: 1
   - name: Collision
-    clip: {fileID: 8300000, guid: 75ee1cec2be4748bf80063e3c42fd5bb, type: 3}
+    clip: {fileID: 8300000, guid: 32a85b0a5e6f94319b9449fc049b9c59, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Jump
     clip: {fileID: 8300000, guid: d8b29c1be000c49889086a5025bf8cb3, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Fall
-    clip: {fileID: 8300000, guid: e982fe3c371164f42ae0f3f57e2ba305, type: 3}
+    clip: {fileID: 8300000, guid: e1432b038ace240e9a1f1439c6e3f2f9, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Win
     clip: {fileID: 8300000, guid: 48a59fd5486e64d9f9764bd7cf38a7b4, type: 3}
     volume: 1
-    pitch: 3
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: PowerUp
+    clip: {fileID: 8300000, guid: 5211eefb469e749369c39f232a6d4e34, type: 3}
+    volume: 1
+    pitch: 1
     source: {fileID: 0}
     loop: 0
 --- !u!4 &1301318279
