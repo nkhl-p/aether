@@ -959,6 +959,12 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: YellowLose
+    clip: {fileID: 8300000, guid: 0a65c4028d0524967bda8355f339ed0a, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
 --- !u!4 &1301318279
 Transform:
   m_ObjectHideFlags: 0
@@ -1469,7 +1475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa0dc40978dd246f0aac0d4efbff4429, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 549265610}
+  pauseMenu: {fileID: 0}
 --- !u!4 &1703579111
 Transform:
   m_ObjectHideFlags: 0
