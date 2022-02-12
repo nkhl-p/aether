@@ -13,6 +13,18 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float jumpForce = 400f;
     [SerializeField] LayerMask groundMask;
 
+    private Transform transformCache;
+
+    AudioManager temp = null;
+
+    private void Awake() {
+        transformCache = transform;
+    }
+
+    private void Start() {
+        temp = FindObjectOfType<AudioManager>();
+    }
+
     private void FixedUpdate() {
         if (!alive) return;
 
@@ -29,28 +41,30 @@ public class PlayerMovement : MonoBehaviour {
             Jump();
         }
 
-        if (transform.position.y < -5) {
-            AudioManager temp = FindObjectOfType<AudioManager>();
-            temp.Play("Fall");
+        if (transformCache.position.y < 0) {
             Die();
         }
     }
 
     public void Die() {
         alive = false;
-        Invoke("Restart", 2);
+        if (transformCache.position.y < 0) {
+            Debug.Log("The player is falling");
+            temp.Play("Fall");
+        }
+        Invoke("Restart", 1);
     }
 
     void Restart() {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        FindObjectOfType<AudioManager>().Play("SpaceTravel");
+        temp.Play("SpaceTravel");
     }
 
     void Jump() {
         // Check whether the player is currently on the ground
-        AudioManager temp = FindObjectOfType<AudioManager>();
+        
         temp.Play("Jump");
         // temp.StopPlaying("SpaceTravel");
         float height = GetComponent<Collider>().bounds.size.y;
