@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour {
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
 
-    int powerUpApplicableDuration = 1;
+    int powerUpApplicableDuration = 3;
 
     private void OnTriggerEnter(Collider other) {
 
@@ -68,13 +68,13 @@ public class PowerUp : MonoBehaviour {
                 // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
                 GetComponent<MeshRenderer>().enabled = false;
                 GetComponent<CapsuleCollider>().enabled = false;
-
+                Debug.Log("Before" + player.transform.localScale);
                 // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
                 yield return new WaitForSeconds(powerUpApplicableDuration);
 
                 // reverting the changes made by the power-up to its original state
                 player.transform.localScale /= 1.5f;
-
+                Debug.Log("After" + player.transform.localScale);
                 // breaking out of the case.
                 break;
         }
