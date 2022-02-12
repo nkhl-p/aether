@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour {
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
 
-    int powerUpApplicableDuration = 1;
+    int powerUpApplicableDuration = 3;
 
     enum PowerUps {
         Time,
