@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class GroundSpawner : MonoBehaviour {
     [SerializeField] GameObject groundTileBlue;
@@ -54,6 +55,7 @@ public class GroundSpawner : MonoBehaviour {
     int i = 0;
     HashSet<float> powerUpLocationSet = new HashSet<float>();
     bool isPowerUpEnabled = false;
+    [SerializeField] float obstacleSpawningChance = 0.3f;
 
 
     public void SpawnTile(bool spawnItems) {
@@ -102,6 +104,8 @@ public class GroundSpawner : MonoBehaviour {
         nextSpawnPoint.x = pathCoordinates[i + 1].X_Value;
         nextSpawnPoint.z = pathCoordinates[i + 1].Z_Value;
         i++;
+
+        //float randomObstacleChance = Random.Range(0f, 1f);
 
         if (spawnItems) {
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
