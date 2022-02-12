@@ -119,6 +119,7 @@ public class PlayerMovement : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().speed = 16;
         } else if (collision.gameObject.CompareTag("TileYellow")) {
             audioManagerInstance.Play("YellowLose");
+            audioManagerInstance.StopPlaying("SpaceTravel");
             Die();
         } else if (collision.gameObject.CompareTag("TileFinish")) {
             // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)

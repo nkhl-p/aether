@@ -118,14 +118,18 @@ public class GroundSpawner : MonoBehaviour {
 
         float randomObstacleChance = Random.Range(0f, 1f);
 
-        if (spawnItems && !pathCoordinates[i].IsPowerUpEnabled && randomObstacleChance > obstacleSpawningChance) {
+        if (spawnItems &&
+            !pathCoordinates[i].IsPowerUpEnabled &&
+            randomObstacleChance > obstacleSpawningChance &&
+            !pathCoordinates[i].Name.Equals("Finish")) {
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
         } else {
-            Debug.Log(i);
-            Debug.Log("Random obstacle not spawned on tile with details " +
-                pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " +
-                pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled + " " +
-                " as random number is " + randomObstacleChance);
+            // enable the following log only if you wish to debug the tile disappearing issue
+
+            //Debug.Log("Random obstacle not spawned on tile with details " +
+            //    pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " +
+            //    pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled + " " +
+            //    " as random number is " + randomObstacleChance);
         }
     }
 
