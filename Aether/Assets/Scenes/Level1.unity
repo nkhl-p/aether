@@ -684,7 +684,7 @@ MonoBehaviour:
   sounds:
   - name: SpaceTravel
     clip: {fileID: 8300000, guid: 8440aaaac7ea841e2ad884bc06413fba, type: 3}
-    volume: 1
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
     loop: 1
