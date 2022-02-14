@@ -684,13 +684,13 @@ MonoBehaviour:
   sounds:
   - name: SpaceTravel
     clip: {fileID: 8300000, guid: 8440aaaac7ea841e2ad884bc06413fba, type: 3}
-    volume: 0.3
+    volume: 0.05
     pitch: 1
     source: {fileID: 0}
     loop: 1
   - name: Collision
     clip: {fileID: 8300000, guid: 32a85b0a5e6f94319b9449fc049b9c59, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
     loop: 0
@@ -702,25 +702,25 @@ MonoBehaviour:
     loop: 0
   - name: Fall
     clip: {fileID: 8300000, guid: e1432b038ace240e9a1f1439c6e3f2f9, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: Win
     clip: {fileID: 8300000, guid: 48a59fd5486e64d9f9764bd7cf38a7b4, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: PowerUp
     clip: {fileID: 8300000, guid: 5211eefb469e749369c39f232a6d4e34, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: YellowLose
     clip: {fileID: 8300000, guid: 0a65c4028d0524967bda8355f339ed0a, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     source: {fileID: 0}
     loop: 0
