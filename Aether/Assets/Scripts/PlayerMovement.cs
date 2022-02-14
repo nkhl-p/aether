@@ -50,7 +50,7 @@ public class PlayerMovement : MonoBehaviour {
         alive = false;
         if (transformCache.position.y < 0) {
             Debug.Log("The player is falling");
-            // temp.Play("Fall");
+            // audioManagerInstance.Play(SoundEnums.FALL.GetString());
         }
         Invoke("Restart", 1);
     }
@@ -59,13 +59,13 @@ public class PlayerMovement : MonoBehaviour {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        audioManagerInstance.Play("SpaceTravel");
+        audioManagerInstance.Play(SoundEnums.THEME.GetString());
     }
 
     void Jump() {
         // Check whether the player is currently on the ground
         
-        audioManagerInstance.Play("Jump");
+        audioManagerInstance.Play(SoundEnums.JUMP.GetString());
         // temp.StopPlaying("SpaceTravel");
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
@@ -118,13 +118,12 @@ public class PlayerMovement : MonoBehaviour {
         } else if (collision.gameObject.CompareTag("TileGreen")) {
             FindObjectOfType<PlayerMovement>().speed = 15;
         } else if (collision.gameObject.CompareTag("TileYellow")) {
-            audioManagerInstance.Play("YellowLose");
+            audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
             audioManagerInstance.StopPlaying("SpaceTravel");
             Die();
         } else if (collision.gameObject.CompareTag("TileFinish")) {
             // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
-            AudioManager temp = FindObjectOfType<AudioManager>();
-            temp.Play("Win");
+            audioManagerInstance.Play(SoundEnums.WIN.GetString());
             Debug.Log("Game Over! You proceed to the next level");
             SceneManager.LoadScene(3);
         } else {
