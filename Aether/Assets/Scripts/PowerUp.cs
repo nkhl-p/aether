@@ -37,7 +37,7 @@ public class PowerUp : MonoBehaviour {
 
     void Pickup(Collider player, PowerUps powerUpType) {
         // Play audio effect for power-up collection
-        FindObjectOfType<AudioManager>().Play("PowerUp");
+        FindObjectOfType<AudioManager>().Play(SoundEnums.POWERUP.GetString());
 
         // Spawn a cool effect using Unity's Particle System
         Instantiate(pickupEffect, transform.position, transform.rotation);

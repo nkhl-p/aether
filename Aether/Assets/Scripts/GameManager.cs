@@ -3,9 +3,14 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public static GameManager inst;
     [SerializeField] GameObject pauseMenu = null;
+    [SerializeField] GameObject soundOnIcon = null;
+    [SerializeField] GameObject soundOffIcon = null;
+    AudioManager audioManagerInstance = null;
+
 
     void Start() {
         inst = this;
+        audioManagerInstance = FindObjectOfType<AudioManager>();
     }
 
     public void PlayGame() {
@@ -46,6 +51,18 @@ public class GameManager : MonoBehaviour {
 
     public void HelpMenu() {
         SceneManager.LoadScene(5);
+    }
+
+    public void MuteSound() {
+        FindObjectOfType<AudioManager>().StopPlaying(SoundEnums.THEME.GetString());
+        soundOnIcon.SetActive(false);
+        soundOffIcon.SetActive(true);
+    }
+
+    public void UnmuteSound() {
+        FindObjectOfType<AudioManager>().Play(SoundEnums.THEME.GetString());
+        soundOffIcon.SetActive(false);
+        soundOnIcon.SetActive(true);
     }
 
 }
