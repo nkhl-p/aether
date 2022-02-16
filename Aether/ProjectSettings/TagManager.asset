@@ -9,6 +9,7 @@ TagManager:
   - TileBlue
   - TileYellow
   - TileFinish
+  - Obstacle
   layers:
   - Default
   - TransparentFX

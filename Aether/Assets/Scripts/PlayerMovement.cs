@@ -1,4 +1,7 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 
 public class PlayerMovement : MonoBehaviour {
@@ -14,8 +17,16 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] LayerMask groundMask;
 
     private Transform transformCache;
-
     AudioManager audioManagerInstance = null;
+
+    // variable declaration for unity analytics
+    public static int levelNumber = 1;
+    public static int blueCount = 0;
+    public static int redCount = 0;
+    public static int greenCount = 0;
+    public static string prevColorTag = "";
+    public static int tries = 0;
+    bool val = false;
 
     private void Awake() {
         transformCache = transform;
@@ -33,7 +44,6 @@ public class PlayerMovement : MonoBehaviour {
         rb.MovePosition(rb.position + forwardMove + horizontalMovement);
     }
 
-    // Update is called once per frame
     void Update() {
         horizontalInput = Input.GetAxis("Horizontal");
 
@@ -42,14 +52,18 @@ public class PlayerMovement : MonoBehaviour {
         }
 
         if (transformCache.position.y < 0) {
-            Die();
+            if (!val) {
+                val = !val;
+                tries++;
+                Die();
+            }
         }
     }
 
     public void Die() {
         alive = false;
+        Debug.Log("Number of player deaths: " + tries);
         if (transformCache.position.y < 0) {
-            Debug.Log("The player is falling");
             // audioManagerInstance.Play(SoundEnums.FALL.GetString());
         }
         Invoke("Restart", 1);
@@ -64,9 +78,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void Jump() {
         // Check whether the player is currently on the ground
-        
+
         audioManagerInstance.Play(SoundEnums.JUMP.GetString());
-        // temp.StopPlaying("SpaceTravel");
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
 
@@ -75,6 +88,69 @@ public class PlayerMovement : MonoBehaviour {
             rb.AddForce(Vector3.up * jumpForce);
         }
 
+    }
+
+    // For this to work, the Plane gameObject of the GroundTile prefab had to be assigned the different tags that were assigned to the GroundTile
+    private void OnCollisionEnter(Collision collision) {
+        if (collision.gameObject.CompareTag("TileRed")) {
+            FindObjectOfType<PlayerMovement>().speed = 5;
+            if (prevColorTag != "RED") redCount++;
+            prevColorTag = "RED";
+        } else if (collision.gameObject.CompareTag("TileBlue")) {
+            FindObjectOfType<PlayerMovement>().speed = 11;
+            if (prevColorTag != "BLUE") blueCount++;
+            prevColorTag = "BLUE";
+        } else if (collision.gameObject.CompareTag("TileGreen")) {
+            FindObjectOfType<PlayerMovement>().speed = 15;
+            if (prevColorTag != "GREEN") greenCount++;
+            prevColorTag = "GREEN";
+        } else if (collision.gameObject.CompareTag("TileYellow")) {
+            // Manage sounds
+            audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
+            audioManagerInstance.StopPlaying("SpaceTravel");
+            tries++;
+            Die();
+        } else if (collision.gameObject.CompareTag("TileFinish")) {
+            // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
+            audioManagerInstance.Play(SoundEnums.WIN.GetString());
+            Debug.Log("Level Complete! You proceed to the next level");
+
+            // All analytics are called here - The idea is that until a player completes a level, all the analytic events are trigger here, so as to be under the Unity provided limits. All data is collected and sent at once.
+            SendLevelDeathAnalyticsData(levelNumber, tries);
+            SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
+            SceneManager.LoadScene(3);
+        } else if (collision.gameObject.CompareTag("Obstacle")) {
+            Debug.Log("Player collided with an obstacle");
+            tries++;
+        } else {
+            Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue, TileYellow and TileFinish");
+        }
+    }
+
+    // Add all analytics events below this point
+    public void SendLevelDeathAnalyticsData(int level_num, int tries) {
+        Dictionary<string, object> data = new Dictionary<string, object> {
+            { "Level", level_num },
+            { "Retries", tries }
+        };
+        Debug.Log("Level Death Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analyticsResultDie = Analytics.CustomEvent("Level_Death_Analytics", data);
+        Debug.Log("Analytics Die: " + analyticsResultDie);
+    }
+
+    public void SendPathSelectionAnalyticsData(int level_num, int bCount, int rCount, int gCount) {
+        Dictionary<string, object> data = new Dictionary<string, object> {
+                {"Level", level_num},
+                {"Blue_Path", bCount },
+                {"Red_Path", rCount },
+                {"Green_Path", gCount}
+            };
+
+        Debug.Log("Path Selection Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Path_Selection_Analytics", data);
+        Debug.Log("Path Selection Analytics: " + analytics_result);
     }
 
     /* Commenting the below method (OnTriggerEnter) since we want to change the speed of the player when it COLLIDES with the tile rather than when it enters the BoxCollider
@@ -108,27 +184,4 @@ public class PlayerMovement : MonoBehaviour {
         }
     }
     */
-
-    // For this to work, the Plane gameObject of the GroundTile prefab had to be assigned the different tags that were assigned to the GroundTile
-    private void OnCollisionEnter(Collision collision) {
-        if (collision.gameObject.CompareTag("TileRed")) {
-            FindObjectOfType<PlayerMovement>().speed = 5;
-        } else if (collision.gameObject.CompareTag("TileBlue")) {
-            FindObjectOfType<PlayerMovement>().speed = 11;
-        } else if (collision.gameObject.CompareTag("TileGreen")) {
-            FindObjectOfType<PlayerMovement>().speed = 15;
-        } else if (collision.gameObject.CompareTag("TileYellow")) {
-            audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
-            audioManagerInstance.StopPlaying("SpaceTravel");
-            Die();
-        } else if (collision.gameObject.CompareTag("TileFinish")) {
-            // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
-            audioManagerInstance.Play(SoundEnums.WIN.GetString());
-            Debug.Log("Game Over! You proceed to the next level");
-            SceneManager.LoadScene(3);
-        } else {
-            Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue, TileYellow and TileFinish");
-            Die();
-        }
-    }
 }
