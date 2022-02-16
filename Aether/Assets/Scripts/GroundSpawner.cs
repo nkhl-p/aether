@@ -20,7 +20,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,30,"Blue",false),
         (0,40,"Blue",false),
         (0,50,"Blue",false),
-        (0,60,"Finish",false),
+        (0,60,"Blue",false),
         (10,60,"Red",false),
         (0,70,"Blue",false),
         (10,70, "Red",false),
