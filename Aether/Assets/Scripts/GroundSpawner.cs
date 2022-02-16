@@ -69,7 +69,7 @@ public class GroundSpawner : MonoBehaviour {
 
         GameObject tempGroundTileObject = null;
 
-        Debug.Log("Current Tile Details - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " + pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled);
+        //Debug.Log("Current Tile Details - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " + pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled);
         var color = pathCoordinates[i].Name;
         isPowerUpEnabled = pathCoordinates[i].IsPowerUpEnabled;
 
@@ -104,7 +104,7 @@ public class GroundSpawner : MonoBehaviour {
         }
 
         if (isPowerUpEnabled) {
-            Debug.Log("Spawning Power at - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value);
+            //Debug.Log("Spawning Power at - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value);
             tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups();
         }
 
@@ -128,10 +128,10 @@ public class GroundSpawner : MonoBehaviour {
         } else {
             // enable the following log only if you wish to debug the tile disappearing issue
 
-            Debug.Log("Random obstacle not spawned on tile with details " +
-                pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " +
-                pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled + " " +
-                " as random number is " + randomObstacleChance);
+            //Debug.Log("Random obstacle not spawned on tile with details " +
+                //pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " +
+                //pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled + " " +
+                //" as random number is " + randomObstacleChance);
         }
         i++;
     }
