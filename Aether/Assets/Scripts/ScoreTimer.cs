@@ -3,7 +3,7 @@ using TMPro;
 
 public class ScoreTimer : MonoBehaviour {
     public float currentTime = 0f;
-    float startingTime = 45f;
+    public float startingTime = 45f;
 
     public TMP_Text scoreText;
 

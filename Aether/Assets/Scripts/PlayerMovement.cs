@@ -3,6 +3,10 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
+using System;
+
+
+
 
 public class PlayerMovement : MonoBehaviour {
     public float speed = 5;
@@ -26,6 +30,9 @@ public class PlayerMovement : MonoBehaviour {
     public static int greenCount = 0;
     public static string prevColorTag = "";
     public static int tries = 0;
+    public static List<int> distanceArray = new List<int>();
+    public static List<int> timeArray = new List<int>();
+
     bool val = false;
 
     private void Awake() {
@@ -65,6 +72,9 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("Number of player deaths: " + tries);
         if (transformCache.position.y < 0) {
             // audioManagerInstance.Play(SoundEnums.FALL.GetString());
+            distanceArray.Add(Convert.ToInt32(transform.position.z));
+            timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
+
         }
         Invoke("Restart", 1);
     }
@@ -99,7 +109,8 @@ public class PlayerMovement : MonoBehaviour {
         } else if (collision.gameObject.CompareTag("TileBlue")) {
             FindObjectOfType<PlayerMovement>().speed = 11;
             if (prevColorTag != "BLUE") blueCount++;
-            prevColorTag = "BLUE";
+            prevColorTag = "BLUE";            
+
         } else if (collision.gameObject.CompareTag("TileGreen")) {
             FindObjectOfType<PlayerMovement>().speed = 15;
             if (prevColorTag != "GREEN") greenCount++;
@@ -115,14 +126,32 @@ public class PlayerMovement : MonoBehaviour {
             audioManagerInstance.Play(SoundEnums.WIN.GetString());
             Debug.Log("Level Complete! You proceed to the next level");
 
+            if(prevColorTag!="FINISH"){
+                prevColorTag="FINISH";
+                distanceArray.Add(Convert.ToInt32(transform.position.z));
+                timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
+                SendDistanceAnalyticsData(levelNumber, distanceArray);
+                SendTimeAnalyticsData(levelNumber,timeArray);
+                distanceArray = new List<int>();
+                timeArray = new List<int>();
+
+            }
+
             // All analytics are called here - The idea is that until a player completes a level, all the analytic events are trigger here, so as to be under the Unity provided limits. All data is collected and sent at once.
             SendLevelDeathAnalyticsData(levelNumber, tries);
             SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
             SceneManager.LoadScene(3);
         } else if (collision.gameObject.CompareTag("Obstacle")) {
+            
+            distanceArray.Add(Convert.ToInt32(transform.position.z));
+            timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
+
             Debug.Log("Player collided with an obstacle");
             tries++;
         } else {
+            
+            distanceArray.Add(Convert.ToInt32(transform.position.z));
+            timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue, TileYellow and TileFinish");
         }
     }
@@ -151,6 +180,46 @@ public class PlayerMovement : MonoBehaviour {
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
         AnalyticsResult analytics_result = Analytics.CustomEvent("Path_Selection_Analytics", data);
         Debug.Log("Path Selection Analytics: " + analytics_result);
+    }
+
+    public void SendDistanceAnalyticsData(int level_num, List<int> distance) {
+        int sum = 0;
+        foreach(var d in distance)
+            {
+                sum+=d;
+            }
+
+        Dictionary<string, object> data = new Dictionary<string, object> {
+                {"Level", level_num},
+                {"Distance", (sum/distance.Count)}
+            };
+        
+        Debug.Log("Distance Analytics Array: "+ string.Join(',',distance));
+        Debug.Log("Distance Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Distance_Travelled_Analytics", data);
+        Debug.Log("Distance Travelled Analytics: " + analytics_result);
+    }
+
+    public void SendTimeAnalyticsData(int level_num, List<int> time) {
+        Debug.Log("in here");
+        int sum = 0;
+        foreach(var t in time)
+                {
+                    sum+=t;
+                }
+
+
+        Dictionary<string, object> data = new Dictionary<string, object> {
+                {"Level", level_num},
+                {"Time", (sum/time.Count) }
+            };
+
+        Debug.Log("Time Analytics Array: "+ string.Join(',',time));
+        Debug.Log("Time Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Total_Time_Analytics", data);
+        Debug.Log("Time Analytics: " + analytics_result);
     }
 
     /* Commenting the below method (OnTriggerEnter) since we want to change the speed of the player when it COLLIDES with the tile rather than when it enters the BoxCollider
