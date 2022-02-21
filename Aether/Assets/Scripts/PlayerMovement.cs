@@ -109,7 +109,7 @@ public class PlayerMovement : MonoBehaviour {
         } else if (collision.gameObject.CompareTag("TileBlue")) {
             FindObjectOfType<PlayerMovement>().speed = 11;
             if (prevColorTag != "BLUE") blueCount++;
-            prevColorTag = "BLUE";            
+            prevColorTag = "BLUE";
 
         } else if (collision.gameObject.CompareTag("TileGreen")) {
             FindObjectOfType<PlayerMovement>().speed = 15;
@@ -126,15 +126,12 @@ public class PlayerMovement : MonoBehaviour {
             audioManagerInstance.Play(SoundEnums.WIN.GetString());
             Debug.Log("Level Complete! You proceed to the next level");
 
-            if(prevColorTag!="FINISH"){
-                prevColorTag="FINISH";
-                distanceArray.Add(Convert.ToInt32(transform.position.z));
-                timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
+            if (prevColorTag != "FINISH") {
+                prevColorTag = "FINISH";
                 SendDistanceAnalyticsData(levelNumber, distanceArray);
-                SendTimeAnalyticsData(levelNumber,timeArray);
+                SendTimeAnalyticsData(levelNumber, timeArray);
                 distanceArray = new List<int>();
                 timeArray = new List<int>();
-
             }
 
             // All analytics are called here - The idea is that until a player completes a level, all the analytic events are trigger here, so as to be under the Unity provided limits. All data is collected and sent at once.
@@ -142,14 +139,11 @@ public class PlayerMovement : MonoBehaviour {
             SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
             SceneManager.LoadScene(3);
         } else if (collision.gameObject.CompareTag("Obstacle")) {
-            
             distanceArray.Add(Convert.ToInt32(transform.position.z));
             timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
-
             Debug.Log("Player collided with an obstacle");
             tries++;
         } else {
-            
             distanceArray.Add(Convert.ToInt32(transform.position.z));
             timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue, TileYellow and TileFinish");
@@ -162,6 +156,7 @@ public class PlayerMovement : MonoBehaviour {
             { "Level", level_num },
             { "Retries", tries }
         };
+
         Debug.Log("Level Death Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
         AnalyticsResult analyticsResultDie = Analytics.CustomEvent("Level_Death_Analytics", data);
@@ -174,7 +169,7 @@ public class PlayerMovement : MonoBehaviour {
                 {"Blue_Path", bCount },
                 {"Red_Path", rCount },
                 {"Green_Path", gCount}
-            };
+        };
 
         Debug.Log("Path Selection Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
@@ -184,17 +179,16 @@ public class PlayerMovement : MonoBehaviour {
 
     public void SendDistanceAnalyticsData(int level_num, List<int> distance) {
         int sum = 0;
-        foreach(var d in distance)
-            {
-                sum+=d;
-            }
+        foreach (var d in distance) {
+            sum += d;
+        }
 
         Dictionary<string, object> data = new Dictionary<string, object> {
                 {"Level", level_num},
                 {"Distance", (sum/distance.Count)}
-            };
-        
-        Debug.Log("Distance Analytics Array: "+ string.Join(',',distance));
+        };
+
+        Debug.Log("Distance Analytics Array: " + string.Join(',', distance));
         Debug.Log("Distance Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
         AnalyticsResult analytics_result = Analytics.CustomEvent("Distance_Travelled_Analytics", data);
@@ -204,18 +198,16 @@ public class PlayerMovement : MonoBehaviour {
     public void SendTimeAnalyticsData(int level_num, List<int> time) {
         Debug.Log("in here");
         int sum = 0;
-        foreach(var t in time)
-                {
-                    sum+=t;
-                }
-
+        foreach (var t in time) {
+            sum += t;
+        }
 
         Dictionary<string, object> data = new Dictionary<string, object> {
                 {"Level", level_num},
                 {"Time", (sum/time.Count) }
-            };
+        };
 
-        Debug.Log("Time Analytics Array: "+ string.Join(',',time));
+        Debug.Log("Time Analytics Array: " + string.Join(',', time));
         Debug.Log("Time Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
         AnalyticsResult analytics_result = Analytics.CustomEvent("Total_Time_Analytics", data);
