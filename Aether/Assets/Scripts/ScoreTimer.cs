@@ -15,7 +15,7 @@ public class ScoreTimer : MonoBehaviour {
         currentTime -= 1 * Time.deltaTime;
         scoreText.text = currentTime.ToString("0") + "s";
 
-        if (currentTime < 0) {
+        if (currentTime < 0 && (currentTime + Time.deltaTime) != 0) {
             Debug.Log("Player Dead! Timer = 0");
             currentTime = 0;
             FindObjectOfType<PlayerMovement>().DeathByOutOfTime();

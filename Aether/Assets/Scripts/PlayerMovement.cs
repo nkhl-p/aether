@@ -35,9 +35,7 @@ public class PlayerMovement : MonoBehaviour {
     public static int deathByObstacleCount = 0;
     public static int deathByYellowPathCount = 0;
     public static int deathByFreeFallCount = 0;
-    public static int deathByOutOfTimeCount = 0;
-    private bool deathByOutOfTimeTriggered = false;
-    
+    public static int deathByOutOfTimeCount = 0;    
     public static int powerUpsLevelCount = 0;
     bool val = false;
 
@@ -188,13 +186,9 @@ public class PlayerMovement : MonoBehaviour {
 
     public void DeathByOutOfTime()
     {
-        if (deathByOutOfTimeTriggered == false)
-        {
-            deathByOutOfTimeTriggered = true;
-            deathByOutOfTimeCount++;
-            SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
-                deathByFreeFallCount, deathByOutOfTimeCount);
-        }
+        deathByOutOfTimeCount++;
+        SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+            deathByFreeFallCount, deathByOutOfTimeCount);
     }
 
     // Add all analytics events below this point
