@@ -18,6 +18,7 @@ public class ScoreTimer : MonoBehaviour {
         if (currentTime < 0) {
             Debug.Log("Player Dead! Timer = 0");
             currentTime = 0;
+            // FindObjectOfType<PlayerMovement>().DeathByOutOfTime();
             FindObjectOfType<PlayerMovement>().Die();
         }
     }

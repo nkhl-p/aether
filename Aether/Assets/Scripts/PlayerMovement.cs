@@ -32,7 +32,11 @@ public class PlayerMovement : MonoBehaviour {
     public static int tries = 0;
     public static List<int> distanceArray = new List<int>();
     public static List<int> timeArray = new List<int>();
-
+    public static int deathByObstacleCount = 0;
+    public static int deathByYellowPathCount = 0;
+    public static int deathByFreeFallCount = 0;
+    public static int deathByOutOfTimeCount = 0;    
+    public static int powerUpsLevelCount = 0;
     bool val = false;
 
     private void Awake() {
@@ -62,6 +66,9 @@ public class PlayerMovement : MonoBehaviour {
             if (!val) {
                 val = !val;
                 tries++;
+                deathByFreeFallCount++;
+                SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+                    deathByFreeFallCount, deathByOutOfTimeCount);
                 Die();
             }
         }
@@ -76,7 +83,16 @@ public class PlayerMovement : MonoBehaviour {
             timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
 
         }
+
         Invoke("Restart", 1);
+    }
+
+    void resetDeathStats()
+    {
+        deathByObstacleCount = 0;
+        deathByYellowPathCount = 0;
+        deathByFreeFallCount = 0;
+        deathByOutOfTimeCount = 0;
     }
 
     void Restart() {
@@ -119,6 +135,9 @@ public class PlayerMovement : MonoBehaviour {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
             audioManagerInstance.StopPlaying("SpaceTravel");
+            deathByYellowPathCount++;
+            SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+                deathByFreeFallCount, deathByOutOfTimeCount);
             tries++;
             Die();
         } else if (collision.gameObject.CompareTag("TileFinish")) {
@@ -137,17 +156,34 @@ public class PlayerMovement : MonoBehaviour {
             // All analytics are called here - The idea is that until a player completes a level, all the analytic events are trigger here, so as to be under the Unity provided limits. All data is collected and sent at once.
             SendLevelDeathAnalyticsData(levelNumber, tries);
             SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
+            SendPowerUpsAnalyticsData(levelNumber, powerUpsLevelCount);
             SceneManager.LoadScene(3);
         } else if (collision.gameObject.CompareTag("Obstacle")) {
             distanceArray.Add(Convert.ToInt32(transform.position.z));
             timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             Debug.Log("Player collided with an obstacle");
+            deathByObstacleCount++;
+            SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+                deathByFreeFallCount, deathByOutOfTimeCount);
             tries++;
         } else {
             distanceArray.Add(Convert.ToInt32(transform.position.z));
             timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue, TileYellow and TileFinish");
         }
+    }
+
+    public void PowerUpPickedUpCounterUpdate()
+    {
+        Debug.Log("Picked Up Powerup Counter Updated");
+        powerUpsLevelCount++;
+    }
+
+    public void DeathByOutOfTime()
+    {
+        deathByOutOfTimeCount++;
+        SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+            deathByFreeFallCount, deathByOutOfTimeCount);
     }
 
     // Add all analytics events below this point
@@ -212,6 +248,42 @@ public class PlayerMovement : MonoBehaviour {
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
         AnalyticsResult analytics_result = Analytics.CustomEvent("Total_Time_Analytics", data);
         Debug.Log("Time Analytics: " + analytics_result);
+    }
+    
+    public void SendModeOfDeathAnalyticsData(int level_num, 
+        int obstacleCount, int yellowPathCount, int freeFallCount, int outOfTimeCount)
+    {
+        Debug.Log("SendModeOfDeathAnalyticsData Called");
+        
+        Dictionary<string, object> data = new Dictionary<string, object> {
+            {"Level", level_num},
+            {"Obstacle", obstacleCount},
+            {"Yellow_Path", yellowPathCount},
+            {"Free_Fall", freeFallCount},
+            {"Out_Of_Time", outOfTimeCount},
+        };
+        resetDeathStats();
+        
+        Debug.Log("SendModeOfDeathAnalyticsData Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Mode_Of_Death", data);
+        Debug.Log("SendModeOfDeathAnalyticsData: " + analytics_result);
+    }
+
+    public void SendPowerUpsAnalyticsData(int level_num, int powerUpsLevelCount)
+    {
+        Debug.Log("SendPowerUpsAnalyticsData Called");
+        
+        Dictionary<string, object> data = new Dictionary<string, object> {
+            {"Level", level_num},
+            {"PowerUps_Count", powerUpsLevelCount},
+        };
+        
+        Debug.Log("SendPowerUpsAnalyticsData Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("PowerUps_Count", data);
+        Debug.Log("SendPowerUpsAnalyticsData: " + analytics_result);
+        
     }
 
     /* Commenting the below method (OnTriggerEnter) since we want to change the speed of the player when it COLLIDES with the tile rather than when it enters the BoxCollider

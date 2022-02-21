@@ -8,11 +8,18 @@ public class PowerUp : MonoBehaviour {
     public GameObject pickupEffect;
 
     int powerUpApplicableDuration = 3;
+    PlayerMovement playerMovement;
+
 
     enum PowerUps {
         Time,
         Permeability,
         Size
+    }
+    
+    void Start()
+    {
+        playerMovement = FindObjectOfType<PlayerMovement>();
     }
 
     private void OnTriggerEnter(Collider other) {
@@ -31,6 +38,7 @@ public class PowerUp : MonoBehaviour {
 
         if (other.CompareTag("Player")) {
             Debug.Log("Object collided with tag: " + other.gameObject.tag);
+            playerMovement.PowerUpPickedUpCounterUpdate();
             Pickup(other, PowerUps.Time);
         }
     }
