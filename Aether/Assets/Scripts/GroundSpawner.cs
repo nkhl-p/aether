@@ -12,112 +12,113 @@ public class GroundSpawner : MonoBehaviour {
     [SerializeField] GameObject groundTileFinish;
     Vector3 nextSpawnPoint;
 
-    List<(int X_Value, int Z_Value, string Name, bool IsPowerUpEnabled)> pathCoordinates = new List<(int X_Value, int Z_Value, string Name, bool IsPowerUpEnabled)>
+    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
       {
-        (0,0,"Blue",false),
-        (0,10,"Blue",false),
-        (0,20,"Blue",false),
-        (0,30,"Blue",false),
-        (0,40,"Blue",false),
-        (0,50,"Blue",false),
-        (0,60,"Blue",false),
+        (0,0,"Blue",PowerupEnums.NONE),
+        (0,10,"Blue",PowerupEnums.NONE),
+        (0,20,"Blue",PowerupEnums.NONE),
+        (0,30,"Blue",PowerupEnums.NONE),
+        (0,40,"Blue",PowerupEnums.TIME),
+        (0,50,"Blue",PowerupEnums.NONE),
+        (0,60,"Blue",PowerupEnums.NONE),
 
-        (0,80,"Blue",false),
-        (0,90,"Blue",false),
-        (0,100,"Blue",false),
-        (0,110,"Blue",false),
+        (0,80,"Blue",PowerupEnums.NONE),
+        (0,90,"Blue",PowerupEnums.NONE),
+        (0,100,"Blue",PowerupEnums.SIZE),
+        (0,110,"Blue",PowerupEnums.NONE),
 
-        (10,130,"Red",false),
-        (-10,130,"Green",false),
-        (10,140,"Red",false),
-        (-10,140,"Green",false),
-        (10,150,"Red",false),
-        (-10,150,"Green",false),
-        (10,160,"Red",false),
-        (-10,160,"Green",false),
-        (10,170,"Blue",false),
-        (-10,170,"Green",false),
-        (10,180,"Blue",false),
-        (-10,180,"Green",false),
+        (10,130,"Red",PowerupEnums.NONE),
+        (-10,130,"Green",PowerupEnums.NONE),
+        (10,140,"Red",PowerupEnums.NONE),
+        (-10,140,"Green",PowerupEnums.NONE),
+        (10,150,"Red",PowerupEnums.NONE),
+        (-10,150,"Green",PowerupEnums.NONE),
+        (10,160,"Red",PowerupEnums.NONE),
+        (-10,160,"Green",PowerupEnums.NONE),
+        (10,170,"Blue",PowerupEnums.NONE),
+        (-10,170,"Green",PowerupEnums.NONE),
+        (10,180,"Blue",PowerupEnums.NONE),
+        (-10,180,"Green",PowerupEnums.NONE),
 
-        (0,200,"Red",false),
-        (0,210,"Red",false),
-        (0,220,"Red",false),
-        (0,230,"Blue",false),
-        (0,240,"Blue",false),
-        (0,250,"Blue",false),
-        (0,260,"Blue",false),
-        (0,270,"Blue",false),
-        (0,280,"Blue",false),
+        (0,200,"Red",PowerupEnums.NONE),
+        (0,210,"Red",PowerupEnums.NONE),
+        (0,220,"Red",PowerupEnums.NONE),
+        (0,230,"Blue",PowerupEnums.NONE),
+        (0,240,"Blue",PowerupEnums.NONE),
+        (0,250,"Blue",PowerupEnums.NONE),
+        (0,260,"Blue",PowerupEnums.NONE),
+        (0,270,"Blue",PowerupEnums.NONE),
+        (0,280,"Blue",PowerupEnums.NONE),
 
-        (0,300,"Red",false),
-        (-10,300,"Green",false),
-        (10,300,"Yellow",false),
-        (0,310,"Red",false),
-        (-10,310,"Green",false),
-        (10,310,"Yellow",false),
-        (0,320,"Red",false),
-        (-10,320,"Green",false),
-        (10,320,"Yellow",false),
-        (0,330,"Red",false),
-        (-10,330,"Green",false),
-        (10,330,"Yellow",false),
-        (0,340,"Red",false),
-        (-10,340,"Green",false),
-        (10,340,"Yellow",false),
+        (0,300,"Red",PowerupEnums.NONE),
+        (-10,300,"Green",PowerupEnums.NONE),
+        (10,300,"Yellow",PowerupEnums.NONE),
+        (0,310,"Red",PowerupEnums.NONE),
+        (-10,310,"Green",PowerupEnums.NONE),
+        (10,310,"Yellow",PowerupEnums.NONE),
+        (0,320,"Red",PowerupEnums.NONE),
+        (-10,320,"Green",PowerupEnums.NONE),
+        (10,320,"Yellow",PowerupEnums.NONE),
+        (0,330,"Red",PowerupEnums.NONE),
+        (-10,330,"Green",PowerupEnums.NONE),
+        (10,330,"Yellow",PowerupEnums.NONE),
+        (0,340,"Red",PowerupEnums.NONE),
+        (-10,340,"Green",PowerupEnums.NONE),
+        (10,340,"Yellow",PowerupEnums.NONE),
 
-        (0,360,"Yellow",false),
-        (-10,360,"Blue",false),
-        (10,360,"Green",false),
-        (0,370,"Yellow",false),
-        (-10,370,"Blue",false),
-        (10,370,"Green",false),
-        (0,380,"Yellow",false),
-        (-10,380,"Blue",false),
-        (10,380,"Green",false),
-        (0,390,"Yellow",false),
-        (-10,390,"Blue",false),
-        (10,390,"Green",false),
-        (0,400,"Yellow",false),
-        (-10,400,"Blue",false),
-        (10,400,"Green",false),
-        (-10,410,"Blue",false),
-        (10,410,"Green",false),
-        (-10,420,"Blue",false),
-        (10,420,"Green",false),
+        (0,360,"Yellow",PowerupEnums.NONE),
+        (-10,360,"Blue",PowerupEnums.NONE),
+        (10,360,"Green",PowerupEnums.NONE),
+        (0,370,"Yellow",PowerupEnums.NONE),
+        (-10,370,"Blue",PowerupEnums.NONE),
+        (10,370,"Green",PowerupEnums.NONE),
+        (0,380,"Yellow",PowerupEnums.NONE),
+        (-10,380,"Blue",PowerupEnums.NONE),
+        (10,380,"Green",PowerupEnums.NONE),
+        (0,390,"Yellow",PowerupEnums.NONE),
+        (-10,390,"Blue",PowerupEnums.NONE),
+        (10,390,"Green",PowerupEnums.NONE),
+        (0,400,"Yellow",PowerupEnums.NONE),
+        (-10,400,"Blue",PowerupEnums.NONE),
+        (10,400,"Green",PowerupEnums.NONE),
+        (-10,410,"Blue",PowerupEnums.NONE),
+        (10,410,"Green",PowerupEnums.NONE),
+        (-10,420,"Blue",PowerupEnums.NONE),
+        (10,420,"Green",PowerupEnums.NONE),
 
-        (0,440,"Blue",false),
-        (0,450,"Blue",false),
-        (0,460,"Blue",false),
-        (0,470,"Blue",false),
-        (0,480,"Blue",false),
-        (0,490,"Blue",false),
-        (0,500,"Blue",false),
-        (0,510,"Blue",false),
-        (0,520,"Blue",false),
-        (0,530,"Blue",false),
+        (0,440,"Blue",PowerupEnums.NONE),
+        (0,450,"Blue",PowerupEnums.NONE),
+        (0,460,"Blue",PowerupEnums.NONE),
+        (0,470,"Blue",PowerupEnums.NONE),
+        (0,480,"Blue",PowerupEnums.NONE),
+        (0,490,"Blue",PowerupEnums.NONE),
+        (0,500,"Blue",PowerupEnums.NONE),
+        (0,510,"Blue",PowerupEnums.NONE),
+        (0,520,"Blue",PowerupEnums.NONE),
+        (0,530,"Blue",PowerupEnums.NONE),
 
-        (0,550,"Green",false),
-        (0,550,"Blue",false),
-        (0,560,"Green",false),
-        (0,560,"Blue",false),
-        (0,570,"Blue",false),
-        (0,580,"Blue",false),
-        (0,590,"Blue",false),
-        (0,600,"Blue",false),
+        (0,550,"Green",PowerupEnums.NONE),
+        (0,550,"Blue",PowerupEnums.NONE),
+        (0,560,"Green",PowerupEnums.NONE),
+        (0,560,"Blue",PowerupEnums.NONE),
+        (0,570,"Blue",PowerupEnums.NONE),
+        (0,580,"Blue",PowerupEnums.NONE),
+        (0,590,"Blue",PowerupEnums.NONE),
+        (0,600,"Blue",PowerupEnums.NONE),
 
-        (0,610,"Finish",false),
-        (0,620,"Finish",false),
-        (0,630,"Finish",false),
-        (0,640,"Finish",false),
-        (0,650,"Finish",false),
-        (0,660,"Finish",false),
-        (0,670,"Finish",false),
+        (0,610,"Finish",PowerupEnums.NONE),
+        (0,620,"Finish",PowerupEnums.NONE),
+        (0,630,"Finish",PowerupEnums.NONE),
+        (0,640,"Finish",PowerupEnums.NONE),
+        (0,650,"Finish",PowerupEnums.NONE),
+        (0,660,"Finish",PowerupEnums.NONE),
+        (0,670,"Finish",PowerupEnums.NONE),
 
       };
     int i = 0;
 
-    bool isPowerUpEnabled = false;
+    string powerupType = "";
+    bool isPowerUpEnabled = true;
     [SerializeField] float obstacleSpawningChance = 0.3f;
 
 
@@ -128,7 +129,12 @@ public class GroundSpawner : MonoBehaviour {
 
         //Debug.Log("Current Tile Details - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " + pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled);
         var color = pathCoordinates[i].Name;
-        isPowerUpEnabled = pathCoordinates[i].IsPowerUpEnabled;
+        powerupType = pathCoordinates[i].powerupEnums.GetString();
+        
+        if (powerupType.Equals("")) {
+            isPowerUpEnabled = false ;
+        }
+        //Debug.Log("This is the power up type: " + powerupType + " and power up is: " + isPowerUpEnabled);
 
         switch (curr) {
             case 0:
@@ -160,9 +166,13 @@ public class GroundSpawner : MonoBehaviour {
                 break;
         }
 
-        if (isPowerUpEnabled) {
-            //Debug.Log("Spawning Power at - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value);
-            tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups();
+        switch (powerupType) {
+            case "Time":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.TIME.GetString());
+                break;
+            case "Size":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SIZE.GetString());
+                break;
         }
 
         nextSpawnPoint = tempGroundTileObject.transform.GetChild(1).transform.position;
@@ -173,7 +183,7 @@ public class GroundSpawner : MonoBehaviour {
             Debug.Log("End of path");
             return;
         }
-        
+
 
         float randomObstacleChance = Random.Range(0f, 1f);
 
@@ -182,13 +192,6 @@ public class GroundSpawner : MonoBehaviour {
             randomObstacleChance > obstacleSpawningChance &&
             !pathCoordinates[i].Name.Equals("Finish")) {
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
-        } else {
-            // enable the following log only if you wish to debug the tile disappearing issue
-
-            //Debug.Log("Random obstacle not spawned on tile with details " +
-                //pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " +
-                //pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled + " " +
-                //" as random number is " + randomObstacleChance);
         }
         i++;
     }

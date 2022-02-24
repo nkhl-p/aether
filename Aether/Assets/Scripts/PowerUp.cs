@@ -7,15 +7,8 @@ public class PowerUp : MonoBehaviour {
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
 
-    int powerUpApplicableDuration = 3;
+    float powerUpApplicableDuration = 7f;
     PlayerMovement playerMovement;
-
-
-    enum PowerUps {
-        Time,
-        Permeability,
-        Size
-    }
     
     void Start()
     {
@@ -23,6 +16,8 @@ public class PowerUp : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
+
+        Debug.Log("This is the name of game object: " + gameObject);
 
         if (other.gameObject.GetComponent<Obstacle>() != null) {
             Debug.Log("Power-up spawned inside an obstacle. Destroying power-up now");
@@ -39,11 +34,16 @@ public class PowerUp : MonoBehaviour {
         if (other.CompareTag("Player")) {
             Debug.Log("Object collided with tag: " + other.gameObject.tag);
             playerMovement.PowerUpPickedUpCounterUpdate();
-            Pickup(other, PowerUps.Time);
+
+            switch(gameObject.tag) {
+                case "PowerupTime": Pickup(other, PowerupEnums.TIME); break;
+                case "PowerupSize": Pickup(other, PowerupEnums.SIZE); break;
+                case "PowerupPermeability": Pickup(other, PowerupEnums.PERMEABILITY); break;
+            }
         }
     }
 
-    void Pickup(Collider player, PowerUps powerUpType) {
+    void Pickup(Collider player, PowerupEnums powerUpType) {
         // Play audio effect for power-up collection
         FindObjectOfType<AudioManager>().Play(SoundEnums.POWERUP.GetString());
 
@@ -54,20 +54,20 @@ public class PowerUp : MonoBehaviour {
         PerformPowerUpAction(player, powerUpType);
 
         // destroy the power-up once it has been collected
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
-    private void PerformPowerUpAction(Collider player, PowerUps powerUpType) {
+    private void PerformPowerUpAction(Collider player, PowerupEnums powerUpType) {
         switch (powerUpType) {
-            case PowerUps.Time:
+            case PowerupEnums.TIME:
                 IncreaseTime();
                 break;
 
-            case PowerUps.Permeability:
+            case PowerupEnums.PERMEABILITY:
                 StartCoroutine(ApplyPermeability(player));
                 break;
 
-            case PowerUps.Size:
+            case PowerupEnums.SIZE:
                 StartCoroutine(ChangePlayerScale(player));
                 break;
         }
@@ -75,6 +75,8 @@ public class PowerUp : MonoBehaviour {
 
     private void IncreaseTime() {
         FindObjectOfType<ScoreTimer>().currentTime += 5;
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
         return;
     }
 
@@ -83,7 +85,7 @@ public class PowerUp : MonoBehaviour {
     /// </summary>
     /// <param name="player"></param>
     /// <returns>IEnumerator</returns>
-    private IEnumerator ApplyPermeability(Collider player) {
+    IEnumerator ApplyPermeability(Collider player) {
         // implementing the power-up action
         Obstacle o = FindObjectOfType<Obstacle>();
         o.GetComponent<BoxCollider>().isTrigger = true;
@@ -105,19 +107,22 @@ public class PowerUp : MonoBehaviour {
     /// </summary>
     /// <param name="player"></param>
     /// <returns>IEnumerator</returns>
-    private IEnumerator ChangePlayerScale(Collider player) {
+    IEnumerator ChangePlayerScale(Collider player) {
         // increase the player size as part of the power-up action
         player.transform.localScale *= 1.5f;
 
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        Debug.Log("Before scale: " + player.transform.localScale);
 
         // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
+        Debug.Log("Before scale: " + player.transform.localScale);
         player.transform.localScale /= 1.5f;
+        Debug.Log("After scale: " + player.transform.localScale);
 
         // breaking out of the case.
     }
@@ -125,6 +130,10 @@ public class PowerUp : MonoBehaviour {
     // The following function ensures that the powerup will always turn by 90 degrees every second regardless of the framerate
     private void Update() {
         transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
+    }
+
+    private void OnDestroy() {
+        Debug.Log("Khatam Tata Goodbye Gaya");
     }
 
 }

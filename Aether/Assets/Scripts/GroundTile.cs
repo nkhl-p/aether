@@ -6,7 +6,8 @@ public class GroundTile : MonoBehaviour {
     [SerializeField] GameObject tallObstaclePrefab;
     [SerializeField] float tallObstacleChance = 0.2f;
 
-    public GameObject powerupsPrefab;
+    public GameObject powerupsPrefabTime;
+    public GameObject powerupsPrefabSize;
 
     void Start() {
         groundSpawner = FindObjectOfType<GroundSpawner>();
@@ -38,9 +39,19 @@ public class GroundTile : MonoBehaviour {
 
     }
 
-    public void SpawnPowerups() {
-        GameObject temp = Instantiate(powerupsPrefab, transform);
-        temp.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+    public void SpawnPowerups(string powerupType) {
+
+        switch(powerupType) {
+            case "Time":
+                GameObject temp1 = Instantiate(powerupsPrefabTime, transform);
+                temp1.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+                break;
+
+            case "Size":
+                GameObject temp2 = Instantiate(powerupsPrefabSize, transform);
+                temp2.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+                break;
+        }
     }
 
     Vector3 GetRandomPointInCollider(Collider collider) {
