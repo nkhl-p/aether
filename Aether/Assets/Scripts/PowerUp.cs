@@ -7,7 +7,7 @@ public class PowerUp : MonoBehaviour {
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
 
-    int powerUpApplicableDuration = 1;
+    float powerUpApplicableDuration = 7f;
     PlayerMovement playerMovement;
     
     void Start()
@@ -54,7 +54,7 @@ public class PowerUp : MonoBehaviour {
         PerformPowerUpAction(player, powerUpType);
 
         // destroy the power-up once it has been collected
-        Destroy(gameObject);
+        //Destroy(gameObject);
     }
 
     private void PerformPowerUpAction(Collider player, PowerupEnums powerUpType) {
@@ -75,6 +75,8 @@ public class PowerUp : MonoBehaviour {
 
     private void IncreaseTime() {
         FindObjectOfType<ScoreTimer>().currentTime += 5;
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
         return;
     }
 
@@ -115,7 +117,7 @@ public class PowerUp : MonoBehaviour {
         Debug.Log("Before scale: " + player.transform.localScale);
 
         // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
-        yield return new WaitForSeconds(4f);
+        yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
         Debug.Log("Before scale: " + player.transform.localScale);
@@ -128,6 +130,10 @@ public class PowerUp : MonoBehaviour {
     // The following function ensures that the powerup will always turn by 90 degrees every second regardless of the framerate
     private void Update() {
         transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
+    }
+
+    private void OnDestroy() {
+        Debug.Log("Khatam Tata Goodbye Gaya");
     }
 
 }
