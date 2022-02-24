@@ -10,6 +10,9 @@ TagManager:
   - TileYellow
   - TileFinish
   - Obstacle
+  - Powerup
+  - PowerupTime
+  - PowerupSize
   layers:
   - Default
   - TransparentFX

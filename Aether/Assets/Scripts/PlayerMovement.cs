@@ -266,7 +266,7 @@ public class PlayerMovement : MonoBehaviour {
         
         Debug.Log("SendModeOfDeathAnalyticsData Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
-        AnalyticsResult analytics_result = Analytics.CustomEvent("Mode_Of_Death", data);
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Mode_Of_Death_Analytics", data);
         Debug.Log("SendModeOfDeathAnalyticsData: " + analytics_result);
     }
 
@@ -281,40 +281,8 @@ public class PlayerMovement : MonoBehaviour {
         
         Debug.Log("SendPowerUpsAnalyticsData Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
-        AnalyticsResult analytics_result = Analytics.CustomEvent("PowerUps_Count", data);
+        AnalyticsResult analytics_result = Analytics.CustomEvent("PowerUps_Count_Analytics", data);
         Debug.Log("SendPowerUpsAnalyticsData: " + analytics_result);
         
     }
-
-    /* Commenting the below method (OnTriggerEnter) since we want to change the speed of the player when it COLLIDES with the tile rather than when it enters the BoxCollider
-     * Note that it is possible to use OnCollisionEnter because the Player has a CapsuleCollider for which isTrigger has not been enabled whereas
-     * the Plane (child object of the GroundTile prefab) is enclosed within a BoxCollider for which isTrigger has been enabled.
-     * 
-     * Note: Both GameObjects must contain a Collider component. One must have Collider.isTrigger enabled, and contain a Rigidbody. 
-     * If both GameObjects have Collider.isTrigger enabled, no collision happens. 
-     * The same applies when both GameObjects do not have a Rigidbody component.
-     * 
-     * Source: https://docs.unity3d.com/ScriptReference/Collider.OnTriggerEnter.html
-     */
-
-    /*
-    private void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.CompareTag("TileRed")) {
-            FindObjectOfType<PlayerMovement>().speed = 5;
-        } else if (collider.gameObject.CompareTag("TileBlue")) {
-            FindObjectOfType<PlayerMovement>().speed = 15;
-        } else if (collider.gameObject.CompareTag("TileGreen")) {
-            FindObjectOfType<PlayerMovement>().speed = 25;
-        } else if (collider.gameObject.CompareTag("TileYellow")) {
-            Die();
-        } else if (collider.gameObject.CompareTag("TileFinish")) {
-            // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
-            Debug.Log("Game Over! You proceed to the next level");
-            SceneManager.LoadScene(3);
-        } else {
-            Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue and TileYellow");
-            Die();
-        }
-    }
-    */
 }
