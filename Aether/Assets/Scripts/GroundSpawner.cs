@@ -18,13 +18,13 @@ public class GroundSpawner : MonoBehaviour {
         (0,10,"Blue",PowerupEnums.NONE),
         (0,20,"Blue",PowerupEnums.NONE),
         (0,30,"Blue",PowerupEnums.NONE),
-        (0,40,"Blue",PowerupEnums.TIME),
+        (0,40,"Blue",PowerupEnums.NONE),
         (0,50,"Blue",PowerupEnums.NONE),
         (0,60,"Blue",PowerupEnums.NONE),
 
         (0,80,"Blue",PowerupEnums.NONE),
         (0,90,"Blue",PowerupEnums.NONE),
-        (0,100,"Blue",PowerupEnums.SIZE),
+        (0,100,"Blue",PowerupEnums.NONE),
         (0,110,"Blue",PowerupEnums.NONE),
 
         (10,130,"Red",PowerupEnums.NONE),
@@ -41,7 +41,7 @@ public class GroundSpawner : MonoBehaviour {
         (-10,180,"Green",PowerupEnums.NONE),
 
         (0,200,"Red",PowerupEnums.NONE),
-        (0,210,"Red",PowerupEnums.NONE),
+        (0,210,"Red",PowerupEnums.TIME),
         (0,220,"Red",PowerupEnums.NONE),
         (0,230,"Blue",PowerupEnums.NONE),
         (0,240,"Blue",PowerupEnums.NONE),
@@ -57,7 +57,7 @@ public class GroundSpawner : MonoBehaviour {
         (-10,310,"Green",PowerupEnums.NONE),
         (10,310,"Yellow",PowerupEnums.NONE),
         (0,320,"Red",PowerupEnums.NONE),
-        (-10,320,"Green",PowerupEnums.NONE),
+        (-10,320,"Green",PowerupEnums.SIZE),
         (10,320,"Yellow",PowerupEnums.NONE),
         (0,330,"Red",PowerupEnums.NONE),
         (-10,330,"Green",PowerupEnums.NONE),
@@ -69,7 +69,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,360,"Yellow",PowerupEnums.NONE),
         (-10,360,"Blue",PowerupEnums.NONE),
         (10,360,"Green",PowerupEnums.NONE),
-        (0,370,"Yellow",PowerupEnums.NONE),
+        (0,370,"Yellow",PowerupEnums.TIME),
         (-10,370,"Blue",PowerupEnums.NONE),
         (10,370,"Green",PowerupEnums.NONE),
         (0,380,"Yellow",PowerupEnums.NONE),
@@ -78,7 +78,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,390,"Yellow",PowerupEnums.NONE),
         (-10,390,"Blue",PowerupEnums.NONE),
         (10,390,"Green",PowerupEnums.NONE),
-        (0,400,"Yellow",PowerupEnums.NONE),
+        (0,400,"Yellow",PowerupEnums.SIZE),
         (-10,400,"Blue",PowerupEnums.NONE),
         (10,400,"Green",PowerupEnums.NONE),
         (-10,410,"Blue",PowerupEnums.NONE),
@@ -97,9 +97,9 @@ public class GroundSpawner : MonoBehaviour {
         (0,520,"Blue",PowerupEnums.NONE),
         (0,530,"Blue",PowerupEnums.NONE),
 
-        (0,550,"Green",PowerupEnums.NONE),
+        (10,550,"Green",PowerupEnums.TIME),
         (0,550,"Blue",PowerupEnums.NONE),
-        (0,560,"Green",PowerupEnums.NONE),
+        (10,560,"Green",PowerupEnums.NONE),
         (0,560,"Blue",PowerupEnums.NONE),
         (0,570,"Blue",PowerupEnums.NONE),
         (0,580,"Blue",PowerupEnums.NONE),
@@ -118,7 +118,7 @@ public class GroundSpawner : MonoBehaviour {
     int i = 0;
 
     string powerupType = "";
-    bool isPowerUpEnabled = true;
+    bool isPowerUpEnabled = false;
     [SerializeField] float obstacleSpawningChance = 0.3f;
 
 
@@ -130,9 +130,9 @@ public class GroundSpawner : MonoBehaviour {
         //Debug.Log("Current Tile Details - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " + pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled);
         var color = pathCoordinates[i].Name;
         powerupType = pathCoordinates[i].powerupEnums.GetString();
-        
-        if (powerupType.Equals("")) {
-            isPowerUpEnabled = false ;
+        isPowerUpEnabled = false;
+        if (!powerupType.Equals("")) {
+            isPowerUpEnabled = true ;
         }
         //Debug.Log("This is the power up type: " + powerupType + " and power up is: " + isPowerUpEnabled);
 
