@@ -132,8 +132,4 @@ public class PowerUp : MonoBehaviour {
         transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
     }
 
-    private void OnDestroy() {
-        Debug.Log("Khatam Tata Goodbye Gaya");
-    }
-
 }
