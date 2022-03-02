@@ -82,5 +82,4 @@ public class GroundTile : MonoBehaviour {
         spawnPoint.y = 2;
         return spawnPoint;
     }
-
 }
