@@ -89,19 +89,16 @@ public class PowerUp : MonoBehaviour {
     // This method applies permeability power-up to the player.As of right now, it is only in testing phase. Default state = disabled
     IEnumerator ApplyPermeability(Collider player) {
         // implementing the power-up action
-        Obstacle o = FindObjectOfType<Obstacle>();
-        o.GetComponent<BoxCollider>().isTrigger = true;
-        o.test = 2341334;
-        Debug.Log("Before" + o.GetComponent<BoxCollider>().isTrigger);
-        Debug.Log("Testing the test variable: " + o.test);
-        o.GetComponent<Collider>().enabled = false;
+        player.GetComponent<Rigidbody>().useGravity = false;
+        player.GetComponent<CapsuleCollider>().isTrigger = true;
 
         // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
-        o.GetComponent<BoxCollider>().isTrigger = false;
-        Debug.Log("After" + o.GetComponent<BoxCollider>().isTrigger);
+        player.GetComponent<CapsuleCollider>().isTrigger = false;
+        player.GetComponent<Rigidbody>().useGravity = true;
+        
     }
 
     // This method applies change in player scale power-up to the player. Default state = disabled
