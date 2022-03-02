@@ -16,7 +16,7 @@ public class GroundSpawner : MonoBehaviour {
       {
         (0,0,"Blue",PowerupEnums.NONE),
         (0,10,"Blue",PowerupEnums.NONE),
-        (0,20,"Blue",PowerupEnums.NONE),
+        (0,20,"Blue",PowerupEnums.LEVITATE),
         (0,30,"Blue",PowerupEnums.NONE),
         (0,40,"Blue",PowerupEnums.NONE),
         (0,50,"Blue",PowerupEnums.NONE),
@@ -177,6 +177,13 @@ public class GroundSpawner : MonoBehaviour {
                 break;
             case "Size":
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SIZE.GetString());
+                break;
+            case "Permeate":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.PERMEATE.GetString());
+                break;
+            case "Levitate":
+                Debug.Log("Inside levitate function!");
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.LEVITATE.GetString());
                 break;
         }
 
