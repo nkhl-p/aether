@@ -1,6 +1,7 @@
 public enum PowerupEnums {
     TIME,
-    PERMEABILITY,
+    PERMEATE,
+    LEVITATE,
     SIZE,
     NONE
 }
@@ -10,8 +11,10 @@ public static class PowerupExtensions {
         switch (me) {
             case PowerupEnums.TIME:
                 return "Time";
-            case PowerupEnums.PERMEABILITY:
-                return "Permeability";
+            case PowerupEnums.PERMEATE:
+                return "Permeate";
+            case PowerupEnums.LEVITATE:
+                return "Levitate";
             case PowerupEnums.SIZE:
                 return "Size";
             case PowerupEnums.NONE:

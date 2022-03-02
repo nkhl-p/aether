@@ -178,6 +178,13 @@ public class GroundSpawner : MonoBehaviour {
             case "Size":
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SIZE.GetString());
                 break;
+            case "Permeate":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.PERMEATE.GetString());
+                break;
+            case "Levitate":
+                Debug.Log("Inside levitate function!");
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.LEVITATE.GetString());
+                break;
         }
 
         nextSpawnPoint = tempGroundTileObject.transform.GetChild(1).transform.position;
