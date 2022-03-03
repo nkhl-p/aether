@@ -38,7 +38,8 @@ public class PowerUp : MonoBehaviour {
             switch(gameObject.tag) {
                 case "PowerupTime": Pickup(other, PowerupEnums.TIME); break;
                 case "PowerupSize": Pickup(other, PowerupEnums.SIZE); break;
-                case "PowerupPermeability": Pickup(other, PowerupEnums.PERMEABILITY); break;
+                case "PowerupPermeate": Pickup(other, PowerupEnums.PERMEATE); break;
+                case "PowerupLevitate": Pickup(other, PowerupEnums.LEVITATE); break;
             }
         }
     }
@@ -63,13 +64,18 @@ public class PowerUp : MonoBehaviour {
                 IncreaseTime();
                 break;
 
-            case PowerupEnums.PERMEABILITY:
+            case PowerupEnums.PERMEATE:
                 StartCoroutine(ApplyPermeability(player));
                 break;
 
             case PowerupEnums.SIZE:
                 StartCoroutine(ChangePlayerScale(player));
                 break;
+
+            case PowerupEnums.LEVITATE:
+                StartCoroutine(LevitatePlayer(player));
+                break;
+
         }
     }
 
@@ -80,33 +86,22 @@ public class PowerUp : MonoBehaviour {
         return;
     }
 
-    /// <summary>
-    /// This method applies permeability power-up to the player. As of right now, it is only in testing phase. Default state = disabled
-    /// </summary>
-    /// <param name="player"></param>
-    /// <returns>IEnumerator</returns>
+    // This method applies permeability power-up to the player.As of right now, it is only in testing phase. Default state = disabled
     IEnumerator ApplyPermeability(Collider player) {
         // implementing the power-up action
-        Obstacle o = FindObjectOfType<Obstacle>();
-        o.GetComponent<BoxCollider>().isTrigger = true;
-        o.test = 2341334;
-        Debug.Log("Before" + o.GetComponent<BoxCollider>().isTrigger);
-        Debug.Log("Testing the test variable: " + o.test);
-        o.GetComponent<Collider>().enabled = false;
+        player.GetComponent<Rigidbody>().useGravity = false;
+        player.GetComponent<CapsuleCollider>().isTrigger = true;
 
         // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
-        o.GetComponent<BoxCollider>().isTrigger = false;
-        Debug.Log("After" + o.GetComponent<BoxCollider>().isTrigger);
+        player.GetComponent<CapsuleCollider>().isTrigger = false;
+        player.GetComponent<Rigidbody>().useGravity = true;
+        
     }
 
-    /// <summary>
-    /// This method applies change in player scale power-up to the player. Default state = disabled
-    /// </summary>
-    /// <param name="player"></param>
-    /// <returns>IEnumerator</returns>
+    // This method applies change in player scale power-up to the player. Default state = disabled
     IEnumerator ChangePlayerScale(Collider player) {
         // increase the player size as part of the power-up action
         player.transform.localScale *= 1.5f;
@@ -114,15 +109,38 @@ public class PowerUp : MonoBehaviour {
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
-        Debug.Log("Before scale: " + player.transform.localScale);
 
         // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
-        Debug.Log("Before scale: " + player.transform.localScale);
         player.transform.localScale /= 1.5f;
-        Debug.Log("After scale: " + player.transform.localScale);
+
+        // breaking out of the case.
+    }
+
+    // This method applies change in player position along the y-axis to make it resemble like it is levitating . Default state = disabled
+    IEnumerator LevitatePlayer(Collider player) {
+        // increase the player size as part of the power-up action
+        Vector3 currentPos = player.transform.position;
+        Vector3 playerNewPos = new Vector3(currentPos.x, 3, currentPos.z);
+        player.transform.position = playerNewPos;
+        player.GetComponent<Rigidbody>().useGravity = false;
+
+        // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
+        yield return new WaitForSeconds(powerUpApplicableDuration);
+
+        // reverting the changes made by the power-up to its original state
+        Debug.Log("Before position: " + player.transform.position);
+        Vector3 currentPosAfterLevitation = player.transform.position;
+        Vector3 playerNewPosAfter = new Vector3(currentPosAfterLevitation.x, 1, currentPosAfterLevitation.z);
+        player.transform.position = playerNewPosAfter;
+        player.GetComponent<Rigidbody>().useGravity = true;
+        Debug.Log("After position: " + player.transform.position);
 
         // breaking out of the case.
     }
@@ -130,10 +148,6 @@ public class PowerUp : MonoBehaviour {
     // The following function ensures that the powerup will always turn by 90 degrees every second regardless of the framerate
     private void Update() {
         transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
-    }
-
-    private void OnDestroy() {
-        Debug.Log("Khatam Tata Goodbye Gaya");
     }
 
 }

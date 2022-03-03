@@ -8,6 +8,8 @@ public class GroundTile : MonoBehaviour {
 
     public GameObject powerupsPrefabTime;
     public GameObject powerupsPrefabSize;
+    public GameObject powerupsPrefabPermeate;
+    public GameObject powerupsPrefabLevitate;
 
     void Start() {
         groundSpawner = FindObjectOfType<GroundSpawner>();
@@ -51,6 +53,16 @@ public class GroundTile : MonoBehaviour {
                 GameObject temp2 = Instantiate(powerupsPrefabSize, transform);
                 temp2.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
                 break;
+
+            case "Permeate":
+                GameObject temp3 = Instantiate(powerupsPrefabPermeate, transform);
+                temp3.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+                break;
+
+            case "Levitate":
+                GameObject temp4 = Instantiate(powerupsPrefabLevitate, transform);
+                temp4.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+                break;
         }
     }
 
@@ -70,5 +82,4 @@ public class GroundTile : MonoBehaviour {
         spawnPoint.y = 2;
         return spawnPoint;
     }
-
 }

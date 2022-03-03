@@ -290,3 +290,5 @@ MonoBehaviour:
   tallObstacleChance: 0.2
   powerupsPrefabTime: {fileID: 3670609001701935937, guid: 2321abe426d5445bfa76cdffeaec259f, type: 3}
   powerupsPrefabSize: {fileID: 3670609001701935937, guid: 43ee601844c884509a6f4832100b62b3, type: 3}
+  powerupsPrefabPermeate: {fileID: 3670609001701935937, guid: 358453cdb4337411eabe7928ed998e0e, type: 3}
+  powerupsPrefabLevitate: {fileID: 3670609001701935937, guid: ec5b0036a1a0f48cbbc64102caa220ad, type: 3}

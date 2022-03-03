@@ -120,6 +120,28 @@ public class GroundSpawner : MonoBehaviour {
         (0,685,"Finish",PowerupEnums.NONE),
         (0,695,"Finish",PowerupEnums.NONE)
 
+        (10,515,"Green",PowerupEnums.TIME),
+        (0,515,"Blue",PowerupEnums.NONE),
+        (10,525,"Green",PowerupEnums.NONE),
+        (0,525,"Blue",PowerupEnums.NONE),
+        (0,535,"Blue",PowerupEnums.NONE),
+        (0,545,"Blue",PowerupEnums.NONE),
+        (0,555,"Blue",PowerupEnums.NONE),
+        (0,565,"Blue",PowerupEnums.NONE),
+
+        (0,575,"Finish",PowerupEnums.NONE),
+        (0,585,"Finish",PowerupEnums.NONE),
+        (0,595,"Finish",PowerupEnums.NONE),
+        (0,605,"Finish",PowerupEnums.NONE),
+        (0,615,"Finish",PowerupEnums.NONE),
+        (0,625,"Finish",PowerupEnums.NONE),
+        (0,635,"Finish",PowerupEnums.NONE),
+        (0,645,"Finish",PowerupEnums.NONE),
+        (0,655,"Finish",PowerupEnums.NONE),
+        (0,665,"Finish",PowerupEnums.NONE),
+        (0,675,"Finish",PowerupEnums.NONE),
+        (0,685,"Finish",PowerupEnums.NONE),
+        (0,695,"Finish",PowerupEnums.NONE),
       };
     int i = 0;
 
@@ -179,6 +201,13 @@ public class GroundSpawner : MonoBehaviour {
             case "Size":
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SIZE.GetString());
                 break;
+            case "Permeate":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.PERMEATE.GetString());
+                break;
+            case "Levitate":
+                Debug.Log("Inside levitate function!");
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.LEVITATE.GetString());
+                break;
         }
 
         nextSpawnPoint = tempGroundTileObject.transform.GetChild(1).transform.position;
@@ -192,11 +221,14 @@ public class GroundSpawner : MonoBehaviour {
 
 
         float randomObstacleChance = Random.Range(0f, 1f);
+        
 
         if (spawnItems &&
             !isPowerUpEnabled &&
             randomObstacleChance > obstacleSpawningChance &&
             !pathCoordinates[i].Name.Equals("Finish")) {
+            Debug.Log(randomObstacleChance > obstacleSpawningChance);
+            Debug.Log("Generating an obstacle because Random Obstacle Chance - " + randomObstacleChance);
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
         }
         i++;
