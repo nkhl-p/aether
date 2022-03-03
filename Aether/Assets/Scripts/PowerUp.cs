@@ -16,9 +16,6 @@ public class PowerUp : MonoBehaviour {
     }
 
     private void OnTriggerEnter(Collider other) {
-
-        Debug.Log("This is the name of game object: " + gameObject);
-
         if (other.gameObject.GetComponent<Obstacle>() != null) {
             Debug.Log("Power-up spawned inside an obstacle. Destroying power-up now");
             Destroy(gameObject);
