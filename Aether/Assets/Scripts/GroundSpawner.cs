@@ -119,7 +119,6 @@ public class GroundSpawner : MonoBehaviour {
         (0,675,"Finish",PowerupEnums.NONE),
         (0,685,"Finish",PowerupEnums.NONE),
         (0,695,"Finish",PowerupEnums.NONE),
-
       };
     int i = 0;
 
@@ -179,6 +178,13 @@ public class GroundSpawner : MonoBehaviour {
             case "Size":
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SIZE.GetString());
                 break;
+            case "Permeate":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.PERMEATE.GetString());
+                break;
+            case "Levitate":
+                Debug.Log("Inside levitate function!");
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.LEVITATE.GetString());
+                break;
         }
 
         nextSpawnPoint = tempGroundTileObject.transform.GetChild(1).transform.position;
@@ -192,11 +198,14 @@ public class GroundSpawner : MonoBehaviour {
 
 
         float randomObstacleChance = Random.Range(0f, 1f);
+        
 
         if (spawnItems &&
             !isPowerUpEnabled &&
             randomObstacleChance > obstacleSpawningChance &&
             !pathCoordinates[i].Name.Equals("Finish")) {
+            Debug.Log(randomObstacleChance > obstacleSpawningChance);
+            Debug.Log("Generating an obstacle because Random Obstacle Chance - " + randomObstacleChance);
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
         }
         i++;

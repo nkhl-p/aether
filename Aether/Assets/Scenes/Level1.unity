@@ -157,7 +157,7 @@ MonoBehaviour:
   groundTileGreen: {fileID: 8128862036757423918, guid: daf478fcebc9c4335b57c37d1982aed4, type: 3}
   groundTileYellow: {fileID: 8128862036757423918, guid: 1187e79c440b14be3b91adc08ccadab6, type: 3}
   groundTileFinish: {fileID: 8128862036757423918, guid: 44d694ea3c75c4ed198f65588279057c, type: 3}
-  obstacleSpawningChance: 0.3
+  obstacleSpawningChance: 0.55
 --- !u!4 &176812755
 Transform:
   m_ObjectHideFlags: 0
@@ -464,6 +464,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime: 0
+  startingTime: 75
   scoreText: {fileID: 521829223}
 --- !u!114 &521829223 stripped
 MonoBehaviour:
