@@ -118,13 +118,36 @@ public class GroundSpawner : MonoBehaviour {
         (0,665,"Finish",PowerupEnums.NONE),
         (0,675,"Finish",PowerupEnums.NONE),
         (0,685,"Finish",PowerupEnums.NONE),
+        (0,695,"Finish",PowerupEnums.NONE)
+
+        (10,515,"Green",PowerupEnums.TIME),
+        (0,515,"Blue",PowerupEnums.NONE),
+        (10,525,"Green",PowerupEnums.NONE),
+        (0,525,"Blue",PowerupEnums.NONE),
+        (0,535,"Blue",PowerupEnums.NONE),
+        (0,545,"Blue",PowerupEnums.NONE),
+        (0,555,"Blue",PowerupEnums.NONE),
+        (0,565,"Blue",PowerupEnums.NONE),
+
+        (0,575,"Finish",PowerupEnums.NONE),
+        (0,585,"Finish",PowerupEnums.NONE),
+        (0,595,"Finish",PowerupEnums.NONE),
+        (0,605,"Finish",PowerupEnums.NONE),
+        (0,615,"Finish",PowerupEnums.NONE),
+        (0,625,"Finish",PowerupEnums.NONE),
+        (0,635,"Finish",PowerupEnums.NONE),
+        (0,645,"Finish",PowerupEnums.NONE),
+        (0,655,"Finish",PowerupEnums.NONE),
+        (0,665,"Finish",PowerupEnums.NONE),
+        (0,675,"Finish",PowerupEnums.NONE),
+        (0,685,"Finish",PowerupEnums.NONE),
         (0,695,"Finish",PowerupEnums.NONE),
       };
     int i = 0;
 
     string powerupType = "";
     bool isPowerUpEnabled = false;
-    float obstacleSpawningChance = 0.55f;
+    [SerializeField] float obstacleSpawningChance = 0.55f;
 
 
     public void SpawnTile(bool spawnItems) {
