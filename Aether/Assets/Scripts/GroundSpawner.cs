@@ -40,7 +40,7 @@ public class GroundSpawner : MonoBehaviour {
         (10,170,"Blue",PowerupEnums.NONE),
         (-10,170,"Green",PowerupEnums.NONE),
 
-        (0,185,"Red",PowerupEnums.NONE),
+        (0,185,"Red",PowerupEnums.LEVITATE),
         (0,195,"Red",PowerupEnums.TIME),
         (0,205,"Red",PowerupEnums.NONE),
         (0,215,"Blue",PowerupEnums.NONE),
@@ -55,7 +55,7 @@ public class GroundSpawner : MonoBehaviour {
         (10,280,"Yellow",PowerupEnums.NONE),
         (0,290,"Red",PowerupEnums.NONE),
         (-10,290,"Green",PowerupEnums.NONE),
-        (10,290,"Yellow",PowerupEnums.NONE),
+        (10,290,"Yellow",PowerupEnums.LEVITATE),
         (0,300,"Red",PowerupEnums.NONE),
         (-10,300,"Green",PowerupEnums.SIZE),
         (10,300,"Yellow",PowerupEnums.NONE),
@@ -182,7 +182,6 @@ public class GroundSpawner : MonoBehaviour {
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.PERMEATE.GetString());
                 break;
             case "Levitate":
-                Debug.Log("Inside levitate function!");
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.LEVITATE.GetString());
                 break;
         }
@@ -204,15 +203,15 @@ public class GroundSpawner : MonoBehaviour {
             !isPowerUpEnabled &&
             randomObstacleChance > obstacleSpawningChance &&
             !pathCoordinates[i].Name.Equals("Finish")) {
-            Debug.Log(randomObstacleChance > obstacleSpawningChance);
-            Debug.Log("Generating an obstacle because Random Obstacle Chance - " + randomObstacleChance);
+            //Debug.Log(randomObstacleChance > obstacleSpawningChance);
+            //Debug.Log("Generating an obstacle because Random Obstacle Chance - " + randomObstacleChance);
             tempGroundTileObject.GetComponent<GroundTile>().SpawnObstacles();
         }
         i++;
     }
 
     void Start() {
-        for (int i = 0; i < 40; i++) {
+        for (int i = 0; i < 80; i++) {
             if (i > 3) {
                 SpawnTile(true);
             } else {
