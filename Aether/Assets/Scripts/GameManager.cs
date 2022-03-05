@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NextLevel() {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void EndGame() {
@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour {
 
     public void StartLevel1() {
         SceneManager.LoadScene(1);
+    }
+
+    public void StartLevel2() {
+        SceneManager.LoadScene(3);
     }
 
     public void CloseApplicationOnMainMenuExit() {

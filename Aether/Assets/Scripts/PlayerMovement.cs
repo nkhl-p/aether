@@ -191,7 +191,7 @@ public class PlayerMovement : MonoBehaviour {
             SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
             SendTimeAnalyticsData(levelNumber, Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             SendPowerUpsAnalyticsData(levelNumber, powerUpsLevelCount);
-            SceneManager.LoadScene(3);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else if (collision.gameObject.CompareTag("Obstacle")) {
             //distanceArray.Add(Convert.ToInt32(transform.position.z));
             //timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
