@@ -24,7 +24,6 @@ public class PlayerMovement : MonoBehaviour {
     AudioManager audioManagerInstance = null;
 
     // variable declaration for unity analytics
-    public static int levelNumber = 1;
     public static int blueCount = 0;
     public static int redCount = 0;
     public static int greenCount = 0;
@@ -70,11 +69,11 @@ public class PlayerMovement : MonoBehaviour {
                 tries++;
                 deathByFreeFallCount++;
 
-                SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
-                SendDistanceAnalyticsData(levelNumber, Convert.ToInt32(transform.position.z));
-                SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+                SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+                SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+                SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
                     deathByFreeFallCount, deathByOutOfTimeCount);
-                SendPowerUpsAnalyticsData(levelNumber, powerUpsLevelCount);
+                SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
                 Die();
 
             }
@@ -165,11 +164,11 @@ public class PlayerMovement : MonoBehaviour {
             audioManagerInstance.StopPlaying("SpaceTravel");
             deathByYellowPathCount++;
 
-            SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
-            SendDistanceAnalyticsData(levelNumber, Convert.ToInt32(transform.position.z));
-            SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+            SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+            SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+            SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
                 deathByFreeFallCount, deathByOutOfTimeCount);
-            SendPowerUpsAnalyticsData(levelNumber, powerUpsLevelCount);
+            SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
             tries++;
 
             Die();
@@ -180,17 +179,17 @@ public class PlayerMovement : MonoBehaviour {
 
             if (prevColorTag != "FINISH") {
                 prevColorTag = "FINISH";
-                //SendDistanceAnalyticsData(levelNumber, distanceArray);
-                //SendTimeAnalyticsData(levelNumber, timeArray);
+                //SendDistanceAnalyticsData(GetLevelNumber(), distanceArray);
+                //SendTimeAnalyticsData(GetLevelNumber(), timeArray);
                 //distanceArray = new List<int>();
                 //timeArray = new List<int>();
             }
 
             // All analytics are called here - The idea is that until a player completes a level, all the analytic events are trigger here, so as to be under the Unity provided limits. All data is collected and sent at once.
-            SendLevelDeathAnalyticsData(levelNumber, tries);
-            SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
-            SendTimeAnalyticsData(levelNumber, Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
-            SendPowerUpsAnalyticsData(levelNumber, powerUpsLevelCount);
+            SendLevelDeathAnalyticsData(GetLevelNumber(), tries);
+            SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+            SendTimeAnalyticsData(GetLevelNumber(), Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
+            SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else if (collision.gameObject.CompareTag("Obstacle")) {
             //distanceArray.Add(Convert.ToInt32(transform.position.z));
@@ -198,11 +197,11 @@ public class PlayerMovement : MonoBehaviour {
             Debug.Log("Player collided with an obstacle");
             deathByObstacleCount++;
 
-            SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
-            SendDistanceAnalyticsData(levelNumber, Convert.ToInt32(transform.position.z));
-            SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+            SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+            SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+            SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
                 deathByFreeFallCount, deathByOutOfTimeCount);
-            SendPowerUpsAnalyticsData(levelNumber, powerUpsLevelCount);
+            SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
             tries++;
 
         } else {
@@ -220,11 +219,11 @@ public class PlayerMovement : MonoBehaviour {
     public void DeathByOutOfTime() {
         deathByOutOfTimeCount++;
 
-        SendPathSelectionAnalyticsData(levelNumber, blueCount, redCount, greenCount);
-        SendDistanceAnalyticsData(levelNumber, Convert.ToInt32(transform.position.z));
-        SendModeOfDeathAnalyticsData(levelNumber, deathByObstacleCount, deathByYellowPathCount,
+        SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+        SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+        SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
             deathByFreeFallCount, deathByOutOfTimeCount);
-        SendPowerUpsAnalyticsData(levelNumber, powerUpsLevelCount);
+        SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
 
     }
 
@@ -361,5 +360,18 @@ public class PlayerMovement : MonoBehaviour {
         AnalyticsResult analytics_result = Analytics.CustomEvent("PowerUps_Count_Analytics", data);
         Debug.Log("SendPowerUpsAnalyticsData: " + analytics_result);
 
+    }
+
+    public int GetLevelNumber() {
+        Scene scene = SceneManager.GetActiveScene();
+        string levelName = scene.name;
+        int levelNum = 0;
+        switch (levelName) {
+            case "Level1": levelNum = 1; break;
+            case "Level2": levelNum = 2; break;
+            case "Level3": levelNum = 3; break;
+            default: levelNum = 0; break;
+        }
+        return levelNum;
     }
 }

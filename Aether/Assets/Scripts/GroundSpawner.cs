@@ -145,9 +145,7 @@ public class GroundSpawner : MonoBehaviour {
 
         GameObject tempGroundTileObject = null;
 
-        Debug.Log("Assigning the path coordinates array");
         pathCoordinates = (SceneManager.GetActiveScene().buildIndex == 1) ? pathCoordinates : pathCoordinates2;
-        Debug.Log(pathCoordinates);
 
         //Debug.Log("Current Tile Details - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " + pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled);
         var color = pathCoordinates[i].Name;
