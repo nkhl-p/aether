@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Random = UnityEngine.Random;
+using UnityEngine.SceneManagement;
 
 public class GroundSpawner : MonoBehaviour {
     [SerializeField] GameObject groundTileBlue;
@@ -120,6 +121,18 @@ public class GroundSpawner : MonoBehaviour {
         (0,685,"Finish",PowerupEnums.NONE),
         (0,695,"Finish",PowerupEnums.NONE),
       };
+
+    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates2 = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
+      {
+        (0,0,"Blue",PowerupEnums.NONE),
+        (0,10,"Blue",PowerupEnums.NONE),
+        (0,20,"Blue",PowerupEnums.NONE),
+        (0,30,"Blue",PowerupEnums.NONE),
+        (0,40,"Blue",PowerupEnums.NONE),
+        (0,50,"Blue",PowerupEnums.NONE),
+        (0,60,"Blue",PowerupEnums.NONE),
+        (0,60,"Finish",PowerupEnums.NONE),
+      };
     int i = 0;
 
     string powerupType = "";
@@ -131,6 +144,10 @@ public class GroundSpawner : MonoBehaviour {
         int curr = (int)nextSpawnPoint.x;
 
         GameObject tempGroundTileObject = null;
+
+        Debug.Log("Assigning the path coordinates array");
+        pathCoordinates = (SceneManager.GetActiveScene().buildIndex == 1) ? pathCoordinates : pathCoordinates2;
+        Debug.Log(pathCoordinates);
 
         //Debug.Log("Current Tile Details - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " + pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled);
         var color = pathCoordinates[i].Name;
