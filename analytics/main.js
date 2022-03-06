@@ -10,11 +10,11 @@ $(document).ready(function () {
     // avoid to execute the actual submit of the form
     e.preventDefault();
 
-    // $(".container").css("display", "none");
-
     // get raw data entered by the user
     var form = $("#analytics-form-data");
     data = form.serializeArray()[0].value;
+
+    data.replaceAll("/\r?\n/g", "");
 
     // format string to get valid json array
     data =
@@ -262,8 +262,123 @@ function CreateHighChartForDistanceTravelledVsLevel(data) {
 
 function CreateHighChartForModeOfDeathVsLevel(data) {
   console.log("CreateHighChartForModeOfDeathVsLevel called");
+  var levels = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+
+  data.forEach((d) => {
+    levels[0][parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Obstacle
+    );
+    levels[1][parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Yellow_Path
+    );
+    levels[2][parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Free_Fall
+    );
+    levels[3][parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Out_Of_Time
+    );
+  });
+  console.log(levels);
+
+  Highcharts.chart("container5", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: "Mode of death v/s Level",
+    },
+    subtitle: {
+      text: "Tracks the mode of death while playing the game",
+    },
+    xAxis: {
+      categories: ["1", "2", "3"],
+      title: {
+        text: "Levels",
+      },
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Number of Deaths",
+      },
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0,
+        borderWidth: 0,
+      },
+    },
+    series: [
+      {
+        name: "Obstacle",
+        data: levels[0],
+      },
+      {
+        name: "Yellow Path",
+        data: levels[1],
+      },
+      {
+        name: "Free Fall",
+        data: levels[2],
+      },
+      {
+        name: "Out Of Time",
+        data: levels[3],
+      },
+    ],
+    colors: ["#f07c1d", "#f7c50f", "#087844", "#803808"],
+  });
 }
 
 function CreateHighChartForPowerupsCollectedVsLevel(data) {
   console.log("CreateHighChartForPowerupsCollectedVsLevel called!");
+  var levels = [0, 0, 0];
+
+  data.forEach((d) => {
+    levels[parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.PowerUps_Count
+    );
+  });
+  console.log(levels);
+  Highcharts.chart("container6", {
+    chart: {
+      type: "column",
+    },
+    title: {
+      text: "Number of Power-Ups collected v/s Level",
+    },
+    subtitle: {
+      text: "Tracks the number of power-ups collected while playing the game on each level",
+    },
+    xAxis: {
+      categories: ["1", "2", "3"],
+      title: {
+        text: "Levels",
+      },
+    },
+    yAxis: {
+      min: 0,
+      title: {
+        text: "Number of power-ups collected",
+      },
+    },
+    plotOptions: {
+      column: {
+        pointPadding: 0,
+        borderWidth: 0,
+      },
+    },
+    series: [
+      {
+        name: "Power-Ups",
+        data: levels,
+      },
+    ],
+    colors: ["#40a6ec"],
+  });
 }
