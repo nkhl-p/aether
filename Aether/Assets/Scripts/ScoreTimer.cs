@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class ScoreTimer : MonoBehaviour {
     public float currentTime = 0f;
@@ -8,6 +9,19 @@ public class ScoreTimer : MonoBehaviour {
     public TMP_Text scoreText;
 
     void Start() {
+        Scene scene = SceneManager.GetActiveScene();
+
+        switch (scene.name) {
+            case "Level1":
+                startingTime = 50f;
+                break;
+            case "Level2":
+                startingTime = 50f;
+                break;
+            default:
+                Debug.Log("Code should not reach here!");
+                break;
+        }
         currentTime = startingTime;
     }
 
