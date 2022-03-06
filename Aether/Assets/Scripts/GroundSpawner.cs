@@ -13,7 +13,7 @@ public class GroundSpawner : MonoBehaviour {
     [SerializeField] GameObject groundTileFinish;
     Vector3 nextSpawnPoint;
 
-    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
+    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates2 = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
       {
         (0,0,"Blue",PowerupEnums.NONE),
         (0,10,"Blue",PowerupEnums.NONE),
@@ -122,7 +122,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,695,"Finish",PowerupEnums.NONE),
       };
 
-    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates2 = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
+    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
       {
         (0,0,"Blue",PowerupEnums.NONE),
         (0,10,"Blue",PowerupEnums.NONE),
@@ -220,7 +220,20 @@ public class GroundSpawner : MonoBehaviour {
 
         GameObject tempGroundTileObject = null;
 
-        pathCoordinates = (SceneManager.GetActiveScene().buildIndex == 1) ? pathCoordinates : pathCoordinates2;
+        Scene scene = SceneManager.GetActiveScene();
+
+        switch (scene.name) {
+            case "Level1":
+                obstacleSpawningChance = 0.65f;
+                break;
+            case "Level2":
+                pathCoordinates = pathCoordinates2;
+                obstacleSpawningChance = 0.55f;
+                break;
+            default:
+                Debug.Log("Code should not reach here!");
+                break;
+        }
 
         //Debug.Log("Current Tile Details - " + pathCoordinates[i].X_Value + " " + pathCoordinates[i].Z_Value + " " + pathCoordinates[i].Name + " " + pathCoordinates[i].IsPowerUpEnabled);
         var color = pathCoordinates[i].Name;

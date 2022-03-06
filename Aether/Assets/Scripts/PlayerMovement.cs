@@ -29,9 +29,7 @@ public class PlayerMovement : MonoBehaviour {
     public static int greenCount = 0;
     public static string prevColorTag = "";
     public static int tries = 0;
-    //public static List<int> distanceArray = new List<int>();
     public static int distance = 0;
-    //public static List<int> timeArray = new List<int>();
     public static int time = 0;
     public static int deathByObstacleCount = 0;
     public static int deathByYellowPathCount = 0;
@@ -85,40 +83,37 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("Number of player deaths: " + tries);
         if (transformCache.position.y < 0) {
             // audioManagerInstance.Play(SoundEnums.FALL.GetString());
-            //distanceArray.Add(Convert.ToInt32(transform.position.z));
-            //timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
-
         }
 
         Invoke("Restart", 1);
     }
 
-    void resetDeathStats() {
+    void ResetDeathStats() {
         deathByObstacleCount = 0;
         deathByYellowPathCount = 0;
         deathByFreeFallCount = 0;
         deathByOutOfTimeCount = 0;
     }
 
-    void resetLevelDeathStats() {
+    void ResetLevelDeathStats() {
         tries = 0;
     }
 
-    void resetPathSelectionStats() {
+    void ResetPathSelectionStats() {
         redCount = 0;
         blueCount = 0;
         greenCount = 0;
     }
 
-    void resetDistanceStats() {
+    void ResetDistanceStats() {
         distance = 0;
     }
 
-    void resetTimeStats() {
+    void ResetTimeStats() {
         time = 0;
     }
 
-    void resetPowerupStats() {
+    void ResetPowerupStats() {
         powerUpsLevelCount = 0;
     }
 
@@ -145,17 +140,18 @@ public class PlayerMovement : MonoBehaviour {
 
     // For this to work, the Plane gameObject of the GroundTile prefab had to be assigned the different tags that were assigned to the GroundTile
     private void OnCollisionEnter(Collision collision) {
+        int baseSpeed = GetBaseSpeedForLevel();
         if (collision.gameObject.CompareTag("TileRed")) {
-            FindObjectOfType<PlayerMovement>().speed = 5;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed;
             if (prevColorTag != "RED") redCount++;
             prevColorTag = "RED";
         } else if (collision.gameObject.CompareTag("TileBlue")) {
-            FindObjectOfType<PlayerMovement>().speed = 11;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 6 ;
             if (prevColorTag != "BLUE") blueCount++;
             prevColorTag = "BLUE";
 
         } else if (collision.gameObject.CompareTag("TileGreen")) {
-            FindObjectOfType<PlayerMovement>().speed = 15;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
         } else if (collision.gameObject.CompareTag("TileYellow")) {
@@ -179,10 +175,6 @@ public class PlayerMovement : MonoBehaviour {
 
             if (prevColorTag != "FINISH") {
                 prevColorTag = "FINISH";
-                //SendDistanceAnalyticsData(GetLevelNumber(), distanceArray);
-                //SendTimeAnalyticsData(GetLevelNumber(), timeArray);
-                //distanceArray = new List<int>();
-                //timeArray = new List<int>();
             }
 
             // All analytics are called here - The idea is that until a player completes a level, all the analytic events are trigger here, so as to be under the Unity provided limits. All data is collected and sent at once.
@@ -192,8 +184,6 @@ public class PlayerMovement : MonoBehaviour {
             SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         } else if (collision.gameObject.CompareTag("Obstacle")) {
-            //distanceArray.Add(Convert.ToInt32(transform.position.z));
-            //timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             Debug.Log("Player collided with an obstacle");
             deathByObstacleCount++;
 
@@ -205,8 +195,6 @@ public class PlayerMovement : MonoBehaviour {
             tries++;
 
         } else {
-            //distanceArray.Add(Convert.ToInt32(transform.position.z));
-            //timeArray.Add(Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue, TileYellow and TileFinish");
         }
     }
@@ -234,7 +222,7 @@ public class PlayerMovement : MonoBehaviour {
             { "Level", level_num },
             { "Retries", tries }
         };
-        resetLevelDeathStats();
+        ResetLevelDeathStats();
 
         Debug.Log("Level Death Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
@@ -250,7 +238,7 @@ public class PlayerMovement : MonoBehaviour {
                 {"Red_Path", rCount },
                 {"Green_Path", gCount}
         };
-        resetPathSelectionStats();
+        ResetPathSelectionStats();
 
         Debug.Log("Path Selection Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
@@ -258,32 +246,13 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("Path Selection Analytics: " + analytics_result);
     }
 
-
-    //public void SendDistanceAnalyticsData(int level_num, List<int> distance) {
-    //    int sum = 0;
-    //    for (var i = 0; i < distance.Count - 1; i++) {
-    //        sum += distance[i];
-    //    }
-
-    //    Dictionary<string, object> data = new Dictionary<string, object> {
-    //            {"Level", level_num},
-    //            {"Distance", (sum/distance.Count)}
-    //    };
-
-    //    Debug.Log("Distance Analytics Array: " + string.Join(',', distance));
-    //    Debug.Log("Distance Analytics Debug Data: ");
-    //    data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
-    //    AnalyticsResult analytics_result = Analytics.CustomEvent("Distance_Travelled_Analytics", data);
-    //    Debug.Log("Distance Travelled Analytics: " + analytics_result);
-    //}
-
     // Average distance travelled during each play. Data sent at each death (average is to be calculated on Highcharts)
     public void SendDistanceAnalyticsData(int level_num, int distance) {
         Dictionary<string, object> data = new Dictionary<string, object> {
                 {"Level", level_num},
                 {"Distance", distance}
         };
-        resetDistanceStats();
+        ResetDistanceStats();
 
         Debug.Log("Distance Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
@@ -291,33 +260,13 @@ public class PlayerMovement : MonoBehaviour {
         Debug.Log("Distance Travelled Analytics: " + analytics_result);
     }
 
-    //public void SendTimeAnalyticsData(int level_num, List<int> time) {
-    //    Debug.Log("in here");
-    //    int sum = 0;
-    //    foreach (var t in time) {
-    //        sum += t;
-    //    }
-
-    //    Dictionary<string, object> data = new Dictionary<string, object> {
-    //            {"Level", level_num},
-    //            {"Time", (sum/time.Count) }
-    //    };
-
-    //    Debug.Log("Time Analytics Array: " + string.Join(',', time));
-    //    Debug.Log("Time Analytics Debug Data: ");
-    //    data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
-    //    AnalyticsResult analytics_result = Analytics.CustomEvent("Total_Time_Analytics", data);
-    //    Debug.Log("Time Analytics: " + analytics_result);
-    //}
-
-
     // Average time taken for each gameplay instance. Data sent at each death (average is to be calculated on Highcharts)
     public void SendTimeAnalyticsData(int level_num, int time) {
         Dictionary<string, object> data = new Dictionary<string, object> {
                 {"Level", level_num},
                 {"Time", time }
         };
-        resetTimeStats();
+        ResetTimeStats();
 
         Debug.Log("Time Analytics Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
@@ -337,7 +286,7 @@ public class PlayerMovement : MonoBehaviour {
             {"Free_Fall", freeFallCount},
             {"Out_Of_Time", outOfTimeCount},
         };
-        resetDeathStats();
+        ResetDeathStats();
 
         Debug.Log("SendModeOfDeathAnalyticsData Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
@@ -353,7 +302,7 @@ public class PlayerMovement : MonoBehaviour {
             {"Level", level_num},
             {"PowerUps_Count", powerUpsLevelCount},
         };
-        resetPowerupStats();
+        ResetPowerupStats();
 
         Debug.Log("SendPowerUpsAnalyticsData Debug Data: ");
         data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
@@ -373,5 +322,26 @@ public class PlayerMovement : MonoBehaviour {
             default: levelNum = 0; break;
         }
         return levelNum;
+    }
+
+    public int GetBaseSpeedForLevel() {
+        int level = GetLevelNumber();
+        int baseSpeed;
+        switch (level) {
+            case 1:
+                baseSpeed = 5;
+                break;
+            case 2:
+                baseSpeed = 8;
+                break;
+            case 3:
+                baseSpeed = 10;
+                break;
+            default:
+                Debug.Log("Code should not come here");
+                baseSpeed = 0;
+                break;
+        }
+        return baseSpeed;
     }
 }

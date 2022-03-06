@@ -13,13 +13,9 @@ public class GameManager : MonoBehaviour {
         audioManagerInstance = FindObjectOfType<AudioManager>();
     }
 
-    public void PlayGame() {
+    public void MainMenu() {
         Time.timeScale = 1f;
         SceneManager.LoadScene(0);
-    }
-
-    public void StartGame() {
-        SceneManager.LoadScene(1);
     }
 
     public void PauseGame() {
@@ -41,11 +37,11 @@ public class GameManager : MonoBehaviour {
     }
 
     public void StartLevel1() {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void StartLevel2() {
-        SceneManager.LoadScene(3);
+        SceneManager.LoadScene(4);
     }
 
     public void CloseApplicationOnMainMenuExit() {
@@ -54,7 +50,7 @@ public class GameManager : MonoBehaviour {
     }
 
     public void HelpMenu() {
-        SceneManager.LoadScene(5);
+        SceneManager.LoadScene(1);
     }
 
     public void MuteSound() {
