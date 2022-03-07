@@ -181,7 +181,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,365,"Yellow",PowerupEnums.NONE),
         (-10,365,"Blue",PowerupEnums.NONE),
         (10,365,"Yellow",PowerupEnums.NONE),
-        (0,375,"Yellow",PowerupEnums.LEVITATE),
+        (0,375,"Yellow",PowerupEnums.NONE),
         (-10,375,"Blue",PowerupEnums.NONE),
         (10,375,"Yellow",PowerupEnums.NONE),
 
