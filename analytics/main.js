@@ -54,13 +54,22 @@ $(document).ready(function () {
 });
 
 function CreateHighChartForRetriesVSLevel(data) {
-  var retries = 0;
+  var levels = [0, 0, 0];
+  var count = [0, 0, 0];
 
   data.forEach((d) => {
-    retries += parseInt(d.custom_params.Retries);
+    levels[parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Retries
+    );
+    count[parseInt(d.custom_params.Level) - 1] += 1;
   });
 
-  console.log("Total retries: ", retries);
+  // Comment this for-loop if you don't want the average calculation
+  for (var i = 0; i < 3; i++) {
+    console.log("Level ", levels[i]);
+    console.log("Count ", count[i]);
+    levels[i] = levels[i] / count[i];
+  }
 
   Highcharts.chart("container1", {
     chart: {
@@ -93,7 +102,7 @@ function CreateHighChartForRetriesVSLevel(data) {
     series: [
       {
         name: "Retries",
-        data: [retries, 0, 0],
+        data: levels,
       },
     ],
     colors: ["#ec4040"],
@@ -101,16 +110,43 @@ function CreateHighChartForRetriesVSLevel(data) {
 }
 
 function CreateHighChartForPathChosenVSLevel(data) {
-  var green = 0,
-    red = 0,
-    blue = 0;
+  var levels = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
+
+  var count = [
+    [0, 0, 0],
+    [0, 0, 0],
+    [0, 0, 0],
+  ];
 
   data.forEach((d) => {
-    green += parseInt(d.custom_params.Green_Path);
-    red += parseInt(d.custom_params.Red_Path);
-    blue += parseInt(d.custom_params.Blue_Path);
+    levels[0][parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Red_Path
+    );
+    count[0][parseInt(d.custom_params.Level) - 1] += 1;
+
+    levels[1][parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Green_Path
+    );
+    count[1][parseInt(d.custom_params.Level) - 1] += 1;
+
+    levels[2][parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Blue_Path
+    );
+    count[2][parseInt(d.custom_params.Level) - 1] += 1;
   });
-  console.log(green, blue, red);
+
+  // Comment this for-loop if you don't want the average calculation
+  for (var i = 0; i < 3; i++) {
+    console.log("Path:", levels.toString());
+    console.log("Count:", count.toString());
+    for (var j = 0; j < 3; j++) {
+      levels[i][j] = levels[i][j] / count[i][j];
+    }
+  }
 
   Highcharts.chart("container2", {
     chart: {
@@ -143,15 +179,15 @@ function CreateHighChartForPathChosenVSLevel(data) {
     series: [
       {
         name: "Red",
-        data: [red, 0, 0],
+        data: levels[0],
       },
       {
         name: "Green",
-        data: [green, 0, 0],
+        data: levels[1],
       },
       {
         name: "Blue",
-        data: [blue, 0, 0],
+        data: levels[2],
       },
     ],
     colors: ["#ec4040", "#69ec40", "#40a6ec"],
@@ -159,16 +195,22 @@ function CreateHighChartForPathChosenVSLevel(data) {
 }
 
 function CreateHighChartForTimeTakenVsLevel(data) {
-  var time = 0;
-  var count = 0;
-  var length = 0;
+  var levels = [0, 0, 0];
+  var count = [0, 0, 0];
 
   data.forEach((d) => {
-    length++;
-    time += parseInt(d.custom_params.Time);
+    levels[parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Time
+    );
+    count[parseInt(d.custom_params.Level) - 1] += 1;
   });
 
-  count = Math.round(time / length);
+  // Comment this for-loop if you don't want the average calculation
+  for (var i = 0; i < 3; i++) {
+    console.log("Level ", levels[i]);
+    console.log("Count ", count[i]);
+    levels[i] = levels[i] / count[i];
+  }
 
   Highcharts.chart("container3", {
     chart: {
@@ -201,7 +243,7 @@ function CreateHighChartForTimeTakenVsLevel(data) {
     series: [
       {
         name: "",
-        data: [count, 0, 0],
+        data: levels,
       },
     ],
     colors: ["#FF0000"],
@@ -209,18 +251,22 @@ function CreateHighChartForTimeTakenVsLevel(data) {
 }
 
 function CreateHighChartForDistanceTravelledVsLevel(data) {
-  var distance = 0;
-  var count = 0;
-  var length = 0;
+  var levels = [0, 0, 0];
+  var count = [0, 0, 0];
 
   data.forEach((d) => {
-    length++;
-    distance += parseInt(d.custom_params.Distance);
+    levels[parseInt(d.custom_params.Level) - 1] += parseInt(
+      d.custom_params.Distance
+    );
+    count[parseInt(d.custom_params.Level) - 1] += 1;
   });
 
-  console.log("size of distance array: " + length);
-
-  count = Math.round(distance / length);
+  // Comment this for-loop if you don't want the average calculation
+  for (var i = 0; i < 3; i++) {
+    console.log("Level ", levels[i]);
+    console.log("Count ", count[i]);
+    levels[i] = levels[i] / count[i];
+  }
 
   Highcharts.chart("container4", {
     chart: {
@@ -253,7 +299,7 @@ function CreateHighChartForDistanceTravelledVsLevel(data) {
     series: [
       {
         name: "Distance",
-        data: [count, 0, 0],
+        data: levels,
       },
     ],
     colors: ["#008000"],
@@ -338,12 +384,22 @@ function CreateHighChartForModeOfDeathVsLevel(data) {
 function CreateHighChartForPowerupsCollectedVsLevel(data) {
   console.log("CreateHighChartForPowerupsCollectedVsLevel called!");
   var levels = [0, 0, 0];
+  var count = [0, 0, 0];
 
   data.forEach((d) => {
     levels[parseInt(d.custom_params.Level) - 1] += parseInt(
       d.custom_params.PowerUps_Count
     );
+    count[parseInt(d.custom_params.Level) - 1] += 1;
   });
+
+  // Comment this for-loop if you don't want the average calculation
+  for (var i = 0; i < 3; i++) {
+    console.log("Level ", levels[i]);
+    console.log("Count ", count[i]);
+    levels[i] = Math.ceil(levels[i] / count[i]);
+  }
+
   console.log(levels);
   Highcharts.chart("container6", {
     chart: {
