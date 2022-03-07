@@ -182,7 +182,13 @@ public class PlayerMovement : MonoBehaviour {
             SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
             SendTimeAnalyticsData(GetLevelNumber(), Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+            if(SceneManager.GetActiveScene().buildIndex == 2) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            } else {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+            }
+            
         } else if (collision.gameObject.CompareTag("Obstacle")) {
             Debug.Log("Player collided with an obstacle");
             deathByObstacleCount++;
