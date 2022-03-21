@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+    <link rel="shortcut icon" href="#" />
+    <title>Analytics Analyzer - Team Aether</title>
+  </head>
+  <body>
+    <div class="container-main">
+      <h1>Analytics Data - Team Aether</h1>
+      <form id="analytics-form-data">
+        <textarea
+          id="analytics-data"
+          name="analytics-data"
+          rows="20"
+          cols="100"
+          placeholder="Enter your analytics data here!"
+          required
+        ></textarea>
+        <br /><br />
+        <input type="submit" value="Submit" />
+        <input type="reset" value="Reset" />
+      </form>
+      <button id="load-test-data">Load Test Data</button>
+
+      <figure class="highcharts-figure">
+        <div id="container1" class="container"></div>
+      </figure>
+      <figure class="highcharts-figure">
+        <div id="container2" class="container"></div>
+      </figure>
+      <figure class="highcharts-figure">
+        <div id="container3" class="container"></div>
+      </figure>
+      <figure class="highcharts-figure">
+        <div id="container4" class="container"></div>
+      </figure>
+      <figure class="highcharts-figure">
+        <div id="container5" class="container"></div>
+      </figure>
+      <figure class="highcharts-figure">
+        <div id="container6" class="container"></div>
+      </figure>
+    </div>
+
+    <script src="main.js"></script>
+  </body>
+</html>

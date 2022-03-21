@@ -1,5 +1,12 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
+using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
+using System;
+
+
+
 
 public class PlayerMovement : MonoBehaviour {
     public float speed = 5;
@@ -13,6 +20,32 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] float jumpForce = 400f;
     [SerializeField] LayerMask groundMask;
 
+    private Transform transformCache;
+    AudioManager audioManagerInstance = null;
+
+    // variable declaration for unity analytics
+    public static int blueCount = 0;
+    public static int redCount = 0;
+    public static int greenCount = 0;
+    public static string prevColorTag = "";
+    public static int tries = 0;
+    public static int distance = 0;
+    public static int time = 0;
+    public static int deathByObstacleCount = 0;
+    public static int deathByYellowPathCount = 0;
+    public static int deathByFreeFallCount = 0;
+    public static int deathByOutOfTimeCount = 0;
+    public static int powerUpsLevelCount = 0;
+    bool val = false;
+
+    private void Awake() {
+        transformCache = transform;
+    }
+
+    private void Start() {
+        audioManagerInstance = FindObjectOfType<AudioManager>();
+    }
+
     private void FixedUpdate() {
         if (!alive) return;
 
@@ -21,7 +54,6 @@ public class PlayerMovement : MonoBehaviour {
         rb.MovePosition(rb.position + forwardMove + horizontalMovement);
     }
 
-    // Update is called once per frame
     void Update() {
         horizontalInput = Input.GetAxis("Horizontal");
 
@@ -29,25 +61,73 @@ public class PlayerMovement : MonoBehaviour {
             Jump();
         }
 
-        if (transform.position.y < -5) {
-            Die();
+        if (transformCache.position.y < 0) {
+            if (!val) {
+                val = !val;
+                tries++;
+                deathByFreeFallCount++;
+
+                SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+                SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+                SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
+                    deathByFreeFallCount, deathByOutOfTimeCount);
+                SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
+                Die();
+
+            }
         }
     }
 
     public void Die() {
         alive = false;
-        Invoke("Restart", 2);
+        Debug.Log("Number of player deaths: " + tries);
+        if (transformCache.position.y < 0) {
+            // audioManagerInstance.Play(SoundEnums.FALL.GetString());
+        }
+
+        Invoke("Restart", 1);
+    }
+
+    void ResetDeathStats() {
+        deathByObstacleCount = 0;
+        deathByYellowPathCount = 0;
+        deathByFreeFallCount = 0;
+        deathByOutOfTimeCount = 0;
+    }
+
+    void ResetLevelDeathStats() {
+        tries = 0;
+    }
+
+    void ResetPathSelectionStats() {
+        redCount = 0;
+        blueCount = 0;
+        greenCount = 0;
+    }
+
+    void ResetDistanceStats() {
+        distance = 0;
+    }
+
+    void ResetTimeStats() {
+        time = 0;
+    }
+
+    void ResetPowerupStats() {
+        powerUpsLevelCount = 0;
     }
 
     void Restart() {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        // FindObjectOfType<AudioManager>().Play("SpaceTravel");
+        audioManagerInstance.Play(SoundEnums.THEME.GetString());
     }
 
     void Jump() {
         // Check whether the player is currently on the ground
+
+        audioManagerInstance.Play(SoundEnums.JUMP.GetString());
         float height = GetComponent<Collider>().bounds.size.y;
         bool isGrounded = Physics.Raycast(transform.position, Vector3.down, (height / 2) + 0.1f, groundMask);
 
@@ -58,57 +138,216 @@ public class PlayerMovement : MonoBehaviour {
 
     }
 
-    /* Commenting the below method (OnTriggerEnter) since we want to change the speed of the player when it COLLIDES with the tile rather than when it enters the BoxCollider
-     * Note that it is possible to use OnCollisionEnter because the Player has a CapsuleCollider for which isTrigger has not been enabled whereas
-     * the Plane (child object of the GroundTile prefab) is enclosed within a BoxCollider for which isTrigger has been enabled.
-     * 
-     * Note: Both GameObjects must contain a Collider component. One must have Collider.isTrigger enabled, and contain a Rigidbody. 
-     * If both GameObjects have Collider.isTrigger enabled, no collision happens. 
-     * The same applies when both GameObjects do not have a Rigidbody component.
-     * 
-     * Source: https://docs.unity3d.com/ScriptReference/Collider.OnTriggerEnter.html
-     */
-
-    /*
-    private void OnTriggerEnter(Collider collider) {
-        if (collider.gameObject.CompareTag("TileRed")) {
-            FindObjectOfType<PlayerMovement>().speed = 5;
-        } else if (collider.gameObject.CompareTag("TileBlue")) {
-            FindObjectOfType<PlayerMovement>().speed = 15;
-        } else if (collider.gameObject.CompareTag("TileGreen")) {
-            FindObjectOfType<PlayerMovement>().speed = 25;
-        } else if (collider.gameObject.CompareTag("TileYellow")) {
-            Die();
-        } else if (collider.gameObject.CompareTag("TileFinish")) {
-            // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
-            Debug.Log("Game Over! You proceed to the next level");
-            SceneManager.LoadScene(3);
-        } else {
-            Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue and TileYellow");
-            Die();
-        }
-    }
-    */
-
     // For this to work, the Plane gameObject of the GroundTile prefab had to be assigned the different tags that were assigned to the GroundTile
     private void OnCollisionEnter(Collision collision) {
-        Debug.Log("Collision with: " + collision.gameObject.name);
-
+        int baseSpeed = GetBaseSpeedForLevel();
         if (collision.gameObject.CompareTag("TileRed")) {
-            FindObjectOfType<PlayerMovement>().speed = 5;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed;
+            if (prevColorTag != "RED") redCount++;
+            prevColorTag = "RED";
         } else if (collision.gameObject.CompareTag("TileBlue")) {
-            FindObjectOfType<PlayerMovement>().speed = 15;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 6 ;
+            if (prevColorTag != "BLUE") blueCount++;
+            prevColorTag = "BLUE";
+
         } else if (collision.gameObject.CompareTag("TileGreen")) {
-            FindObjectOfType<PlayerMovement>().speed = 25;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
+            if (prevColorTag != "GREEN") greenCount++;
+            prevColorTag = "GREEN";
         } else if (collision.gameObject.CompareTag("TileYellow")) {
+            // Manage sounds
+            audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
+            audioManagerInstance.StopPlaying("SpaceTravel");
+            deathByYellowPathCount++;
+
+            SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+            SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+            SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
+                deathByFreeFallCount, deathByOutOfTimeCount);
+            SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
+            tries++;
+
             Die();
         } else if (collision.gameObject.CompareTag("TileFinish")) {
             // The following line will be replaced by UnityEngine.ScreenManagement to load a new scene (Intermediate Level Scene)
-            Debug.Log("Game Over! You proceed to the next level");
-            SceneManager.LoadScene(3);
+            audioManagerInstance.Play(SoundEnums.WIN.GetString());
+            Debug.Log("Level Complete! You proceed to the next level");
+
+            if (prevColorTag != "FINISH") {
+                prevColorTag = "FINISH";
+            }
+
+            // All analytics are called here - The idea is that until a player completes a level, all the analytic events are trigger here, so as to be under the Unity provided limits. All data is collected and sent at once.
+            SendLevelDeathAnalyticsData(GetLevelNumber(), tries);
+            SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+            SendTimeAnalyticsData(GetLevelNumber(), Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
+            SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
+
+            if(SceneManager.GetActiveScene().buildIndex == 2) {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            } else {
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+            }
+            
+        } else if (collision.gameObject.CompareTag("Obstacle")) {
+            Debug.Log("Player collided with an obstacle");
+            deathByObstacleCount++;
+
+            SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+            SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+            SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
+                deathByFreeFallCount, deathByOutOfTimeCount);
+            SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
+            tries++;
+
         } else {
             Debug.Log("This should not have been printed as there are no other tags apart from TileRed, TileGreen, TileBlue, TileYellow and TileFinish");
-            Die();
         }
+    }
+
+    public void PowerUpPickedUpCounterUpdate() {
+        Debug.Log("Picked Up Powerup Counter Updated");
+        powerUpsLevelCount++;
+    }
+
+    public void DeathByOutOfTime() {
+        deathByOutOfTimeCount++;
+
+        SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
+        SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
+        SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
+            deathByFreeFallCount, deathByOutOfTimeCount);
+        SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
+
+    }
+
+    // Add all analytics events below this point
+    // Average number of times a player dies. Data sent at level complete (average is to be calculated on Highcharts)
+    public void SendLevelDeathAnalyticsData(int level_num, int tries) {
+        Dictionary<string, object> data = new Dictionary<string, object> {
+            { "Level", level_num },
+            { "Retries", tries }
+        };
+        ResetLevelDeathStats();
+
+        Debug.Log("Level Death Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analyticsResultDie = Analytics.CustomEvent("Level_Death_Analytics", data);
+        Debug.Log("Analytics Die: " + analyticsResultDie);
+    }
+
+    // Average number of times a path is chosen. Data sent at each death (average is to be calculated on Highcharts)
+    public void SendPathSelectionAnalyticsData(int level_num, int bCount, int rCount, int gCount) {
+        Dictionary<string, object> data = new Dictionary<string, object> {
+                {"Level", level_num},
+                {"Blue_Path", bCount },
+                {"Red_Path", rCount },
+                {"Green_Path", gCount}
+        };
+        ResetPathSelectionStats();
+
+        Debug.Log("Path Selection Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Path_Selection_Analytics", data);
+        Debug.Log("Path Selection Analytics: " + analytics_result);
+    }
+
+    // Average distance travelled during each play. Data sent at each death (average is to be calculated on Highcharts)
+    public void SendDistanceAnalyticsData(int level_num, int distance) {
+        Dictionary<string, object> data = new Dictionary<string, object> {
+                {"Level", level_num},
+                {"Distance", distance}
+        };
+        ResetDistanceStats();
+
+        Debug.Log("Distance Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Distance_Travelled_Analytics", data);
+        Debug.Log("Distance Travelled Analytics: " + analytics_result);
+    }
+
+    // Average time taken for each gameplay instance. Data sent at each death (average is to be calculated on Highcharts)
+    public void SendTimeAnalyticsData(int level_num, int time) {
+        Dictionary<string, object> data = new Dictionary<string, object> {
+                {"Level", level_num},
+                {"Time", time }
+        };
+        ResetTimeStats();
+
+        Debug.Log("Time Analytics Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Total_Time_Analytics", data);
+        Debug.Log("Time Analytics: " + analytics_result);
+    }
+
+    // Mode of death of a player. Data sent at each death (sum is to be calculated on Highcharts)
+    public void SendModeOfDeathAnalyticsData(int level_num,
+        int obstacleCount, int yellowPathCount, int freeFallCount, int outOfTimeCount) {
+        Debug.Log("SendModeOfDeathAnalyticsData Called");
+
+        Dictionary<string, object> data = new Dictionary<string, object> {
+            {"Level", level_num},
+            {"Obstacle", obstacleCount},
+            {"Yellow_Path", yellowPathCount},
+            {"Free_Fall", freeFallCount},
+            {"Out_Of_Time", outOfTimeCount},
+        };
+        ResetDeathStats();
+
+        Debug.Log("SendModeOfDeathAnalyticsData Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("Mode_Of_Death_Analytics", data);
+        Debug.Log("SendModeOfDeathAnalyticsData: " + analytics_result);
+    }
+
+    // Number of powerups collected during each gameplay. Data is sent at each gameplay (average is to be calculated on Highcharts)
+    public void SendPowerUpsAnalyticsData(int level_num, int powerUpsLevelCount) {
+        Debug.Log("SendPowerUpsAnalyticsData Called");
+
+        Dictionary<string, object> data = new Dictionary<string, object> {
+            {"Level", level_num},
+            {"PowerUps_Count", powerUpsLevelCount},
+        };
+        ResetPowerupStats();
+
+        Debug.Log("SendPowerUpsAnalyticsData Debug Data: ");
+        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        AnalyticsResult analytics_result = Analytics.CustomEvent("PowerUps_Count_Analytics", data);
+        Debug.Log("SendPowerUpsAnalyticsData: " + analytics_result);
+
+    }
+
+    public int GetLevelNumber() {
+        Scene scene = SceneManager.GetActiveScene();
+        string levelName = scene.name;
+        int levelNum = 0;
+        switch (levelName) {
+            case "Level1": levelNum = 1; break;
+            case "Level2": levelNum = 2; break;
+            case "Level3": levelNum = 3; break;
+            default: levelNum = 0; break;
+        }
+        return levelNum;
+    }
+
+    public int GetBaseSpeedForLevel() {
+        int level = GetLevelNumber();
+        int baseSpeed;
+        switch (level) {
+            case 1:
+                baseSpeed = 5;
+                break;
+            case 2:
+                baseSpeed = 8;
+                break;
+            case 3:
+                baseSpeed = 10;
+                break;
+            default:
+                Debug.Log("Code should not come here");
+                baseSpeed = 0;
+                break;
+        }
+        return baseSpeed;
     }
 }

@@ -1,47 +1,80 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-public class GameManager : MonoBehaviour
-{
+public class GameManager : MonoBehaviour {
     public static GameManager inst;
+    [SerializeField] GameObject pauseMenu = null;
+    [SerializeField] GameObject soundOnIcon = null;
+    [SerializeField] GameObject soundOffIcon = null;
+    AudioManager audioManagerInstance = null;
 
-    // Start is called before the first frame update
-    void Start()
-    {
+
+    void Start() {
         inst = this;
+        audioManagerInstance = FindObjectOfType<AudioManager>();
     }
 
-    public void PlayGame()
-    {
-        // Todo Update the index after integration
+    public void MainMenu() {
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
     }
-    
-    public void ResumeGame()
-    {
-        // Todo Update the index after integration
-        SceneManager.LoadScene(1);
+
+    public void PauseGame() {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0f;
     }
 
-    public void NextLevel()
-    {
-        // Todo Update the index after integration
-        SceneManager.LoadScene(4);
+    public void ResumeGame() {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1f;
     }
 
-    public void EndGame()
-    {
-        // Todo Update the index after integration
-        SceneManager.LoadScene(4);
+    public void NextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    public void EndGame() {
+        SceneManager.LoadScene(7);
+    }
+
+    public void LevelInstructionsMenu() {
+        SceneManager.LoadScene(5);
     }
 
     public void StartLevel1() {
-        // Todo Update the index after integration
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
+    }
+
+    public void NextInstructionLevel1() {
+        SceneManager.LoadScene(6);
+    }
+
+    public void StartLevel2() {
+        SceneManager.LoadScene(4);
+    }
+
+    public void NextInstructionLevel2() {
+        SceneManager.LoadScene(3);
     }
 
     public void CloseApplicationOnMainMenuExit() {
         Debug.Log("Quitting the application");
         Application.Quit();
+    }
+
+    public void InstructionsMenu() {
+        SceneManager.LoadScene(1);
+    }
+
+    public void MuteSound() {
+        FindObjectOfType<AudioManager>().StopPlaying(SoundEnums.THEME.GetString());
+        soundOnIcon.SetActive(false);
+        soundOffIcon.SetActive(true);
+    }
+
+    public void UnmuteSound() {
+        FindObjectOfType<AudioManager>().Play(SoundEnums.THEME.GetString());
+        soundOffIcon.SetActive(false);
+        soundOnIcon.SetActive(true);
     }
 
 }

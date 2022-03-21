@@ -288,3 +288,7 @@ MonoBehaviour:
   obstaclePrefab: {fileID: 1811468335986346781, guid: 4868f103d6d2c48a3b7b2c8104649565, type: 3}
   tallObstaclePrefab: {fileID: 1811468335986346781, guid: 4d1f291d9913e4bd2aa409b0da75e058, type: 3}
   tallObstacleChance: 0.2
+  powerupsPrefabTime: {fileID: 3670609001701935937, guid: 2321abe426d5445bfa76cdffeaec259f, type: 3}
+  powerupsPrefabSize: {fileID: 3670609001701935937, guid: 43ee601844c884509a6f4832100b62b3, type: 3}
+  powerupsPrefabPermeate: {fileID: 3670609001701935937, guid: 358453cdb4337411eabe7928ed998e0e, type: 3}
+  powerupsPrefabLevitate: {fileID: 3670609001701935937, guid: ec5b0036a1a0f48cbbc64102caa220ad, type: 3}

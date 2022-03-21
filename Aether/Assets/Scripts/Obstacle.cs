@@ -4,7 +4,6 @@ public class Obstacle : MonoBehaviour
 {
     PlayerMovement playerMovement;
 
-    // Start is called before the first frame update
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -14,8 +13,8 @@ public class Obstacle : MonoBehaviour
         // Kill the player
         if (collision.gameObject.name == "Player") {
             AudioManager temp = FindObjectOfType<AudioManager>();
-            //temp.Play("Collision");
-            //temp.StopPlaying("SpaceTravel");
+            temp.Play(SoundEnums.COLLISION.GetString());
+            temp.StopPlaying(SoundEnums.THEME.GetString());
             playerMovement.Die();
         }
 

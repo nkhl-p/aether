@@ -33,7 +33,7 @@ public class AudioManager : MonoBehaviour {
     }
 
     void Start() {
-        //Play("SpaceTravel");
+        Play(SoundEnums.THEME.GetString());
     }
 
     public void StopPlaying(string sound) {
