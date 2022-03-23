@@ -89,7 +89,8 @@ public class PowerUp : MonoBehaviour {
         player.GetComponent<Rigidbody>().useGravity = false;
         player.GetComponent<CapsuleCollider>().isTrigger = true;
 
-        // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
+		FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
+		// this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
@@ -107,7 +108,8 @@ public class PowerUp : MonoBehaviour {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
 
-        // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
+        FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
+		// this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
@@ -128,7 +130,8 @@ public class PowerUp : MonoBehaviour {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
 
-        // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
+        FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
+		// this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
