@@ -568,7 +568,7 @@ MonoBehaviour:
   currentTime: 0
   startingTime: 75
   scoreText: {fileID: 521829223}
-  timerText: {fileID: 0}
+  timerText: {fileID: 1698025540}
   levitationPowerupsTimer: 0
 --- !u!114 &521829223 stripped
 MonoBehaviour:
@@ -1599,7 +1599,7 @@ MonoBehaviour:
   startingTime: 0
   scoreText: {fileID: 521829223}
   timerText: {fileID: 1698025540}
-  levitationPowerupsTimer: 10
+  levitationPowerupsTimer: 0
 --- !u!114 &1698025540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1159255275570251768, guid: fbc0201b76b46496e9d08887faf3f84a, type: 3}

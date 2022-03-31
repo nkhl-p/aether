@@ -8,7 +8,7 @@ public class ScoreTimer : MonoBehaviour {
 
     public TMP_Text scoreText;
     public TMP_Text timerText;
-	public float levitationPowerupsTimer = 10f;
+	public float levitationPowerupsTimer = 0f;
 
     void Start() {
         Scene scene = SceneManager.GetActiveScene();
@@ -38,7 +38,7 @@ public class ScoreTimer : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().Die();
         }
 
-		if (levitationPowerupsTimer > 0) { 
+		if (levitationPowerupsTimer > 0 && timerText.enabled == true) { 
 			levitationPowerupsTimer -= 1 * Time.deltaTime;
 			timerText.text = levitationPowerupsTimer.ToString("0") + "s";
 		}
