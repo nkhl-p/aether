@@ -44,6 +44,6 @@ public class ScoreTimer : MonoBehaviour {
             // FindObjectOfType<PlayerMovement>().DeathByOutOfTime();
             FindObjectOfType<PlayerMovement>().Die();
         }
-		distanceText.text = pm.getCurrentPosition() + "/" + maxDistance;
+        distanceText.text = pm.getCurrentPosition() + "/" + maxDistance + "m";
     }
 }
