@@ -88,6 +88,11 @@ public class PlayerMovement : MonoBehaviour {
         Invoke("Restart", 1);
     }
 
+    public int getCurrentPosition()
+    {
+        return Convert.ToInt32(transformCache.position.z);
+    }
+
     void ResetDeathStats() {
         deathByObstacleCount = 0;
         deathByYellowPathCount = 0;
