@@ -15,6 +15,7 @@ TagManager:
   - PowerupSize
   - PowerupLevitate
   - PowerupPermeate
+  - PowerupSpeed
   layers:
   - Default
   - TransparentFX

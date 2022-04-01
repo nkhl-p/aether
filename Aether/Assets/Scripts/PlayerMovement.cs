@@ -10,6 +10,7 @@ using System;
 
 public class PlayerMovement : MonoBehaviour {
     public float speed = 5;
+    public int powerUpSpeed = 0;
     [SerializeField] Rigidbody rb;
 
     bool alive = true;
@@ -353,6 +354,6 @@ public class PlayerMovement : MonoBehaviour {
                 baseSpeed = 0;
                 break;
         }
-        return baseSpeed;
+        return baseSpeed + powerUpSpeed;
     }
 }
