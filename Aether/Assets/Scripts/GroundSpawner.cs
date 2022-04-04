@@ -287,6 +287,9 @@ public class GroundSpawner : MonoBehaviour {
             case "Levitate":
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.LEVITATE.GetString());
                 break;
+            case "Speed":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SPEED.GetString());
+                break;
         }
 
         nextSpawnPoint = tempGroundTileObject.transform.GetChild(1).transform.position;

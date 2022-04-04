@@ -1,6 +1,8 @@
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
+
 
 public class ScoreTimer : MonoBehaviour {
     public float currentTime = 0f;
@@ -9,6 +11,9 @@ public class ScoreTimer : MonoBehaviour {
     public TMP_Text scoreText;
     public TMP_Text timerText;
 	public float levitationPowerupsTimer = 0f;
+    public TMP_Text distanceText;
+    public PlayerMovement pm;
+	public float maxDistance;
 
     void Start() {
         Scene scene = SceneManager.GetActiveScene();
@@ -16,15 +21,18 @@ public class ScoreTimer : MonoBehaviour {
         switch (scene.name) {
             case "Level1":
                 startingTime = 50f;
+				maxDistance = 580f;
                 break;
             case "Level2":
                 startingTime = 50f;
+				maxDistance = 695f;
                 break;
             default:
                 Debug.Log("Code should not reach here!");
                 break;
         }
         currentTime = startingTime;
+		pm = FindObjectOfType<PlayerMovement>();
     }
 
     void Update() {
@@ -46,6 +54,7 @@ public class ScoreTimer : MonoBehaviour {
 		if (levitationPowerupsTimer < 0 && timerText.enabled == true) {
 			stopLevitationTimer();
 		}
+		distanceText.text = pm.getCurrentPosition() + "/" + maxDistance + "m";
     }
 
 	public void startLevitationTimer(float powerUpApplicableDuration) {

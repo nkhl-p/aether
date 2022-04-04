@@ -3,6 +3,7 @@ public enum PowerupEnums {
     PERMEATE,
     LEVITATE,
     SIZE,
+	SPEED,
     NONE
 }
 
@@ -17,6 +18,8 @@ public static class PowerupExtensions {
                 return "Levitate";
             case PowerupEnums.SIZE:
                 return "Size";
+			case PowerupEnums.SPEED:
+                return "Speed";
             case PowerupEnums.NONE:
                 return "";
             default:

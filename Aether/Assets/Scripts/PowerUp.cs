@@ -8,6 +8,7 @@ public class PowerUp : MonoBehaviour {
     public GameObject pickupEffect;
 
     float powerUpApplicableDuration = 7f;
+	int powerUpSpeedBoost = 10;
     PlayerMovement playerMovement;
     
     void Start()
@@ -37,6 +38,7 @@ public class PowerUp : MonoBehaviour {
                 case "PowerupSize": Pickup(other, PowerupEnums.SIZE); break;
                 case "PowerupPermeate": Pickup(other, PowerupEnums.PERMEATE); break;
                 case "PowerupLevitate": Pickup(other, PowerupEnums.LEVITATE); break;
+				case "PowerupSpeed": Pickup(other, PowerupEnums.SPEED); break;
             }
         }
     }
@@ -73,6 +75,9 @@ public class PowerUp : MonoBehaviour {
                 StartCoroutine(LevitatePlayer(player));
                 break;
 
+			case PowerupEnums.SPEED:
+                StartCoroutine(SpeedupPlayer(player));
+                break;
         }
     }
 
@@ -142,6 +147,23 @@ public class PowerUp : MonoBehaviour {
         player.GetComponent<Rigidbody>().useGravity = true;
         Debug.Log("After position: " + player.transform.position);
 
+        // breaking out of the case.
+    }
+
+	// This method applies change in player's speed along the z-axis to make it resemble like it is has gained speed
+    IEnumerator SpeedupPlayer(Collider player) {
+        // increase the player size as part of the power-up action
+		playerMovement.powerUpSpeed = powerUpSpeedBoost;
+        
+        // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
+        yield return new WaitForSeconds(powerUpApplicableDuration);
+
+        // reverting the changes made by the power-up to its original state
+        playerMovement.powerUpSpeed = 0;
         // breaking out of the case.
     }
 
