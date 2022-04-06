@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour {
     // For this to work, the Plane gameObject of the GroundTile prefab had to be assigned the different tags that were assigned to the GroundTile
     private void OnCollisionEnter(Collision collision) {
         int baseSpeed = GetBaseSpeedForLevel();
-        if (collision.gameObject.CompareTag("TileRed")) {
+        if (collision.gameObject.CompareTag("TileYellow")) {
             FindObjectOfType<PlayerMovement>().speed = baseSpeed;
             if (prevColorTag != "RED") redCount++;
             prevColorTag = "RED";
@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
-        } else if (collision.gameObject.CompareTag("TileYellow")) {
+        } else if (collision.gameObject.CompareTag("TileRed")) {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
             audioManagerInstance.StopPlaying("SpaceTravel");
