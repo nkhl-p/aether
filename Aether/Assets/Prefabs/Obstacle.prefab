@@ -129,3 +129,4 @@ MonoBehaviour:
   explosionRadius: 50
   explosionForce: 150
   explosionUpwards: 0.2
+  particleMaterialRef: {fileID: 2100000, guid: 879bc971cb8b34f11b3d702a40ab8c2d, type: 2}

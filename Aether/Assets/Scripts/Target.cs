@@ -8,6 +8,7 @@ public class Target : MonoBehaviour
     public int explosionRadius = 50;
     public int explosionForce = 20;
     public float explosionUpwards = 0.4f;
+    public Material particleMaterialRef;
 
     float cubesPivotDistance;
     Vector3 cubesPivot;
@@ -25,7 +26,6 @@ public class Target : MonoBehaviour
         Debug.Log("TakeDamage called!" + amount);
         health -= amount;
         if (health <= 0) {
-            Debug.Log("No health remaining", gameObject);
             //Destroy(gameObject);
             gameObject.SetActive(false);
 
@@ -56,7 +56,6 @@ public class Target : MonoBehaviour
     }
 
     void createPiece(int x, int y, int z) {
-
         // Create a piece
         GameObject piece;
         piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
@@ -66,9 +65,9 @@ public class Target : MonoBehaviour
         piece.transform.localScale = new Vector3(cubeSize, cubeSize, cubeSize);
 
         // Add rigid body and set mass
-        //piece.AddComponent<Rigidbody>();
         piece.AddComponent<Rigidbody>().mass = cubeSize;
-
-        Destroy(piece, 2f);
+        GetComponent<Renderer>().material = particleMaterialRef; // making the material of each generated particle same as that of the initial obstacle
+        Destroy(piece, 2f); // destroying each particle created as a result of the shooting
+        Destroy(gameObject); // destroying the original game object that was replaced with the small particles
     }
 }
