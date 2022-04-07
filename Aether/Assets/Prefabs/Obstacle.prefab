@@ -124,3 +124,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  cubeSize: 0.2
+  cubesInRow: 5
+  explosionRadius: 50
+  explosionForce: 150
+  explosionUpwards: 0.2
