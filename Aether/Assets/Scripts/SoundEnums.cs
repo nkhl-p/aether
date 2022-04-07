@@ -5,7 +5,8 @@ public enum SoundEnums {
     FALL,
     WIN,
     POWERUP,
-    YELLOW_LOSE
+    YELLOW_LOSE,
+    LASER_SHOOT
 }
 
 public static class ErrorLevelExtensions {
@@ -25,6 +26,8 @@ public static class ErrorLevelExtensions {
                 return "PowerUp";
             case SoundEnums.YELLOW_LOSE:
                 return "YellowLose";
+            case SoundEnums.LASER_SHOOT:
+                return "LaserShoot";
             default:
                 return "";
         }

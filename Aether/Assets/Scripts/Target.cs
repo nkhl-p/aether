@@ -68,5 +68,7 @@ public class Target : MonoBehaviour
         // Add rigid body and set mass
         //piece.AddComponent<Rigidbody>();
         piece.AddComponent<Rigidbody>().mass = cubeSize;
+
+        Destroy(piece, 2f);
     }
 }
