@@ -55,10 +55,13 @@ public class Target : MonoBehaviour
         }
     }
 
-    void createPiece(int x, int y, int z) {
+    public void createPiece(int x, int y, int z) {
         // Create a piece
         GameObject piece;
         piece = GameObject.CreatePrimitive(PrimitiveType.Cube);
+        if (piece.GetComponent<MeshRenderer>() == null) {
+            piece.AddComponent<UnityEngine.MeshRenderer>();
+        }
 
         // Set piece position and scale
         piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
@@ -66,8 +69,8 @@ public class Target : MonoBehaviour
 
         // Add rigid body and set mass
         piece.AddComponent<Rigidbody>().mass = cubeSize;
-        GetComponent<Renderer>().material = particleMaterialRef; // making the material of each generated particle same as that of the initial obstacle
-        Destroy(piece, 2f); // destroying each particle created as a result of the shooting
+        piece.GetComponent<MeshRenderer>().material = particleMaterialRef; // making the material of each generated particle same as that of the initial obstacle
+        Destroy(piece, 0.5f); // destroying each particle created as a result of the shooting
         Destroy(gameObject); // destroying the original game object that was replaced with the small particles
     }
 }

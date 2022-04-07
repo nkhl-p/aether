@@ -73,6 +73,10 @@ public class Gun : MonoBehaviour
 
             // Coroutine to show the laser effect
             StartCoroutine(ShowLaser());
+        } else {
+            // Managing gun shooting sounds - If target is not hit
+            AudioManager temp = FindObjectOfType<AudioManager>();
+            temp.Play(SoundEnums.TARGET_MISS_LASER.GetString());
         }
     }
 
