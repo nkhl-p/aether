@@ -1,24 +1,19 @@
 using UnityEngine;
 
-public class Obstacle : MonoBehaviour
+public class Target : MonoBehaviour
 {
-    PlayerMovement playerMovement;
-
-    #region Obstacle destroy specific variables
-    bool isSizePowerUpEnabled = true;
-    public int cubesInRow = 2;
+    public float health = 50f;
     public float cubeSize = 0.2f;
-    public Material particleMaterialRef;
+    public int cubesInRow = 5;
     public int explosionRadius = 50;
     public int explosionForce = 20;
     public float explosionUpwards = 0.4f;
-    Vector3 cubesPivot;
-    float cubesPivotDistance;
-    #endregion
+    public Material particleMaterialRef;
 
-    void Start()
-    {
-        playerMovement = FindObjectOfType<PlayerMovement>();
+    float cubesPivotDistance;
+    Vector3 cubesPivot;
+
+    public void Start() {
 
         // calculate pivot distance
         cubesPivotDistance = cubeSize * cubesInRow / 2;
@@ -27,12 +22,21 @@ public class Obstacle : MonoBehaviour
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
 
-    private void OnCollisionEnter(Collision collision) {
+    public void TakeDamage(float amount) {
+        Debug.Log("TakeDamage called!" + amount);
+        health -= amount;
+        if (health <= 0) {
+            //Destroy(gameObject);
+            gameObject.SetActive(false);
 
-        if (collision.gameObject.name == "Player" && isSizePowerUpEnabled) {
+
             // loop 3 times to create 5x5x5 pieces in x, y, z coordinates
             for (int x = 0; x < cubesInRow; x++) {
-                createPiece(x, 1, 1);
+                for (int y = 0; y < cubesInRow; y++) {
+                    for (int z = 0; z < cubesInRow; z++) {
+                        createPiece(x, y, z);
+                    }
+                }
             }
 
             // get explosion point
@@ -49,15 +53,6 @@ public class Obstacle : MonoBehaviour
                 }
             }
         }
-
-        // Kill the player
-        if (collision.gameObject.name == "Player" && !isSizePowerUpEnabled) {
-            AudioManager temp = FindObjectOfType<AudioManager>();
-            temp.Play(SoundEnums.COLLISION.GetString());
-            temp.StopPlaying(SoundEnums.THEME.GetString());
-            playerMovement.Die();
-        }
-
     }
 
     public void createPiece(int x, int y, int z) {
@@ -67,8 +62,6 @@ public class Obstacle : MonoBehaviour
         if (piece.GetComponent<MeshRenderer>() == null) {
             piece.AddComponent<UnityEngine.MeshRenderer>();
         }
-        Vector3 temp = piece.transform.position;
-        temp.y = 0.5f;
 
         // Set piece position and scale
         piece.transform.position = transform.position + new Vector3(cubeSize * x, cubeSize * y, cubeSize * z) - cubesPivot;
