@@ -5,7 +5,7 @@ public class Obstacle : MonoBehaviour
     PlayerMovement playerMovement;
 
     #region Obstacle destroy specific variables
-    bool isSizePowerUpEnabled = true;
+    public static bool IsSizePowerUpEnabled = false;
     public Material particleMaterialRef;
     Vector3 cubesPivot;
     float cubesPivotDistance;
@@ -28,16 +28,22 @@ public class Obstacle : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision) {
+        AudioManager temp = FindObjectOfType<AudioManager>();
+        temp.Play(SoundEnums.COLLISION.GetString());
+        temp.StopPlaying(SoundEnums.THEME.GetString());
 
-        if (collision.gameObject.name == "Player" && isSizePowerUpEnabled) {
-
-            cubesInCol = (gameObject.name.Equals("Obstacle(Clone)")) ? 1 : 2;
-            for (int x = 0; x < cubesInRow; x++) {
-                for (int y = 0; y < cubesInCol; y++) {
-                    for (int z = 0; z < 1; z++) {
-                        createPiece(x, y, z);
+        if (collision.gameObject.name == "Player") {
+            if (IsSizePowerUpEnabled) {
+                cubesInCol = (gameObject.name.Equals("Obstacle(Clone)")) ? 1 : 2;
+                for (int x = 0; x < cubesInRow; x++) {
+                    for (int y = 0; y < cubesInCol; y++) {
+                        for (int z = 0; z < 1; z++) {
+                            createPiece(x, y, z);
+                        }
                     }
                 }
+            } else {
+                playerMovement.Die();
             }
         }
     }
