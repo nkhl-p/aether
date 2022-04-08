@@ -49,9 +49,13 @@ public class PlayerMovement : MonoBehaviour {
 
     private void FixedUpdate() {
         if (!alive) return;
-
-        Vector3 forwardMove = transform.forward * speed * Time.fixedDeltaTime;
-        Vector3 horizontalMovement = transform.right * horizontalInput * speed * Time.fixedDeltaTime * horizontalMultiplier;
+        float curr_speed = speed;
+        if (powerUpSpeed > 0) {
+            curr_speed = powerUpSpeed + GetBaseSpeedForLevel();
+        }
+        
+        Vector3 forwardMove = transform.forward * curr_speed * Time.fixedDeltaTime;
+        Vector3 horizontalMovement = transform.right * horizontalInput * curr_speed * Time.fixedDeltaTime * horizontalMultiplier;
         rb.MovePosition(rb.position + forwardMove + horizontalMovement);
     }
 
@@ -366,6 +370,6 @@ public class PlayerMovement : MonoBehaviour {
                 baseSpeed = 0;
                 break;
         }
-        return baseSpeed + powerUpSpeed;
+        return baseSpeed;
     }
 }

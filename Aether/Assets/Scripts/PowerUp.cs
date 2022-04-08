@@ -113,6 +113,7 @@ public class PowerUp : MonoBehaviour {
     IEnumerator ChangePlayerScale(Collider player) {
         // increase the player size as part of the power-up action
         player.transform.localScale *= 1.5f;
+        Obstacle.IsSizePowerUpEnabled = true;
 
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
@@ -124,6 +125,7 @@ public class PowerUp : MonoBehaviour {
 
         // reverting the changes made by the power-up to its original state
         player.transform.localScale /= 1.5f;
+        Obstacle.IsSizePowerUpEnabled = false ;
 
         // breaking out of the case.
     }
@@ -135,6 +137,7 @@ public class PowerUp : MonoBehaviour {
         Vector3 playerNewPos = new Vector3(currentPos.x, 3, currentPos.z);
         player.transform.position = playerNewPos;
         player.GetComponent<Rigidbody>().useGravity = false;
+        playerMovement.powerUpSpeed = powerUpSpeedBoost;
 
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
@@ -150,6 +153,7 @@ public class PowerUp : MonoBehaviour {
         Vector3 playerNewPosAfter = new Vector3(currentPosAfterLevitation.x, 1, currentPosAfterLevitation.z);
         player.transform.position = playerNewPosAfter;
         player.GetComponent<Rigidbody>().useGravity = true;
+        playerMovement.powerUpSpeed = 0;
         Debug.Log("After position: " + player.transform.position);
 
         // breaking out of the case.
@@ -164,6 +168,7 @@ public class PowerUp : MonoBehaviour {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
 
+        FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
         // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 

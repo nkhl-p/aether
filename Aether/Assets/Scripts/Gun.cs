@@ -68,6 +68,9 @@ public class Gun : MonoBehaviour
             if (target != null) {
                 laserLine.SetPosition(1, hit.point);
                 target.TakeDamage(damage);
+                if (target.health == 0) {
+                    FindObjectOfType<ScoreTimer>().IncrementDistroyedObstacleCounter();
+                }
             }
 
             // Impact effect on the target (obstacles in our case) - this is not taking effect right now
