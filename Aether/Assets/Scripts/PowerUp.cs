@@ -130,6 +130,7 @@ public class PowerUp : MonoBehaviour {
         Vector3 playerNewPos = new Vector3(currentPos.x, 3, currentPos.z);
         player.transform.position = playerNewPos;
         player.GetComponent<Rigidbody>().useGravity = false;
+        playerMovement.powerUpSpeed = powerUpSpeedBoost;
 
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
@@ -145,6 +146,7 @@ public class PowerUp : MonoBehaviour {
         Vector3 playerNewPosAfter = new Vector3(currentPosAfterLevitation.x, 1, currentPosAfterLevitation.z);
         player.transform.position = playerNewPosAfter;
         player.GetComponent<Rigidbody>().useGravity = true;
+        playerMovement.powerUpSpeed = 0;
         Debug.Log("After position: " + player.transform.position);
 
         // breaking out of the case.
