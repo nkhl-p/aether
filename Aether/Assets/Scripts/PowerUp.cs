@@ -39,6 +39,7 @@ public class PowerUp : MonoBehaviour {
                 case "PowerupPermeate": Pickup(other, PowerupEnums.PERMEATE); break;
                 case "PowerupLevitate": Pickup(other, PowerupEnums.LEVITATE); break;
 				case "PowerupSpeed": Pickup(other, PowerupEnums.SPEED); break;
+                case "PowerupShoot": Pickup(other, PowerupEnums.SHOOT); break;
             }
         }
     }
@@ -77,6 +78,10 @@ public class PowerUp : MonoBehaviour {
 
 			case PowerupEnums.SPEED:
                 StartCoroutine(SpeedupPlayer(player));
+                break;
+
+            case PowerupEnums.SHOOT:
+                StartCoroutine(EnableGun(player));
                 break;
         }
     }
@@ -169,6 +174,24 @@ public class PowerUp : MonoBehaviour {
 
         // reverting the changes made by the power-up to its original state
         playerMovement.powerUpSpeed = 0;
+        // breaking out of the case.
+    }
+
+    // This method enables the gun functionality
+    IEnumerator EnableGun(Collider player) {
+        Debug.Log("Enable gun powerup called!");
+        // increase the player size as part of the power-up action
+        Gun.IsGunEnabled = true;
+
+        // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
+        yield return new WaitForSeconds(powerUpApplicableDuration);
+
+        // reverting the changes made by the power-up to its original state
+        Gun.IsGunEnabled = false;
         // breaking out of the case.
     }
 

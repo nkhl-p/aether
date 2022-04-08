@@ -16,6 +16,8 @@ TagManager:
   - PowerupLevitate
   - PowerupPermeate
   - PowerupSpeed
+  - ObstacleCylinder
+  - PowerupShoot
   layers:
   - Default
   - TransparentFX
