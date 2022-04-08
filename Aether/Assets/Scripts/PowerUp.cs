@@ -159,6 +159,7 @@ public class PowerUp : MonoBehaviour {
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
 
+        FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
         // this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
