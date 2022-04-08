@@ -111,12 +111,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c2740917b1140b7b22b77b00d7ed20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubesInRow: 2
-  cubeSize: 0.5
   particleMaterialRef: {fileID: 2100000, guid: 879bc971cb8b34f11b3d702a40ab8c2d, type: 2}
-  explosionRadius: 150
-  explosionForce: 20
-  explosionUpwards: 0.4
+  cubeSize: 1
+  cubesInRow: 4
+  cubesInCol: 1
+  cubesInDepth: 1
 --- !u!114 &8990228846079499936
 MonoBehaviour:
   m_ObjectHideFlags: 0
