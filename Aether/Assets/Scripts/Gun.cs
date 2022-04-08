@@ -24,6 +24,10 @@ public class Gun : MonoBehaviour
     public float laserDuration = 0.05f;
     #endregion
 
+    #region Enable Gun
+    public static bool IsGunEnabled = false;
+    #endregion
+
 
     private void Start() {
         player = GameObject.FindWithTag("Player");
@@ -35,7 +39,13 @@ public class Gun : MonoBehaviour
     {
         // By default, it is mapped to the left mouse button. Here, we will add the check to see if the gun powerup has been collected
         if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.F)) {
-            Shoot();
+            if (IsGunEnabled) {
+                Shoot();
+            } else {
+                // Managing gun shooting sounds - If target is not hit
+                AudioManager temp = FindObjectOfType<AudioManager>();
+                temp.Play(SoundEnums.TARGET_MISS_LASER.GetString());
+            }
         }
     }
 

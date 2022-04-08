@@ -21,7 +21,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,30,"Blue",PowerupEnums.NONE),
         (0,40,"Blue",PowerupEnums.NONE),
         (0,50,"Blue",PowerupEnums.NONE),
-        (0,60,"Blue",PowerupEnums.NONE),
+        (0,60,"Blue",PowerupEnums.SHOOT),
 
         (0,75,"Blue",PowerupEnums.NONE),
         (0,85,"Blue",PowerupEnums.NONE),
@@ -130,7 +130,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,30,"Blue",PowerupEnums.NONE),
         (0,40,"Blue",PowerupEnums.NONE),
         (0,50,"Blue",PowerupEnums.NONE),
-        (0,60,"Blue",PowerupEnums.NONE),
+        (0,60,"Blue",PowerupEnums.SHOOT),
 
         (0,75,"Blue",PowerupEnums.NONE),
         (0,85,"Blue",PowerupEnums.NONE),
@@ -289,6 +289,9 @@ public class GroundSpawner : MonoBehaviour {
                 break;
             case "Speed":
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SPEED.GetString());
+                break;
+            case "Shoot":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SHOOT.GetString());
                 break;
         }
 
