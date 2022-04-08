@@ -6558,7 +6558,7 @@ MonoBehaviour:
   powerUpSpeed: 0
   rb: {fileID: 1633124471}
   horizontalMultiplier: 1.7
-  jumpForce: 800
+  jumpForce: 700
   groundMask:
     serializedVersion: 2
     m_Bits: 64
