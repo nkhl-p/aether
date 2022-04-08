@@ -297,7 +297,7 @@ public class GroundSpawner : MonoBehaviour {
             nextSpawnPoint.x = pathCoordinates[i + 1].X_Value;
             nextSpawnPoint.z = pathCoordinates[i + 1].Z_Value;
         } else {
-            Debug.Log("End of path");
+            //Debug.Log("End of path");
             return;
         }
 

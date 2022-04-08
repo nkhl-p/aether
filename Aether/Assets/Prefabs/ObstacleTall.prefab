@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2786947045174050038}
   - component: {fileID: 2947254002272975392}
   - component: {fileID: -5114943378999970287}
+  - component: {fileID: 8795377155891579835}
   m_Layer: 0
   m_Name: ObstacleTall
   m_TagString: Obstacle
@@ -111,7 +112,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57c2740917b1140b7b22b77b00d7ed20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  test: 1
+  cubesInRow: 2
+  cubeSize: 0.2
+  particleMaterialRef: {fileID: 2100000, guid: 879bc971cb8b34f11b3d702a40ab8c2d, type: 2}
+  explosionRadius: 200
+  explosionForce: 20
+  explosionUpwards: 0.4
+--- !u!114 &8795377155891579835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1811468335986346781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb2537fc5509641a9976a0a3dc1cfb90, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 50
+  cubeSize: 0.2
+  cubesInRow: 5
+  explosionRadius: 50
+  explosionForce: 150
+  explosionUpwards: 1
+  particleMaterialRef: {fileID: 2100000, guid: 879bc971cb8b34f11b3d702a40ab8c2d, type: 2}
 --- !u!1 &6184911722114152009
 GameObject:
   m_ObjectHideFlags: 0

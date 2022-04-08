@@ -81,7 +81,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Die() {
         alive = false;
-        Debug.Log("Number of player deaths: " + tries);
+        //Debug.Log("Number of player deaths: " + tries);
         if (transformCache.position.y < 0) {
             // audioManagerInstance.Play(SoundEnums.FALL.GetString());
         }
@@ -147,7 +147,7 @@ public class PlayerMovement : MonoBehaviour {
     // For this to work, the Plane gameObject of the GroundTile prefab had to be assigned the different tags that were assigned to the GroundTile
     private void OnCollisionEnter(Collision collision) {
         int baseSpeed = GetBaseSpeedForLevel();
-        if (collision.gameObject.CompareTag("TileRed")) {
+        if (collision.gameObject.CompareTag("TileYellow")) {
             FindObjectOfType<PlayerMovement>().speed = baseSpeed;
             if (prevColorTag != "RED") redCount++;
             prevColorTag = "RED";
@@ -160,7 +160,7 @@ public class PlayerMovement : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
-        } else if (collision.gameObject.CompareTag("TileYellow")) {
+        } else if (collision.gameObject.CompareTag("TileRed")) {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
             audioManagerInstance.StopPlaying("SpaceTravel");
@@ -236,10 +236,12 @@ public class PlayerMovement : MonoBehaviour {
         };
         ResetLevelDeathStats();
 
-        Debug.Log("Level Death Analytics Debug Data: ");
-        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        //Debug.Log("Level Death Analytics Debug Data: ");
+        data.ToList().ForEach(x => {
+            //Debug.Log(x.Key + "\t" + x.Value);
+        });
         AnalyticsResult analyticsResultDie = Analytics.CustomEvent("Level_Death_Analytics", data);
-        Debug.Log("Analytics Die: " + analyticsResultDie);
+        //Debug.Log("Analytics Die: " + analyticsResultDie);
     }
 
     // Average number of times a path is chosen. Data sent at each death (average is to be calculated on Highcharts)
@@ -252,10 +254,12 @@ public class PlayerMovement : MonoBehaviour {
         };
         ResetPathSelectionStats();
 
-        Debug.Log("Path Selection Analytics Debug Data: ");
-        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        //Debug.Log("Path Selection Analytics Debug Data: ");
+        data.ToList().ForEach(x => {
+            //Debug.Log(x.Key + "\t" + x.Value);
+        });
         AnalyticsResult analytics_result = Analytics.CustomEvent("Path_Selection_Analytics", data);
-        Debug.Log("Path Selection Analytics: " + analytics_result);
+        //Debug.Log("Path Selection Analytics: " + analytics_result);
     }
 
     // Average distance travelled during each play. Data sent at each death (average is to be calculated on Highcharts)
@@ -266,10 +270,12 @@ public class PlayerMovement : MonoBehaviour {
         };
         ResetDistanceStats();
 
-        Debug.Log("Distance Analytics Debug Data: ");
-        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        //Debug.Log("Distance Analytics Debug Data: ");
+        data.ToList().ForEach(x => {
+            //Debug.Log(x.Key + "\t" + x.Value);
+        });
         AnalyticsResult analytics_result = Analytics.CustomEvent("Distance_Travelled_Analytics", data);
-        Debug.Log("Distance Travelled Analytics: " + analytics_result);
+        //Debug.Log("Distance Travelled Analytics: " + analytics_result);
     }
 
     // Average time taken for each gameplay instance. Data sent at each death (average is to be calculated on Highcharts)
@@ -280,16 +286,18 @@ public class PlayerMovement : MonoBehaviour {
         };
         ResetTimeStats();
 
-        Debug.Log("Time Analytics Debug Data: ");
-        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        //Debug.Log("Time Analytics Debug Data: ");
+        data.ToList().ForEach(x => {
+            //Debug.Log(x.Key + "\t" + x.Value);
+        }) ;
         AnalyticsResult analytics_result = Analytics.CustomEvent("Total_Time_Analytics", data);
-        Debug.Log("Time Analytics: " + analytics_result);
+        //Debug.Log("Time Analytics: " + analytics_result);
     }
 
     // Mode of death of a player. Data sent at each death (sum is to be calculated on Highcharts)
     public void SendModeOfDeathAnalyticsData(int level_num,
         int obstacleCount, int yellowPathCount, int freeFallCount, int outOfTimeCount) {
-        Debug.Log("SendModeOfDeathAnalyticsData Called");
+        //Debug.Log("SendModeOfDeathAnalyticsData Called");
 
         Dictionary<string, object> data = new Dictionary<string, object> {
             {"Level", level_num},
@@ -300,15 +308,17 @@ public class PlayerMovement : MonoBehaviour {
         };
         ResetDeathStats();
 
-        Debug.Log("SendModeOfDeathAnalyticsData Debug Data: ");
-        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        //Debug.Log("SendModeOfDeathAnalyticsData Debug Data: ");
+        data.ToList().ForEach(x => {
+            //Debug.Log(x.Key + "\t" + x.Value);
+        });
         AnalyticsResult analytics_result = Analytics.CustomEvent("Mode_Of_Death_Analytics", data);
-        Debug.Log("SendModeOfDeathAnalyticsData: " + analytics_result);
+        //Debug.Log("SendModeOfDeathAnalyticsData: " + analytics_result);
     }
 
     // Number of powerups collected during each gameplay. Data is sent at each gameplay (average is to be calculated on Highcharts)
     public void SendPowerUpsAnalyticsData(int level_num, int powerUpsLevelCount) {
-        Debug.Log("SendPowerUpsAnalyticsData Called");
+        //Debug.Log("SendPowerUpsAnalyticsData Called");
 
         Dictionary<string, object> data = new Dictionary<string, object> {
             {"Level", level_num},
@@ -316,10 +326,12 @@ public class PlayerMovement : MonoBehaviour {
         };
         ResetPowerupStats();
 
-        Debug.Log("SendPowerUpsAnalyticsData Debug Data: ");
-        data.ToList().ForEach(x => Debug.Log(x.Key + "\t" + x.Value));
+        //Debug.Log("SendPowerUpsAnalyticsData Debug Data: ");
+        data.ToList().ForEach(x => {
+            //Debug.Log(x.Key + "\t" + x.Value);
+        });
         AnalyticsResult analytics_result = Analytics.CustomEvent("PowerUps_Count_Analytics", data);
-        Debug.Log("SendPowerUpsAnalyticsData: " + analytics_result);
+        //Debug.Log("SendPowerUpsAnalyticsData: " + analytics_result);
 
     }
 
