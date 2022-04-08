@@ -12,6 +12,8 @@ public class ScoreTimer : MonoBehaviour {
     public TMP_Text timerText;
 	public float levitationPowerupsTimer = 0f;
     public TMP_Text distanceText;
+    public TMP_Text obstacleCounterText;
+    public int obstacleCounter = 0;
     public PlayerMovement pm;
 	public float maxDistance;
 
@@ -65,5 +67,11 @@ public class ScoreTimer : MonoBehaviour {
 	public void stopLevitationTimer() {
 		levitationPowerupsTimer = 0f;
 		timerText.enabled = false;
+	}
+
+	public void IncrementDistroyedObstacleCounter()
+	{
+		obstacleCounter += 1;
+		obstacleCounterText.text = obstacleCounter.ToString("0");
 	}
 }
