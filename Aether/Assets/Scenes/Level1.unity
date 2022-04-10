@@ -6862,39 +6862,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1635791583}
   m_CullTransparentMesh: 1
---- !u!1 &1698025536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1159255275570251774, guid: fbc0201b76b46496e9d08887faf3f84a, type: 3}
-  m_PrefabInstance: {fileID: 153849555}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1698025539
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698025536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 94065876354e4488382a72ebb544559c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  currentTime: 0
-  startingTime: 0
-  scoreText: {fileID: 521829223}
-  timerText: {fileID: 1698025540}
-  levitationPowerupsTimer: 0
-  distanceText: {fileID: 1595830768}
-  obstacleCounterText: {fileID: 0}
-  obstacleCounter: 0
-  pm: {fileID: 0}
-  maxDistance: 0
 --- !u!114 &1698025540 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1159255275570251768, guid: fbc0201b76b46496e9d08887faf3f84a, type: 3}
   m_PrefabInstance: {fileID: 153849555}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698025536}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
