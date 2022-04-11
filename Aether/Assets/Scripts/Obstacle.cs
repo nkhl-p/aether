@@ -43,7 +43,7 @@ public class Obstacle : MonoBehaviour
                         }
                     }
                 }
-            } else if (PowerUp.p_flag == false) {
+            } else if (PowerUp.immunityFlag == false) {
                     AudioManager temp = FindObjectOfType<AudioManager>();
                     temp.Play(SoundEnums.COLLISION.GetString());
                     temp.StopPlaying(SoundEnums.THEME.GetString());

@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
-        } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.p_flag ==false) {
+        } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.immunityFlag ==false) {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
             audioManagerInstance.StopPlaying("SpaceTravel");

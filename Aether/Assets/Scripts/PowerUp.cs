@@ -10,7 +10,7 @@ public class PowerUp : MonoBehaviour {
     float powerUpApplicableDuration = 7f;
 	int powerUpSpeedBoost = 25;
     PlayerMovement playerMovement;
-    public static bool p_flag = false;
+    public static bool immunityFlag = false;
     
     void Start()
     {
@@ -104,7 +104,7 @@ public class PowerUp : MonoBehaviour {
 
         // FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
 
-        p_flag = true;
+        immunityFlag = true;
 
 		FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
 		// this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
@@ -114,7 +114,7 @@ public class PowerUp : MonoBehaviour {
         // player.GetComponent<CapsuleCollider>().isTrigger = false;
         // player.GetComponent<Rigidbody>().useGravity = true;
 
-        p_flag = false;
+        immunityFlag = false;
         
     }
 
