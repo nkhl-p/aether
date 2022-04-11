@@ -126,7 +126,7 @@ public class GroundSpawner : MonoBehaviour {
       {
         (0,0,"Blue",PowerupEnums.NONE),
         (0,10,"Blue",PowerupEnums.NONE),
-        (0,20,"Blue",PowerupEnums.NONE),
+        (0,20,"Blue",PowerupEnums.SIZE),
         (0,30,"Blue",PowerupEnums.NONE),
         (0,40,"Blue",PowerupEnums.NONE),
         (0,50,"Blue",PowerupEnums.NONE),
@@ -185,8 +185,8 @@ public class GroundSpawner : MonoBehaviour {
         (-10,375,"Blue",PowerupEnums.NONE),
         (10,375,"Yellow",PowerupEnums.NONE),
 
-        (0,390,"Red",PowerupEnums.NONE),
-        (0,400,"Red",PowerupEnums.NONE),
+        (0,390,"Blue",PowerupEnums.NONE),
+        (0,400,"Blue",PowerupEnums.NONE),
         (0,410,"Green",PowerupEnums.NONE),
         (0,420,"Green",PowerupEnums.NONE),
         (0,430,"Green",PowerupEnums.NONE),

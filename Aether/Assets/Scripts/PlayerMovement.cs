@@ -85,6 +85,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Die() {
         alive = false;
+        Gun.IsGunEnabled = false;
         //Debug.Log("Number of player deaths: " + tries);
         if (transformCache.position.y < 0) {
             // audioManagerInstance.Play(SoundEnums.FALL.GetString());
@@ -357,13 +358,13 @@ public class PlayerMovement : MonoBehaviour {
         int baseSpeed;
         switch (level) {
             case 1:
-                baseSpeed = 5;
+                baseSpeed = 7;
                 break;
             case 2:
-                baseSpeed = 8;
+                baseSpeed = 10;
                 break;
             case 3:
-                baseSpeed = 10;
+                baseSpeed = 12;
                 break;
             default:
                 Debug.Log("Code should not come here");
