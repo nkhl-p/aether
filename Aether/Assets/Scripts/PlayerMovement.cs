@@ -165,7 +165,7 @@ public class PlayerMovement : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
-        } else if (collision.gameObject.CompareTag("TileRed")) {
+        } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.immunityFlag ==false) {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
             audioManagerInstance.StopPlaying("SpaceTravel");
@@ -174,7 +174,7 @@ public class PlayerMovement : MonoBehaviour {
             SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
             SendDistanceAnalyticsData(GetLevelNumber(), Convert.ToInt32(transform.position.z));
             SendModeOfDeathAnalyticsData(GetLevelNumber(), deathByObstacleCount, deathByYellowPathCount,
-                deathByFreeFallCount, deathByOutOfTimeCount);
+            deathByFreeFallCount, deathByOutOfTimeCount);
             SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
             tries++;
 

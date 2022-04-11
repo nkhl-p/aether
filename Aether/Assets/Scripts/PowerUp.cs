@@ -10,6 +10,7 @@ public class PowerUp : MonoBehaviour {
     float powerUpApplicableDuration = 7f;
 	int powerUpSpeedBoost = 25;
     PlayerMovement playerMovement;
+    public static bool immunityFlag = false;
     
     void Start()
     {
@@ -96,16 +97,24 @@ public class PowerUp : MonoBehaviour {
     // This method applies permeability power-up to the player.As of right now, it is only in testing phase. Default state = disabled
     IEnumerator ApplyPermeability(Collider player) {
         // implementing the power-up action
-        player.GetComponent<Rigidbody>().useGravity = false;
-        player.GetComponent<CapsuleCollider>().isTrigger = true;
+        // player.GetComponent<Rigidbody>().useGravity = false;
+        // player.GetComponent<CapsuleCollider>().isTrigger = true;
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<CapsuleCollider>().enabled = false;
+
+        // FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
+
+        immunityFlag = true;
 
 		FindObjectOfType<ScoreTimer>().startLevitationTimer(powerUpApplicableDuration);
 		// this allows the coroutine to be applicable for 'powerUpApplicableDuration' time duration only
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
-        player.GetComponent<CapsuleCollider>().isTrigger = false;
-        player.GetComponent<Rigidbody>().useGravity = true;
+        // player.GetComponent<CapsuleCollider>().isTrigger = false;
+        // player.GetComponent<Rigidbody>().useGravity = true;
+
+        immunityFlag = false;
         
     }
 

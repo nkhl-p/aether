@@ -27,13 +27,14 @@ public class Obstacle : MonoBehaviour
         cubesPivot = new Vector3(cubesPivotDistance, cubesPivotDistance, cubesPivotDistance);
     }
 
-    private void OnCollisionEnter(Collision collision) {
-        AudioManager temp = FindObjectOfType<AudioManager>();
-        temp.Play(SoundEnums.COLLISION.GetString());
-        //temp.StopPlaying(SoundEnums.THEME.GetString());
 
+    private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.name == "Player") {
             if (IsSizePowerUpEnabled) {
+                AudioManager temp = FindObjectOfType<AudioManager>();
+                temp.Play(SoundEnums.COLLISION.GetString());
+                temp.StopPlaying(SoundEnums.THEME.GetString());
+
                 cubesInCol = (gameObject.name.Equals("Obstacle(Clone)")) ? 1 : 2;
                 for (int x = 0; x < cubesInRow; x++) {
                     for (int y = 0; y < cubesInCol; y++) {
@@ -42,10 +43,13 @@ public class Obstacle : MonoBehaviour
                         }
                     }
                 }
-            } else {
-                playerMovement.Die();
-            }
-        }
+            } else if (PowerUp.immunityFlag == false) {
+                    AudioManager temp = FindObjectOfType<AudioManager>();
+                    temp.Play(SoundEnums.COLLISION.GetString());
+                    temp.StopPlaying(SoundEnums.THEME.GetString());
+                    playerMovement.Die();
+                }
+           }
     }
 
     public void createPiece(int x, int y, int z) {
