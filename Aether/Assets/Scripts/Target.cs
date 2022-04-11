@@ -23,7 +23,6 @@ public class Target : MonoBehaviour
     }
 
     public void TakeDamage(float amount) {
-        Debug.Log("TakeDamage called!" + amount);
         health -= amount;
         if (health <= 0) {
             //Destroy(gameObject);

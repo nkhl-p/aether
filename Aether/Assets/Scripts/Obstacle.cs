@@ -30,7 +30,7 @@ public class Obstacle : MonoBehaviour
     private void OnCollisionEnter(Collision collision) {
         AudioManager temp = FindObjectOfType<AudioManager>();
         temp.Play(SoundEnums.COLLISION.GetString());
-        temp.StopPlaying(SoundEnums.THEME.GetString());
+        //temp.StopPlaying(SoundEnums.THEME.GetString());
 
         if (collision.gameObject.name == "Player") {
             if (IsSizePowerUpEnabled) {
