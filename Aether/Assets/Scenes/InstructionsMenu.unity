@@ -270,7 +270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Travelling on RED PATH will decrease the speed of object
+  m_Text: Travelling on YELLOW PATH will decrease the speed of object
 --- !u!222 &250881589
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -313.8, y: -83.19998}
+  m_AnchoredPosition: {x: -316.8, y: -42.3}
   m_SizeDelta: {x: 54.7081, y: 16.7284}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &488238204
@@ -761,7 +761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -315.81326, y: -38.679207}
+  m_AnchoredPosition: {x: -316.8, y: -83.2}
   m_SizeDelta: {x: 54.7101, y: 16.7109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663547353
@@ -1645,8 +1645,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 0.5
-  m_Text: If the object lands on the YELLOW PATH OR veers off its course OR hits
-    an obstacle OR runs out of time, the game ends!
+  m_Text: If the object lands on the RED PATH OR veers off its course OR hits an
+    obstacle OR runs out of time, the game ends!
 --- !u!222 &2125974067
 CanvasRenderer:
   m_ObjectHideFlags: 0
