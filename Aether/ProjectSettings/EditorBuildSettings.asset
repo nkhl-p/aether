@@ -19,13 +19,7 @@ EditorBuildSettings:
     guid: c744801f16be04879953f38722f9f632
   - enabled: 1
     path: Assets/Scenes/Level2.unity
-    guid: b03620f1d268a4ac0be77db936221b9a
-  - enabled: 0
-    path: Assets/Scenes/ResumeMenu.unity
-    guid: b66fe95d18bca4eeb8329743f5a7b249
-  - enabled: 0
-    path: Assets/Scenes/NextLevelMenu.unity
-    guid: aaee7c5bddb16454d9b62f313eb4a510
+    guid: 0944e5e5ec0bb4aad837ccadcecbbe5c
   - enabled: 1
     path: Assets/Scenes/LevelInstructionsMenu.unity
     guid: c0f627f162b8545b8b29062c14f51347

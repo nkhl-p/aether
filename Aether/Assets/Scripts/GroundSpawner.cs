@@ -13,6 +13,92 @@ public class GroundSpawner : MonoBehaviour {
     [SerializeField] GameObject groundTileFinish;
     Vector3 nextSpawnPoint;
 
+    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
+      {
+        (0,0,"Blue",PowerupEnums.NONE),
+        (0,10,"Blue",PowerupEnums.NONE),
+        (0,20,"Blue",PowerupEnums.NONE),
+        (0,30,"Blue",PowerupEnums.NONE),
+        (0,40,"Blue",PowerupEnums.NONE),
+        (0,50,"Blue",PowerupEnums.NONE),
+        (0,60,"Blue",PowerupEnums.NONE),
+
+        (0,75,"Blue",PowerupEnums.NONE),
+        (0,85,"Blue",PowerupEnums.NONE),
+        (0,95,"Blue",PowerupEnums.NONE),
+        (0,105,"Blue",PowerupEnums.NONE),
+        (0,115,"Blue",PowerupEnums.NONE),
+
+        (0,130,"Red",PowerupEnums.NONE),
+        (10,130,"Green",PowerupEnums.NONE),
+        (0,140,"Red",PowerupEnums.NONE),
+        (10,140,"Green",PowerupEnums.NONE),
+        (0,150,"Red",PowerupEnums.NONE),
+        (10,150,"Green",PowerupEnums.NONE),
+        (0,160,"Red",PowerupEnums.NONE),
+        (10,160,"Green",PowerupEnums.NONE),
+        (0,170,"Red",PowerupEnums.SIZE),
+        (10,170,"Green",PowerupEnums.NONE),
+
+        (0,185,"Yellow",PowerupEnums.NONE),
+        (10,185,"Blue",PowerupEnums.NONE),
+        (0,195,"Yellow",PowerupEnums.NONE),
+        (10,195,"Blue",PowerupEnums.NONE),
+        (0,205,"Yellow",PowerupEnums.NONE),
+        (10,205,"Blue",PowerupEnums.NONE),
+        (10,215,"Blue",PowerupEnums.NONE),
+        (10,225,"Blue",PowerupEnums.NONE),
+        (10,235,"Blue",PowerupEnums.NONE),
+        (10,245,"Blue",PowerupEnums.NONE),
+
+        (0,260,"Green",PowerupEnums.NONE),
+        (0,270,"Green",PowerupEnums.NONE),
+        (0,280,"Green",PowerupEnums.NONE),
+        (0,290,"Green",PowerupEnums.TIME),
+        (0,300,"Green",PowerupEnums.NONE),
+        (0,310,"Green",PowerupEnums.NONE),
+        (0,320,"Green",PowerupEnums.NONE),
+
+
+        (0,335,"Yellow",PowerupEnums.NONE),
+        (-10,335,"Blue",PowerupEnums.NONE),
+        (10,335,"Yellow",PowerupEnums.NONE),
+        (0,345,"Yellow",PowerupEnums.TIME),
+        (-10,345,"Blue",PowerupEnums.NONE),
+        (10,345,"Yellow",PowerupEnums.NONE),
+        (0,355,"Yellow",PowerupEnums.NONE),
+        (-10,355,"Blue",PowerupEnums.SIZE),
+        (10,355,"Yellow",PowerupEnums.NONE),
+        (0,365,"Yellow",PowerupEnums.NONE),
+        (-10,365,"Blue",PowerupEnums.NONE),
+        (10,365,"Yellow",PowerupEnums.NONE),
+        (0,375,"Yellow",PowerupEnums.NONE),
+        (-10,375,"Blue",PowerupEnums.NONE),
+        (10,375,"Yellow",PowerupEnums.NONE),
+
+        (0,390,"Blue",PowerupEnums.NONE),
+        (0,400,"Blue",PowerupEnums.NONE),
+        (0,410,"Green",PowerupEnums.NONE),
+        (0,420,"Green",PowerupEnums.NONE),
+        (0,430,"Green",PowerupEnums.NONE),
+        (0,440,"Green",PowerupEnums.NONE),
+        (0,450,"Green",PowerupEnums.NONE),
+        (0,460,"Green",PowerupEnums.NONE),
+
+        (0,470,"Finish",PowerupEnums.NONE),
+        (0,480,"Finish",PowerupEnums.NONE),
+        (0,490,"Finish",PowerupEnums.NONE),
+        (0,500,"Finish",PowerupEnums.NONE),
+        (0,510,"Finish",PowerupEnums.NONE),
+        (0,520,"Finish",PowerupEnums.NONE),
+        (0,530,"Finish",PowerupEnums.NONE),
+        (0,540,"Finish",PowerupEnums.NONE),
+        (0,550,"Finish",PowerupEnums.NONE),
+        (0,560,"Finish",PowerupEnums.NONE),
+        (0,570,"Finish",PowerupEnums.NONE),
+        (0,580,"Finish",PowerupEnums.NONE),
+      };
+
     List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates2 = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
       {
         (0,0,"Blue",PowerupEnums.NONE),
@@ -41,9 +127,9 @@ public class GroundSpawner : MonoBehaviour {
         (10,170,"Blue",PowerupEnums.NONE),
         (-10,170,"Green",PowerupEnums.NONE),
 
-        (0,185,"Red",PowerupEnums.TIME),
-        (0,195,"Red",PowerupEnums.NONE),
-        (0,205,"Red",PowerupEnums.NONE),
+        (0,185,"Blue",PowerupEnums.TIME),
+        (0,195,"Blue",PowerupEnums.NONE),
+        (0,205,"Blue",PowerupEnums.NONE),
         (0,215,"Blue",PowerupEnums.NONE),
         (0,225,"Blue",PowerupEnums.NONE),
         (0,235,"Blue",PowerupEnums.NONE),
@@ -122,92 +208,6 @@ public class GroundSpawner : MonoBehaviour {
         (0,695,"Finish",PowerupEnums.NONE),
       };
 
-    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
-      {
-        (0,0,"Blue",PowerupEnums.NONE),
-        (0,10,"Blue",PowerupEnums.NONE),
-        (0,20,"Blue",PowerupEnums.SIZE),
-        (0,30,"Blue",PowerupEnums.NONE),
-        (0,40,"Blue",PowerupEnums.NONE),
-        (0,50,"Blue",PowerupEnums.NONE),
-        (0,60,"Blue",PowerupEnums.SHOOT),
-
-        (0,75,"Blue",PowerupEnums.NONE),
-        (0,85,"Blue",PowerupEnums.NONE),
-        (0,95,"Blue",PowerupEnums.NONE),
-        (0,105,"Blue",PowerupEnums.NONE),
-        (0,115,"Blue",PowerupEnums.NONE),
-
-        (0,130,"Red",PowerupEnums.NONE),
-        (10,130,"Green",PowerupEnums.NONE),
-        (0,140,"Red",PowerupEnums.NONE),
-        (10,140,"Green",PowerupEnums.NONE),
-        (0,150,"Red",PowerupEnums.NONE),
-        (10,150,"Green",PowerupEnums.NONE),
-        (0,160,"Red",PowerupEnums.NONE),
-        (10,160,"Green",PowerupEnums.NONE),
-        (0,170,"Red",PowerupEnums.SIZE),
-        (10,170,"Green",PowerupEnums.NONE),
-
-        (0,185,"Yellow",PowerupEnums.NONE),
-        (10,185,"Blue",PowerupEnums.NONE),
-        (0,195,"Yellow",PowerupEnums.NONE),
-        (10,195,"Blue",PowerupEnums.NONE),
-        (0,205,"Yellow",PowerupEnums.NONE),
-        (10,205,"Blue",PowerupEnums.NONE),
-        (10,215,"Blue",PowerupEnums.NONE),
-        (10,225,"Blue",PowerupEnums.NONE),
-        (10,235,"Blue",PowerupEnums.NONE),
-        (10,245,"Blue",PowerupEnums.NONE),
-
-        (0,260,"Green",PowerupEnums.NONE),
-        (0,270,"Green",PowerupEnums.NONE),
-        (0,280,"Green",PowerupEnums.NONE),
-        (0,290,"Green",PowerupEnums.TIME),
-        (0,300,"Green",PowerupEnums.NONE),
-        (0,310,"Green",PowerupEnums.NONE),
-        (0,320,"Green",PowerupEnums.NONE),
-
-
-        (0,335,"Yellow",PowerupEnums.NONE),
-        (-10,335,"Blue",PowerupEnums.NONE),
-        (10,335,"Yellow",PowerupEnums.NONE),
-        (0,345,"Yellow",PowerupEnums.TIME),
-        (-10,345,"Blue",PowerupEnums.NONE),
-        (10,345,"Yellow",PowerupEnums.NONE),
-        (0,355,"Yellow",PowerupEnums.NONE),
-        (-10,355,"Blue",PowerupEnums.SIZE),
-        (10,355,"Yellow",PowerupEnums.NONE),
-        (0,365,"Yellow",PowerupEnums.NONE),
-        (-10,365,"Blue",PowerupEnums.NONE),
-        (10,365,"Yellow",PowerupEnums.NONE),
-        (0,375,"Yellow",PowerupEnums.NONE),
-        (-10,375,"Blue",PowerupEnums.NONE),
-        (10,375,"Yellow",PowerupEnums.NONE),
-
-        (0,390,"Blue",PowerupEnums.NONE),
-        (0,400,"Blue",PowerupEnums.NONE),
-        (0,410,"Green",PowerupEnums.NONE),
-        (0,420,"Green",PowerupEnums.NONE),
-        (0,430,"Green",PowerupEnums.NONE),
-        (0,440,"Green",PowerupEnums.NONE),
-        (0,450,"Green",PowerupEnums.NONE),
-        (0,460,"Green",PowerupEnums.NONE),
-
-        (0,470,"Finish",PowerupEnums.NONE),
-        (0,480,"Finish",PowerupEnums.NONE),
-        (0,490,"Finish",PowerupEnums.NONE),
-        (0,500,"Finish",PowerupEnums.NONE),
-        (0,510,"Finish",PowerupEnums.NONE),
-        (0,520,"Finish",PowerupEnums.NONE),
-        (0,530,"Finish",PowerupEnums.NONE),
-        (0,540,"Finish",PowerupEnums.NONE),
-        (0,550,"Finish",PowerupEnums.NONE),
-        (0,560,"Finish",PowerupEnums.NONE),
-        (0,570,"Finish",PowerupEnums.NONE),
-        (0,580,"Finish",PowerupEnums.NONE),
-
-      };
     int i = 0;
 
     string powerupType = "";
@@ -320,7 +320,7 @@ public class GroundSpawner : MonoBehaviour {
     }
 
     void Start() {
-        for (int i = 0; i < 80; i++) {
+        for (int i = 0; i < 120; i++) {
             if (i > 3) {
                 SpawnTile(true);
             } else {
