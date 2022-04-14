@@ -38,6 +38,10 @@ public class ScoreTimer : MonoBehaviour {
     }
 
     void Update() {
+		if (pm.getGameFreeze()) {
+			return;
+		}
+
         currentTime -= 1 * Time.deltaTime;
         scoreText.text = currentTime.ToString("0") + "s";
 		
