@@ -89,7 +89,6 @@ public class PlayerMovement : MonoBehaviour {
 
     public void Die() {
         if (currentHealth == 0) {
-            Debug.Log("The current health of the player is 0. Initiating Death");
             alive = false;
             Gun.IsGunEnabled = false;
             if (transformCache.position.y < 0) {
@@ -98,7 +97,7 @@ public class PlayerMovement : MonoBehaviour {
 
             Invoke("Restart", 1);
         } else {
-            TakeDamage(10);
+            TakeDamage(20);
             if (transformCache.position.y < 0) {
                 Invoke("Restart", 1);
             }
