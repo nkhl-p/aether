@@ -17,11 +17,11 @@ public class GroundSpawner : MonoBehaviour {
       {
         (0,0,"Blue",PowerupEnums.NONE),
         (0,10,"Blue",PowerupEnums.NONE),
-        (0,20,"Blue",PowerupEnums.NONE),
+        (0,20,"Blue",PowerupEnums.PERMEATE),
         (0,30,"Blue",PowerupEnums.NONE),
-        (0,40,"Blue",PowerupEnums.NONE),
-        (0,50,"Blue",PowerupEnums.NONE),
-        (0,60,"Blue",PowerupEnums.NONE),
+        (0,40,"Blue",PowerupEnums.SIZE),
+        (0,50,"Blue",PowerupEnums.TIME),
+        (0,60,"Blue",PowerupEnums.LEVITATE),
 
         (0,75,"Blue",PowerupEnums.NONE),
         (0,85,"Blue",PowerupEnums.NONE),

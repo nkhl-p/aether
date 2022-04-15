@@ -208,7 +208,14 @@ public class PowerUp : MonoBehaviour {
 
     // The following function ensures that the powerup will always turn by 90 degrees every second regardless of the framerate
     private void Update() {
-        transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
+        switch (gameObject.tag) {
+            case "PowerupTime": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+            case "PowerupSize": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
+            case "PowerupPermeate": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
+            case "PowerupLevitate": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+            case "PowerupSpeed": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
+            case "PowerupShoot": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+        }
     }
 
 }
