@@ -33,23 +33,27 @@ public class Obstacle : MonoBehaviour
             if (IsSizePowerUpEnabled) {
                 AudioManager temp = FindObjectOfType<AudioManager>();
                 temp.Play(SoundEnums.COLLISION.GetString());
-                temp.StopPlaying(SoundEnums.THEME.GetString());
-
-                cubesInCol = (gameObject.name.Equals("Obstacle(Clone)")) ? 1 : 2;
-                for (int x = 0; x < cubesInRow; x++) {
-                    for (int y = 0; y < cubesInCol; y++) {
-                        for (int z = 0; z < 1; z++) {
-                            createPiece(x, y, z);
-                        }
-                    }
-                }
+                //temp.StopPlaying(SoundEnums.THEME.GetString());
+                DestroyObstacleEffect(5, 5, 1);
             } else if (PowerUp.immunityFlag == false) {
                     AudioManager temp = FindObjectOfType<AudioManager>();
                     temp.Play(SoundEnums.COLLISION.GetString());
-                    temp.StopPlaying(SoundEnums.THEME.GetString());
+                    //temp.StopPlaying(SoundEnums.THEME.GetString());
                     playerMovement.Die();
+                    DestroyObstacleEffect(3, 3, 1);
                 }
            }
+    }
+
+    public void DestroyObstacleEffect(int cubesInRow, int cubesInCol, int cubesInDepth) {
+        cubesInCol = (gameObject.name.Equals("Obstacle(Clone)")) ? 1 : 2;
+        for (int x = 0; x < cubesInRow; x++) {
+            for (int y = 0; y < cubesInCol; y++) {
+                for (int z = 0; z < cubesInDepth; z++) {
+                    createPiece(x, y, z);
+                }
+            }
+        }
     }
 
     public void createPiece(int x, int y, int z) {
