@@ -1,11 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
+
 public class GameManager : MonoBehaviour {
     public static GameManager inst;
     [SerializeField] GameObject pauseMenu = null;
     [SerializeField] GameObject soundOnIcon = null;
     [SerializeField] GameObject soundOffIcon = null;
     AudioManager audioManagerInstance = null;
+
+    // variables for level loading
+    public Animator transition;
+    public float transitionTime = 1f;
 
 
     void Start() {
@@ -15,7 +21,8 @@ public class GameManager : MonoBehaviour {
 
     public void MainMenu() {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(0);
+        StartCoroutine(LoadLevel(0));
+        //SceneManager.LoadScene(0);
     }
 
     public void PauseGame() {
@@ -29,31 +36,38 @@ public class GameManager : MonoBehaviour {
     }
 
     public void NextLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void EndGame() {
-        SceneManager.LoadScene(7);
+        StartCoroutine(LoadLevel(7));
+        //SceneManager.LoadScene(7);
     }
 
     public void LevelInstructionsMenu() {
-        SceneManager.LoadScene(5);
+        StartCoroutine(LoadLevel(5));
+        //SceneManager.LoadScene(5);
     }
 
     public void StartLevel1() {
-        SceneManager.LoadScene(2);
+        StartCoroutine(LoadLevel(2));
+        //SceneManager.LoadScene(2);
     }
 
     public void NextInstructionLevel1() {
-        SceneManager.LoadScene(6);
+        StartCoroutine(LoadLevel(6));
+        //SceneManager.LoadScene(6);
     }
 
     public void StartLevel2() {
-        SceneManager.LoadScene(4);
+        StartCoroutine(LoadLevel(4));
+        //SceneManager.LoadScene(4);
     }
 
     public void NextInstructionLevel2() {
-        SceneManager.LoadScene(3);
+        StartCoroutine(LoadLevel(3));
+        //SceneManager.LoadScene(3);
     }
 
     public void CloseApplicationOnMainMenuExit() {
@@ -62,7 +76,8 @@ public class GameManager : MonoBehaviour {
     }
 
     public void InstructionsMenu() {
-        SceneManager.LoadScene(1);
+        StartCoroutine(LoadLevel(1));
+        //SceneManager.LoadScene(1);
     }
 
     public void MuteSound() {
@@ -75,6 +90,18 @@ public class GameManager : MonoBehaviour {
         FindObjectOfType<AudioManager>().Play(SoundEnums.THEME.GetString());
         soundOffIcon.SetActive(false);
         soundOnIcon.SetActive(true);
+    }
+
+    IEnumerator LoadLevel(int levelIndex) {
+        // Play animation
+        transition.SetTrigger("Start");
+
+
+        // Wait for animation to play
+        yield return new WaitForSeconds(transitionTime);
+
+        // Load Scene
+        SceneManager.LoadScene(levelIndex);
     }
 
 }

@@ -1419,7 +1419,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490710621
 GameObject:
@@ -1530,7 +1530,7 @@ RectTransform:
   - {fileID: 767233991}
   - {fileID: 582401794}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1552,6 +1552,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   soundOnIcon: {fileID: 0}
   soundOffIcon: {fileID: 0}
+  transition: {fileID: 1564072784}
+  transitionTime: 0.5
 --- !u!1 &1501716463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1628,6 +1630,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1501716463}
   m_CullTransparentMesh: 1
+--- !u!1001 &1564072783
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3463374175291812064, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+--- !u!95 &1564072784 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3463374175325176131, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+  m_PrefabInstance: {fileID: 1564072783}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1661836532
 GameObject:
   m_ObjectHideFlags: 0
@@ -1720,7 +1784,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2088786121
 GameObject:
@@ -1787,7 +1851,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125974064
 GameObject:
