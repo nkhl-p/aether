@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour {
     [SerializeField] LayerMask groundMask;
     private Transform transformCache;
     AudioManager audioManagerInstance = null;
+    public Transform warpEffect;
 
     // variable declaration for unity analytics
     public static int blueCount = 0;
@@ -45,10 +46,12 @@ public class PlayerMovement : MonoBehaviour {
         transformCache = transform;
     }
 
+    [Obsolete]
     private void Start() {
         audioManagerInstance = FindObjectOfType<AudioManager>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
+        warpEffect.GetComponent<ParticleSystem>().enableEmission = false;
     }
 
     private void FixedUpdate() {
@@ -92,7 +95,7 @@ public class PlayerMovement : MonoBehaviour {
             alive = false;
             Gun.IsGunEnabled = false;
             if (transformCache.position.y < 0) {
-                // audioManagerInstance.Play(SoundEnums.FALL.GetString());
+                 audioManagerInstance.Play(SoundEnums.FALL.GetString());
             }
 
             Invoke("Restart", 1);
