@@ -20,8 +20,8 @@ public class GroundSpawner : MonoBehaviour {
         (0,20,"Blue",PowerupEnums.NONE),
         (0,30,"Blue",PowerupEnums.NONE),
         (0,40,"Blue",PowerupEnums.NONE),
-        (0,50,"Blue",PowerupEnums.NONE),
-        (0,60,"Blue",PowerupEnums.SPEED),
+        (0,50,"Blue",PowerupEnums.WORMHOME),
+        (0,60,"Blue",PowerupEnums.NONE),
 
         (0,75,"Blue",PowerupEnums.NONE),
         (0,85,"Blue",PowerupEnums.NONE),
@@ -292,6 +292,9 @@ public class GroundSpawner : MonoBehaviour {
                 break;
             case "Shoot":
                 tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.SHOOT.GetString());
+                break;
+            case "Wormhole":
+                tempGroundTileObject.GetComponent<GroundTile>().SpawnPowerups(PowerupEnums.WORMHOME.GetString());
                 break;
         }
 

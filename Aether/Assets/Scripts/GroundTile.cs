@@ -12,6 +12,7 @@ public class GroundTile : MonoBehaviour {
     public GameObject powerupsPrefabLevitate;
     public GameObject powerupsPrefabSpeed;
     public GameObject powerupsPrefabShoot;
+    public GameObject powerupsPrefabWormhole;
 
 
     void Start() {
@@ -75,6 +76,11 @@ public class GroundTile : MonoBehaviour {
             case "Shoot":
                 GameObject temp6 = Instantiate(powerupsPrefabShoot, transform);
                 temp6.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
+                break;
+
+            case "Wormhole":
+                GameObject temp7 = Instantiate(powerupsPrefabWormhole, transform);
+                temp7.transform.position = GetRandomPointInCollider(GetComponent<Collider>());
                 break;
         }
     }
