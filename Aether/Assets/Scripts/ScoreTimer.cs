@@ -23,7 +23,7 @@ public class ScoreTimer : MonoBehaviour {
         switch (scene.name) {
             case "Level1":
                 startingTime = 50f;
-				maxDistance = 580f;
+				maxDistance = 600f;
                 break;
             case "Level2":
                 startingTime = 50f;

@@ -8,7 +8,7 @@ public class PowerUp : MonoBehaviour {
     public GameObject pickupEffect;
 
     float powerUpApplicableDuration = 7f;
-	int powerUpSpeedBoost = 25;
+	int powerUpSpeedBoost = 20;
     int powerUpLeviationSpeed = 15;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
