@@ -12,6 +12,7 @@ public class PowerUp : MonoBehaviour {
     int powerUpLeviationSpeed = 15;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
+    int wormholeTravelDistance = 50;
 
     void Start()
     {
@@ -42,6 +43,7 @@ public class PowerUp : MonoBehaviour {
                 case "PowerupLevitate": Pickup(other, PowerupEnums.LEVITATE); break;
 				case "PowerupSpeed": Pickup(other, PowerupEnums.SPEED); break;
                 case "PowerupShoot": Pickup(other, PowerupEnums.SHOOT); break;
+                case "PowerupWormhole": Pickup(other, PowerupEnums.WORMHOME); break;
             }
         }
     }
@@ -85,6 +87,10 @@ public class PowerUp : MonoBehaviour {
             case PowerupEnums.SHOOT:
                 StartCoroutine(EnableGun(player));
                 break;
+
+            case PowerupEnums.WORMHOME:
+                PassThroughWormhole(player, wormholeTravelDistance);
+                break;
         }
     }
 
@@ -92,6 +98,12 @@ public class PowerUp : MonoBehaviour {
         FindObjectOfType<ScoreTimer>().currentTime += 5;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        return;
+    }
+
+    private void PassThroughWormhole(Collider player, int wormholeTravelDistance) {
+        Vector3 temp = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + wormholeTravelDistance);
+        player.transform.position = temp;
         return;
     }
 

@@ -390,3 +390,4 @@ MonoBehaviour:
   powerupsPrefabLevitate: {fileID: 3670609001701935937, guid: ec5b0036a1a0f48cbbc64102caa220ad, type: 3}
   powerupsPrefabSpeed: {fileID: 3670609001701935937, guid: 2648c4032473f43e3ace89473d25f604, type: 3}
   powerupsPrefabShoot: {fileID: 3670609001701935937, guid: 1a431cd8f4abe4a9fa4cbf17b976699f, type: 3}
+  powerupsPrefabWormhole: {fileID: 3670609001701935937, guid: 564fef41632b94e4d863383e7e40b56f, type: 3}
