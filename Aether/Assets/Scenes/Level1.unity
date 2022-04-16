@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40412268, g: 0.14874312, b: 0.07011243, a: 1}
+  m_IndirectSpecularColor: {r: 0.40403172, g: 0.14878377, b: 0.07016828, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6977,6 +6977,34 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 4174865108486936962, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174865108486936962, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_VideoClip
+      value: 
+      objectReference: {fileID: 32900000, guid: d9af3046c891a4836ab928ceb44715eb, type: 3}
+    - target: {fileID: 4174865108486936962, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_AspectRatio
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174865108486936962, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_PlaybackSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174865108486936962, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_WaitForFirstFrame
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802362485866632122, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.000014722
+      objectReference: {fileID: 0}
+    - target: {fileID: 4802362485866632122, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 38
+      objectReference: {fileID: 0}
     - target: {fileID: 4894801302199122235, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_text
       value: Skip All >>
@@ -7031,11 +7059,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9098102181792796098, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 500
+      value: 324.7699
       objectReference: {fileID: 0}
     - target: {fileID: 9098102181792796098, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 300
+      value: 360.7532
       objectReference: {fileID: 0}
     - target: {fileID: 9098102181792796098, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_LocalPosition.x
