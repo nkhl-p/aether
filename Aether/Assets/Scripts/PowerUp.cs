@@ -9,6 +9,7 @@ public class PowerUp : MonoBehaviour {
 
     float powerUpApplicableDuration = 7f;
 	int powerUpSpeedBoost = 25;
+    int powerUpLeviationSpeed = 15;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
     
@@ -146,7 +147,7 @@ public class PowerUp : MonoBehaviour {
         Vector3 playerNewPos = new Vector3(currentPos.x, 3, currentPos.z);
         player.transform.position = playerNewPos;
         player.GetComponent<Rigidbody>().useGravity = false;
-        playerMovement.powerUpSpeed = powerUpSpeedBoost;
+        playerMovement.powerUpSpeed = powerUpLeviationSpeed;
 
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
