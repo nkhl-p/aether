@@ -4,14 +4,14 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour {
 
+    // legacy variables
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
-
     float powerUpApplicableDuration = 7f;
 	int powerUpSpeedBoost = 25;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
-    
+
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -168,10 +168,14 @@ public class PowerUp : MonoBehaviour {
         // breaking out of the case.
     }
 
-	// This method applies change in player's speed along the z-axis to make it resemble like it is has gained speed
+    // This method applies change in player's speed along the z-axis to make it resemble like it is has gained speed
+    [System.Obsolete]
     IEnumerator SpeedupPlayer(Collider player) {
+        // Enable warping effect
+        playerMovement.warpEffect.GetComponent<ParticleSystem>().enableEmission = true;
+
         // increase the player size as part of the power-up action
-		playerMovement.powerUpSpeed = powerUpSpeedBoost;
+        playerMovement.powerUpSpeed = powerUpSpeedBoost;
         
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
@@ -183,6 +187,10 @@ public class PowerUp : MonoBehaviour {
 
         // reverting the changes made by the power-up to its original state
         playerMovement.powerUpSpeed = 0;
+
+        // Disable warping effect
+        playerMovement.warpEffect.GetComponent<ParticleSystem>().enableEmission = false;
+
         // breaking out of the case.
     }
 
