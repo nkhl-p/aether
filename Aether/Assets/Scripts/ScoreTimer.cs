@@ -26,7 +26,7 @@ public class ScoreTimer : MonoBehaviour {
 				maxDistance = 600f;
                 break;
             case "Level2":
-                startingTime = 50f;
+                startingTime = 40f;
 				maxDistance = 695f;
                 break;
             default:
