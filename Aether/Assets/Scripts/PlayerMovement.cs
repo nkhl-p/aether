@@ -37,11 +37,15 @@ public class PlayerMovement : MonoBehaviour {
     public static int powerUpsLevelCount = 0;
     bool val = false;
 
+    private bool freezeGame = false;
     // variable declaration for player health
     public int maxHealth = 100;
     public int currentHealth;
     public HealthBar healthBar;
 
+  
+  
+  
     private void Awake() {
         transformCache = transform;
     }
@@ -55,6 +59,11 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (freezeGame)
+        {
+            return;
+        }
+        
         if (!alive) return;
         float curr_speed = speed;
         if (powerUpSpeed > 0) {
@@ -67,6 +76,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
+        if (freezeGame)
+        {
+            return;
+        }
         horizontalInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space)) {
@@ -147,6 +160,21 @@ public class PlayerMovement : MonoBehaviour {
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         audioManagerInstance.Play(SoundEnums.THEME.GetString());
+    }
+
+    public void FreezeGame()
+    {
+        freezeGame = true;
+    }
+
+    public void UnFreezeGame()
+    {
+        freezeGame = false;
+    }
+
+    public bool getGameFreeze()
+    {
+        return freezeGame;
     }
 
     void Jump() {
