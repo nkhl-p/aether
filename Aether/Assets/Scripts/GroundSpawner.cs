@@ -211,16 +211,22 @@ public class GroundSpawner : MonoBehaviour {
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates = new List<(int Z_Value, PopUpEnums popUpEnums)> {
 		(1,PopUpEnums.SHOOT),
 		(10,PopUpEnums.SPEED),
+		(100,PopUpEnums.SPEED),
+        (150,PopUpEnums.SPEED),
 	  };
 
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates2 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
 		(1,PopUpEnums.SHOOT),
-		(10,PopUpEnums.SPEED),
+		(90,PopUpEnums.SPEED),
+		(190,PopUpEnums.SPEED),
+        (200,PopUpEnums.SPEED),
 	  };
 	
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates3 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
-		(1,PopUpEnums.SHOOT),
-		(10,PopUpEnums.SPEED),
+		(5,PopUpEnums.SHOOT),
+		(50,PopUpEnums.SPEED),
+		(120,PopUpEnums.SPEED),
+        (170,PopUpEnums.SPEED),
 	  };
 
     int i = 0;
@@ -240,10 +246,12 @@ public class GroundSpawner : MonoBehaviour {
         switch (scene.name) {
             case "Level1":
                 obstacleSpawningChance = 0.65f;
+				PopUp.setTutorialCoordinates(1);
                 break;
             case "Level2":
                 pathCoordinates = pathCoordinates2;
                 obstacleSpawningChance = 0.55f;
+				PopUp.setTutorialCoordinates(2);
                 break;
             default:
                 Debug.Log("Code should not reach here!");

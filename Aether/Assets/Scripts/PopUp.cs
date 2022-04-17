@@ -16,8 +16,27 @@ public class PopUp : MonoBehaviour
     
     public PlayerMovement pm;
 
-    private List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates;
+    private static List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates;
+    private static int highestLevel = 0;
 
+    public static void setTutorialCoordinates(int level)
+    {
+        if (level <= highestLevel)
+        {
+            return;
+        }
+
+        highestLevel = level;
+        
+        switch(level) {
+			case 1: tutorialCoordinates = FindObjectOfType<GroundSpawner>().tutorialCoordinates;
+				break;
+			case 2: tutorialCoordinates = FindObjectOfType<GroundSpawner>().tutorialCoordinates2;
+				break;
+			case 3: tutorialCoordinates = FindObjectOfType<GroundSpawner>().tutorialCoordinates3;
+				break;
+		}
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -27,7 +46,6 @@ public class PopUp : MonoBehaviour
 
         // Get the Player Movement Object
         pm = FindObjectOfType<PlayerMovement>();
-        tutorialCoordinates = FindObjectOfType<GroundSpawner>().tutorialCoordinates;
     }
 
     // Hide the PopUp Dialog Box
@@ -46,7 +64,7 @@ public class PopUp : MonoBehaviour
     void Update()
     {
         int location = pm.getCurrentPosition();
-        if (tutorialCoordinates.Count > 0 && location > tutorialCoordinates[0].Z_Value)
+        if (tutorialCoordinates.Count > 0 && location >= tutorialCoordinates[0].Z_Value)
         {
             pm.FreezeGame();
             SetDialogAttributes(tutorialCoordinates[0].popUpEnums);
