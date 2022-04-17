@@ -4,14 +4,16 @@ using System.Collections;
 
 public class PowerUp : MonoBehaviour {
 
+    // legacy variables
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
-
     float powerUpApplicableDuration = 7f;
-	int powerUpSpeedBoost = 25;
+	int powerUpSpeedBoost = 20;
+    int powerUpLeviationSpeed = 15;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
-    
+    int wormholeTravelDistance = 50;
+
     void Start()
     {
         playerMovement = FindObjectOfType<PlayerMovement>();
@@ -41,6 +43,7 @@ public class PowerUp : MonoBehaviour {
                 case "PowerupLevitate": Pickup(other, PowerupEnums.LEVITATE); break;
 				case "PowerupSpeed": Pickup(other, PowerupEnums.SPEED); break;
                 case "PowerupShoot": Pickup(other, PowerupEnums.SHOOT); break;
+                case "PowerupWormhole": Pickup(other, PowerupEnums.WORMHOME); break;
             }
         }
     }
@@ -84,6 +87,10 @@ public class PowerUp : MonoBehaviour {
             case PowerupEnums.SHOOT:
                 StartCoroutine(EnableGun(player));
                 break;
+
+            case PowerupEnums.WORMHOME:
+                PassThroughWormhole(player, wormholeTravelDistance);
+                break;
         }
     }
 
@@ -91,6 +98,12 @@ public class PowerUp : MonoBehaviour {
         FindObjectOfType<ScoreTimer>().currentTime += 5;
         GetComponent<MeshRenderer>().enabled = false;
         GetComponent<CapsuleCollider>().enabled = false;
+        return;
+    }
+
+    private void PassThroughWormhole(Collider player, int wormholeTravelDistance) {
+        Vector3 temp = new Vector3(player.transform.position.x, player.transform.position.y, player.transform.position.z + wormholeTravelDistance);
+        player.transform.position = temp;
         return;
     }
 
@@ -146,7 +159,7 @@ public class PowerUp : MonoBehaviour {
         Vector3 playerNewPos = new Vector3(currentPos.x, 3, currentPos.z);
         player.transform.position = playerNewPos;
         player.GetComponent<Rigidbody>().useGravity = false;
-        playerMovement.powerUpSpeed = powerUpSpeedBoost;
+        playerMovement.powerUpSpeed = powerUpLeviationSpeed;
 
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
@@ -168,10 +181,14 @@ public class PowerUp : MonoBehaviour {
         // breaking out of the case.
     }
 
-	// This method applies change in player's speed along the z-axis to make it resemble like it is has gained speed
+    // This method applies change in player's speed along the z-axis to make it resemble like it is has gained speed
+    [System.Obsolete]
     IEnumerator SpeedupPlayer(Collider player) {
+        // Enable warping effect
+        playerMovement.warpEffect.GetComponent<ParticleSystem>().enableEmission = true;
+
         // increase the player size as part of the power-up action
-		playerMovement.powerUpSpeed = powerUpSpeedBoost;
+        playerMovement.powerUpSpeed = powerUpSpeedBoost;
         
         // once the power-up has been grabbed, we disable the MeshRenderer and the CapsuleCollider so that the player is not able to interact with that powerup again.
         GetComponent<MeshRenderer>().enabled = false;
@@ -183,6 +200,10 @@ public class PowerUp : MonoBehaviour {
 
         // reverting the changes made by the power-up to its original state
         playerMovement.powerUpSpeed = 0;
+
+        // Disable warping effect
+        playerMovement.warpEffect.GetComponent<ParticleSystem>().enableEmission = false;
+
         // breaking out of the case.
     }
 
@@ -207,7 +228,14 @@ public class PowerUp : MonoBehaviour {
 
     // The following function ensures that the powerup will always turn by 90 degrees every second regardless of the framerate
     private void Update() {
-        transform.Rotate(0, 0, turnSpeed * Time.deltaTime);
+        switch (gameObject.tag) {
+            case "PowerupTime": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+            case "PowerupSize": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
+            case "PowerupPermeate": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
+            case "PowerupLevitate": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+            case "PowerupSpeed": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
+            case "PowerupShoot": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+        }
     }
 
 }

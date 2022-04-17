@@ -23,10 +23,10 @@ public class ScoreTimer : MonoBehaviour {
         switch (scene.name) {
             case "Level1":
                 startingTime = 50f;
-				maxDistance = 580f;
+				maxDistance = 600f;
                 break;
             case "Level2":
-                startingTime = 50f;
+                startingTime = 40f;
 				maxDistance = 695f;
                 break;
             default:
@@ -60,7 +60,7 @@ public class ScoreTimer : MonoBehaviour {
 		if (levitationPowerupsTimer < 0 && timerText.enabled == true) {
 			stopLevitationTimer();
 		}
-		distanceText.text = pm.getCurrentPosition() + "/" + maxDistance + "m";
+		distanceText.text = pm.getCurrentPosition() + "/" + maxDistance;
     }
 
 	public void startLevitationTimer(float powerUpApplicableDuration) {
