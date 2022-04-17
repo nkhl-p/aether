@@ -56,7 +56,7 @@ public class ScoreTimer : MonoBehaviour {
 		if (levitationPowerupsTimer < 0 && timerText.enabled == true) {
 			stopLevitationTimer();
 		}
-		distanceText.text = pm.getCurrentPosition() + "/" + maxDistance + "m";
+		distanceText.text = pm.getCurrentPosition() + "/" + maxDistance;
     }
 
 	public void startLevitationTimer(float powerUpApplicableDuration) {
