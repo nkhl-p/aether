@@ -213,6 +213,16 @@ public class GroundSpawner : MonoBehaviour {
 		(10,PopUpEnums.SPEED),
 	  };
 
+	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates2 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
+		(1,PopUpEnums.SHOOT),
+		(10,PopUpEnums.SPEED),
+	  };
+	
+	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates3 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
+		(1,PopUpEnums.SHOOT),
+		(10,PopUpEnums.SPEED),
+	  };
+
     int i = 0;
 
     string powerupType = "";
