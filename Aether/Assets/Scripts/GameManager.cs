@@ -4,9 +4,9 @@ using System.Collections;
 
 public class GameManager : MonoBehaviour {
     public static GameManager inst;
-    public GameObject pauseMenu = null;
-    public GameObject soundOnIcon = null;
-    public GameObject soundOffIcon = null;
+    [SerializeField] GameObject pauseMenu = null;
+    [SerializeField] GameObject soundOnIcon = null;
+    [SerializeField] GameObject soundOffIcon = null;
     AudioManager audioManagerInstance = null;
 
     // variables for level loading

@@ -38,7 +38,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 82.99164, y: -147.6507}
-  m_SizeDelta: {x: 150, y: 40}
+  m_SizeDelta: {x: 145.98, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1632664713672678649
 CanvasRenderer:
@@ -160,7 +160,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -82.992004, y: -147.6507}
-  m_SizeDelta: {x: 150, y: 40}
+  m_SizeDelta: {x: 145.98, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &333372350419731540
 CanvasRenderer:
@@ -280,7 +280,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -4, y: -80}
-  m_SizeDelta: {x: 320, y: 0}
+  m_SizeDelta: {x: 340, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8949875248340981785
 CanvasRenderer:
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: hint text
+  m_text: 'Hint Text Goes Here '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -343,7 +343,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 9
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -391,7 +391,7 @@ GameObject:
   - component: {fileID: 3307241401558396554}
   - component: {fileID: 4894801302199122235}
   m_Layer: 5
-  m_Name: SkipButtonText
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -596,7 +596,7 @@ GameObject:
   - component: {fileID: 6209604046229595984}
   - component: {fileID: 4885184437484593682}
   m_Layer: 5
-  m_Name: NextButtonText
+  m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
