@@ -19,6 +19,7 @@ TagManager:
   - ObstacleCylinder
   - PowerupShoot
   - PopUp
+  - PowerupWormhole
   layers:
   - Default
   - TransparentFX

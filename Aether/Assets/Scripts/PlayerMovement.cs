@@ -9,20 +9,18 @@ using System;
 
 
 public class PlayerMovement : MonoBehaviour {
+    // legacy variable declaration
     public float speed = 5;
     public int powerUpSpeed = 0;
     [SerializeField] Rigidbody rb;
-
     bool alive = true;
-
     float horizontalInput;
     [SerializeField] float horizontalMultiplier = 2;
-
     [SerializeField] float jumpForce = 400f;
     [SerializeField] LayerMask groundMask;
-
     private Transform transformCache;
     AudioManager audioManagerInstance = null;
+    public Transform warpEffect;
 
     // variable declaration for unity analytics
     public static int blueCount = 0;
@@ -39,14 +37,24 @@ public class PlayerMovement : MonoBehaviour {
     public static int powerUpsLevelCount = 0;
     bool val = false;
 
+    // variable declaration for tutorial popup
     private bool freezeGame = false;
+
+    // variable declaration for player health
+    public int maxHealth = 100;
+    public int currentHealth;
+    public HealthBar healthBar;
 
     private void Awake() {
         transformCache = transform;
     }
 
+    [Obsolete]
     private void Start() {
         audioManagerInstance = FindObjectOfType<AudioManager>();
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+        warpEffect.GetComponent<ParticleSystem>().enableEmission = false;
     }
 
     private void FixedUpdate() {
@@ -95,14 +103,21 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     public void Die() {
-        alive = false;
-        Gun.IsGunEnabled = false;
-        //Debug.Log("Number of player deaths: " + tries);
-        if (transformCache.position.y < 0) {
-            // audioManagerInstance.Play(SoundEnums.FALL.GetString());
-        }
+        if (currentHealth == 0) {
+            alive = false;
+            Gun.IsGunEnabled = false;
+            if (transformCache.position.y < 0) {
+                 audioManagerInstance.Play(SoundEnums.FALL.GetString());
+            }
 
-        Invoke("Restart", 1);
+            Invoke("Restart", 1);
+        } else {
+            TakeDamage(20);
+            if (transformCache.position.y < 0) {
+                Invoke("Restart", 1);
+            }
+        }
+        
     }
 
     public int getCurrentPosition()
@@ -191,7 +206,7 @@ public class PlayerMovement : MonoBehaviour {
             FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
-        } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.immunityFlag ==false) {
+        } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.immunityFlag == false) {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
             audioManagerInstance.StopPlaying("SpaceTravel");
@@ -398,5 +413,10 @@ public class PlayerMovement : MonoBehaviour {
                 break;
         }
         return baseSpeed;
+    }
+
+    public void TakeDamage(int damage) {
+        currentHealth -= damage;
+        healthBar.SetHealth(currentHealth);
     }
 }

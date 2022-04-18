@@ -5,6 +5,7 @@ public enum PowerupEnums {
     SIZE,
 	SPEED,
     SHOOT,
+    WORMHOME,
     NONE
 }
 
@@ -23,6 +24,8 @@ public static class PowerupExtensions {
                 return "Speed";
             case PowerupEnums.SHOOT:
                 return "Shoot";
+            case PowerupEnums.WORMHOME:
+                return "Wormhole";
             case PowerupEnums.NONE:
                 return "";
             default:
