@@ -252,25 +252,24 @@ public class GroundSpawner : MonoBehaviour {
       };
 
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates = new List<(int Z_Value, PopUpEnums popUpEnums)> {
-		(1,PopUpEnums.SHOOT),
-		(10,PopUpEnums.SPEED),
-		(100,PopUpEnums.SPEED),
-        (150,PopUpEnums.SPEED),
-	  };
+        (5,PopUpEnums.CONTROLS),
+        (10,PopUpEnums.BLUEPATH),
+        (15,PopUpEnums.GREENPATH),
+        (20,PopUpEnums.YELLOWPATH),
+        (25,PopUpEnums.REDPATH),
+        (30,PopUpEnums.TIME),
+        (35,PopUpEnums.SIZE),
+        (40,PopUpEnums.SPEED),
+    };
 
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates2 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
-		(1,PopUpEnums.SHOOT),
-		(90,PopUpEnums.SPEED),
-		(190,PopUpEnums.SPEED),
-        (200,PopUpEnums.SPEED),
-	  };
+		(5,PopUpEnums.SHOOT),
+		(10,PopUpEnums.LEVITATE),
+    };
 	
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates3 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
-		(5,PopUpEnums.SHOOT),
-		(50,PopUpEnums.SPEED),
-		(120,PopUpEnums.SPEED),
-        (170,PopUpEnums.SPEED),
-	  };
+		(5,PopUpEnums.WORMHOLE),
+    };
 
     int i = 0;
 
@@ -390,7 +389,7 @@ public class GroundSpawner : MonoBehaviour {
 
     void Start() {
         for (int i = 0; i < 120; i++) {
-            if (i > 3) {
+            if (i > 4) {
                 SpawnTile(true);
             } else {
                 SpawnTile(false);

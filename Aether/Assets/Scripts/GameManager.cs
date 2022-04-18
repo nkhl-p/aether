@@ -74,5 +74,15 @@ public class GameManager : MonoBehaviour {
         // Load Scene
         SceneManager.LoadScene(sceneName);
     }
+    
+    public void NextButtonClicked()
+    {
+        FindObjectOfType<PopUp>().NextButtonClicked();
+    }
+
+    public void SkipAllButtonClicked()
+    {
+        FindObjectOfType<PopUp>().SkipAllButtonClicked();
+    }
 
 }
