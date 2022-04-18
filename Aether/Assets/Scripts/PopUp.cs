@@ -115,7 +115,7 @@ public class PopUp : MonoBehaviour
             
             case PopUpEnums.SIZE:
                 HintTitle.text = "SIZE POWERUP";
-                HintText.text = "PICK UP TO INCREASE\n\nTHE SIZE OF THE PLAYER";
+                HintText.text = "PICK UP TO INCREASE\n\nTHE SIZE OF THE PLAYER\n\nPLAYER CAN GO THROUGH OBSTACLES\n\nWHEN THIS IS PICKED UP";
                 break;
             
             case PopUpEnums.SPEED:
