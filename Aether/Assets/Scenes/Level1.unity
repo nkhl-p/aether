@@ -5725,6 +5725,7 @@ MonoBehaviour:
   HintText: {fileID: 1756172134}
   HintTitle: {fileID: 1756172133}
   Layer: {fileID: 1756172135}
+  pauseButton: {fileID: 505601882}
   pm: {fileID: 0}
 --- !u!1 &544259777
 GameObject:
