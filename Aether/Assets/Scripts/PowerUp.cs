@@ -170,13 +170,11 @@ public class PowerUp : MonoBehaviour {
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
-        Debug.Log("Before position: " + player.transform.position);
         Vector3 currentPosAfterLevitation = player.transform.position;
         Vector3 playerNewPosAfter = new Vector3(currentPosAfterLevitation.x, 1, currentPosAfterLevitation.z);
         player.transform.position = playerNewPosAfter;
         player.GetComponent<Rigidbody>().useGravity = true;
         playerMovement.powerUpSpeed = 0;
-        Debug.Log("After position: " + player.transform.position);
 
         // breaking out of the case.
     }

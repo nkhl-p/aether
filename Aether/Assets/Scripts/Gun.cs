@@ -38,7 +38,7 @@ public class Gun : MonoBehaviour
     void Update()
     {
         // By default, it is mapped to the left mouse button. Here, we will add the check to see if the gun powerup has been collected
-        if (Input.GetButtonDown("Fire1") || Input.GetKeyDown(KeyCode.F)) {
+        if (Input.GetKeyDown(KeyCode.F)) {
             if (IsGunEnabled) {
                 Shoot();
             } else {

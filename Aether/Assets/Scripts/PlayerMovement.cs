@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        
+        if (freezeGame) return;
         if (!alive) return;
         float curr_speed = speed;
         if (powerUpSpeed > 0) {
@@ -69,6 +69,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
+        if (freezeGame) return;
         horizontalInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.J)) {
@@ -144,20 +145,17 @@ public class PlayerMovement : MonoBehaviour {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         Obstacle.IsSizePowerUpEnabled = false;
-        Debug.Log("Is size powerup enabled?" + Obstacle.IsSizePowerUpEnabled);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         audioManagerInstance.Play(SoundEnums.THEME.GetString());
     }
 
     public void FreezeGame()
     {
-		Time.timeScale = 0f;
         freezeGame = true;
     }
 
     public void UnFreezeGame()
     {
-		Time.timeScale = 1f;
         freezeGame = false;
     }
 
@@ -199,7 +197,10 @@ public class PlayerMovement : MonoBehaviour {
         } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.immunityFlag == false) {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
-            audioManagerInstance.StopPlaying("SpaceTravel");
+            if (currentHealth <= 0) {
+                audioManagerInstance.StopPlaying("SpaceTravel");
+            }
+            
             deathByYellowPathCount++;
 
             SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);

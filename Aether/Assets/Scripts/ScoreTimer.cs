@@ -23,11 +23,11 @@ public class ScoreTimer : MonoBehaviour {
         switch (scene.name) {
             case "Level1":
                 startingTime = 50f;
-				maxDistance = 600f;
+				maxDistance = 700f;
                 break;
             case "Level2":
                 startingTime = 40f;
-				maxDistance = 695f;
+				maxDistance = 900f;
                 break;
             default:
                 Debug.Log("Code should not reach here!");
