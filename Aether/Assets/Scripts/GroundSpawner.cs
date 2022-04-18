@@ -20,7 +20,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,20,"Blue",PowerupEnums.NONE),
         (0,30,"Blue",PowerupEnums.NONE),
         (0,40,"Blue",PowerupEnums.NONE),
-        (0,50,"Blue",PowerupEnums.WORMHOME),
+        (0,50,"Blue",PowerupEnums.NONE),
         (0,60,"Blue",PowerupEnums.NONE),
 
         (0,75,"Blue",PowerupEnums.NONE),
@@ -45,7 +45,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,205,"Blue",PowerupEnums.NONE),
         (10,215,"Blue",PowerupEnums.NONE),
         (10,225,"Blue",PowerupEnums.NONE),
-        (10,235,"Blue",PowerupEnums.NONE),
+        (10,235,"Blue",PowerupEnums.LEVITATE),
         (10,245,"Blue",PowerupEnums.NONE),
 
         (0,260,"Red",PowerupEnums.NONE),
@@ -138,7 +138,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,170,"Red",PowerupEnums.NONE),
         (10,170,"Green",PowerupEnums.NONE),
         (0,180,"Red",PowerupEnums.NONE),
-        (10,180,"Green",PowerupEnums.NONE),
+        (10,180,"Green",PowerupEnums.LEVITATE),
         (0,190,"Red",PowerupEnums.NONE),
         (10,190,"Green",PowerupEnums.NONE),
         (0,200,"Red",PowerupEnums.NONE),
@@ -154,7 +154,7 @@ public class GroundSpawner : MonoBehaviour {
         (10,265,"Blue",PowerupEnums.NONE),
         (-10,275,"Green",PowerupEnums.NONE),
         (0,275,"Yellow",PowerupEnums.NONE),
-        (10,275,"Blue",PowerupEnums.PERMEATE),
+        (10,275,"Blue",PowerupEnums.NONE),
         (-10,285,"Green",PowerupEnums.NONE),
         (0,285,"Yellow",PowerupEnums.NONE),
         (-10,285,"Green",PowerupEnums.NONE),
@@ -205,7 +205,9 @@ public class GroundSpawner : MonoBehaviour {
         (0,560,"Red",PowerupEnums.NONE),
         (10,560,"Red",PowerupEnums.PERMEATE),
 
-        (0,575,"Green",PowerupEnums.SHOOT),
+        (0,575,"Green",PowerupEnums.NONE),
+        (0,585,"Green",PowerupEnums.SHOOT),
+        (0,595,"Green",PowerupEnums.NONE),
 
         (10,590,"Blue",PowerupEnums.NONE),
         (10,600,"Blue",PowerupEnums.NONE),
