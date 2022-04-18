@@ -7510,6 +7510,8 @@ MonoBehaviour:
   maxHealth: 100
   currentHealth: 0
   healthBar: {fileID: 145292095}
+  transition: {fileID: 981645615}
+  transitionTime: 0.25
 --- !u!114 &1633124473
 MonoBehaviour:
   m_ObjectHideFlags: 0

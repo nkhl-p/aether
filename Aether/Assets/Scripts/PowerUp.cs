@@ -8,11 +8,11 @@ public class PowerUp : MonoBehaviour {
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
     float powerUpApplicableDuration = 7f;
-	int powerUpSpeedBoost = 20;
+	int powerUpSpeedBoost = 30;
     int powerUpLeviationSpeed = 15;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
-    int wormholeTravelDistance = 50;
+    int wormholeTravelDistance = 350;
 
     void Start()
     {
@@ -235,6 +235,7 @@ public class PowerUp : MonoBehaviour {
             case "PowerupLevitate": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
             case "PowerupSpeed": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
             case "PowerupShoot": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+            case "PowerupWormhole": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
         }
     }
 

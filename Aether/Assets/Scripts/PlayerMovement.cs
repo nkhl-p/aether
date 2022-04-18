@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using System;
-
-
-
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
     // legacy variable declaration
@@ -106,10 +104,6 @@ public class PlayerMovement : MonoBehaviour {
         if (currentHealth == 0) {
             alive = false;
             Gun.IsGunEnabled = false;
-            if (transformCache.position.y < 0) {
-                 audioManagerInstance.Play(SoundEnums.FALL.GetString());
-            }
-
             Invoke("Restart", 1);
         } else {
             TakeDamage(20);
@@ -157,6 +151,8 @@ public class PlayerMovement : MonoBehaviour {
     void Restart() {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
+        Obstacle.IsSizePowerUpEnabled = false;
+        Debug.Log("Is size powerup enabled?" + Obstacle.IsSizePowerUpEnabled);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         audioManagerInstance.Play(SoundEnums.THEME.GetString());
     }
@@ -203,7 +199,7 @@ public class PlayerMovement : MonoBehaviour {
             prevColorTag = "BLUE";
 
         } else if (collision.gameObject.CompareTag("TileGreen")) {
-            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 15 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
         } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.immunityFlag == false) {
@@ -235,12 +231,14 @@ public class PlayerMovement : MonoBehaviour {
             SendTimeAnalyticsData(GetLevelNumber(), Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
 
-            if(SceneManager.GetActiveScene().buildIndex == 2) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            } else {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+            if (SceneManager.GetActiveScene().name.Equals("Level1")) {
+                SceneManager.LoadScene("Level2");
+            } else if (SceneManager.GetActiveScene().name.Equals("Level2")) {
+                SceneManager.LoadScene("EndMenu");
+            } else if (SceneManager.GetActiveScene().name.Equals("Level3")) {
+                SceneManager.LoadScene("EndMenu");
             }
-            
+
         } else if (collision.gameObject.CompareTag("Obstacle")) {
             Debug.Log("Player collided with an obstacle");
             deathByObstacleCount++;
