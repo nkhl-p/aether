@@ -18,6 +18,7 @@ TagManager:
   - PowerupSpeed
   - ObstacleCylinder
   - PowerupShoot
+  - PopUp
   - PowerupWormhole
   layers:
   - Default
