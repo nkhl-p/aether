@@ -269,7 +269,7 @@ BoxCollider:
   m_GameObject: {fileID: 8128862036757423918}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Size: {x: 10, y: 10, z: 10}
   m_Center: {x: 0, y: 0, z: 5}
@@ -292,3 +292,6 @@ MonoBehaviour:
   powerupsPrefabSize: {fileID: 3670609001701935937, guid: 43ee601844c884509a6f4832100b62b3, type: 3}
   powerupsPrefabPermeate: {fileID: 3670609001701935937, guid: 358453cdb4337411eabe7928ed998e0e, type: 3}
   powerupsPrefabLevitate: {fileID: 3670609001701935937, guid: ec5b0036a1a0f48cbbc64102caa220ad, type: 3}
+  powerupsPrefabSpeed: {fileID: 3670609001701935937, guid: 2648c4032473f43e3ace89473d25f604, type: 3}
+  powerupsPrefabShoot: {fileID: 3670609001701935937, guid: 1a431cd8f4abe4a9fa4cbf17b976699f, type: 3}
+  powerupsPrefabWormhole: {fileID: 3670609001701935937, guid: 564fef41632b94e4d863383e7e40b56f, type: 3}

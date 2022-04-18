@@ -270,7 +270,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Travelling on RED PATH will decrease the speed of object
+  m_Text: Travelling on YELLOW PATH will decrease the speed of object
 --- !u!222 &250881589
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -470,7 +470,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -313.8, y: -83.19998}
+  m_AnchoredPosition: {x: -316.8, y: -42.3}
   m_SizeDelta: {x: 54.7081, y: 16.7284}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &488238204
@@ -761,7 +761,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -315.81326, y: -38.679207}
+  m_AnchoredPosition: {x: -316.8, y: -83.2}
   m_SizeDelta: {x: 54.7101, y: 16.7109}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &663547353
@@ -882,6 +882,68 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 837512222}
   m_CullTransparentMesh: 1
+--- !u!1001 &911156587
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3463374175291812064, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_Name
+      value: LevelLoader
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3463374175291812066, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+--- !u!95 &911156588 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 3463374175325176131, guid: c333314a3aeb04b078e8007b10499c12, type: 3}
+  m_PrefabInstance: {fileID: 911156587}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &974917130
 GameObject:
   m_ObjectHideFlags: 0
@@ -1205,7 +1267,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1490710621
 GameObject:
@@ -1315,7 +1377,7 @@ RectTransform:
   - {fileID: 1199810165}
   - {fileID: 582401794}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -1337,6 +1399,8 @@ MonoBehaviour:
   pauseMenu: {fileID: 0}
   soundOnIcon: {fileID: 0}
   soundOffIcon: {fileID: 0}
+  transition: {fileID: 911156588}
+  transitionTime: 0.5
 --- !u!1 &1501716463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,7 +1569,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1 &2088786121
 GameObject:
@@ -1572,7 +1636,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2125974064
 GameObject:
@@ -1645,8 +1709,8 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 0.5
-  m_Text: If the object lands on the YELLOW PATH OR veers off its course OR hits
-    an obstacle OR runs out of time, the game ends!
+  m_Text: If the object lands on the RED PATH OR veers off its course OR hits an
+    obstacle OR runs out of time, the game ends!
 --- !u!222 &2125974067
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -15,6 +15,10 @@ TagManager:
   - PowerupSize
   - PowerupLevitate
   - PowerupPermeate
+  - PowerupSpeed
+  - ObstacleCylinder
+  - PowerupShoot
+  - PowerupWormhole
   layers:
   - Default
   - TransparentFX
