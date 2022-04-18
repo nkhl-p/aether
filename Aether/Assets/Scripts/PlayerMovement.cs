@@ -56,10 +56,6 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
-        if (freezeGame)
-        {
-            return;
-        }
         
         if (!alive) return;
         float curr_speed = speed;
@@ -73,10 +69,6 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
-        if (freezeGame)
-        {
-            return;
-        }
         horizontalInput = Input.GetAxis("Horizontal");
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.J)) {
@@ -159,11 +151,13 @@ public class PlayerMovement : MonoBehaviour {
 
     public void FreezeGame()
     {
+		Time.timeScale = 0f;
         freezeGame = true;
     }
 
     public void UnFreezeGame()
     {
+		Time.timeScale = 1f;
         freezeGame = false;
     }
 

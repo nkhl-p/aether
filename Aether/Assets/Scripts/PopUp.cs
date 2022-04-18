@@ -51,13 +51,13 @@ public class PopUp : MonoBehaviour
     // Hide the PopUp Dialog Box
     void HideLayer()
     {
-        Layer.transform.localScale = new Vector3(0, 0, 0);
+        Layer.SetActive(false);
     }
     
     // Show the PopUp Dialog Box
     void ShowLayer()
     {
-        Layer.transform.localScale = new Vector3(1, 1, 1);
+        Layer.SetActive(true);
     }
 
     // Update is called once per frame
@@ -77,11 +77,54 @@ public class PopUp : MonoBehaviour
     {
         switch (em)
         {
+            // Controls 
+            case PopUpEnums.CONTROLS:
+                HintText.text = "<CONTROLS Hint Text>";
+                HintTitle.text = "<CONTROLS Title Text>";
+                break;
+            
+            // Paths
+            case PopUpEnums.BLUEPATH:
+                HintText.text = "<BLUEPATH Hint Text>";
+                HintTitle.text = "<BLUEPATH Title Text>";
+                break;
+            
+            case PopUpEnums.GREENPATH:
+                HintText.text = "<GREENPATH Hint Text>";
+                HintTitle.text = "<GREENPATH Title Text>";
+                break;
+            
+            case PopUpEnums.YELLOWPATH:
+                HintText.text = "<YELLOWPATH Hint Text>";
+                HintTitle.text = "<YELLOWPATH Title Text>";
+                break;
+            
+            case PopUpEnums.REDPATH:
+                HintText.text = "<REDPATH Hint Text>";
+                HintTitle.text = "<REDPATH Title Text>";
+                break;
+
+            // Power Ups
             case PopUpEnums.TIME:
                 HintText.text = "<TIME Hint Text>";
                 HintTitle.text = "<TIME Title Text>";
                 break;
+            
+            case PopUpEnums.SIZE:
+                HintText.text = "<SIZE Hint Text>";
+                HintTitle.text = "<SIZE Title Text>";
+                break;
+            
+            case PopUpEnums.SPEED:
+                HintText.text = "<SPEED Hint Text>";
+                HintTitle.text = "<SPEED Title Text>";
+                break;
 
+            case PopUpEnums.SHOOT:
+                HintText.text = "<SHOOT Hint Text>";
+                HintTitle.text = "<SHOOT Title Text>";
+                break;
+            
             case PopUpEnums.PERMEATE:
                 HintText.text = "<PERMEATE Hint Text>";
                 HintTitle.text = "<PERMEATE Title Text>";
@@ -90,27 +133,16 @@ public class PopUp : MonoBehaviour
             case PopUpEnums.LEVITATE:
                 HintText.text = "<LEVITATE Hint Text>";
                 HintTitle.text = "<LEVITATE Title Text>";
+                break;
 
+            case PopUpEnums.WORMHOLE:
+                HintText.text = "<WORMHOLE Hint Text>";
+                HintTitle.text = "<WORMHOLE Title Text>";
                 break;
-            case PopUpEnums.SIZE:
-                HintText.text = "<SIZE Hint Text>";
-                HintTitle.text = "<SIZE Title Text>";
 
-                break;
-            case PopUpEnums.SPEED:
-                HintText.text = "<SPEED Hint Text>";
-                HintTitle.text = "<SPEED Title Text>";
-                
-                break;
-            case PopUpEnums.SHOOT:
-                HintText.text = "<SHOOT Hint Text>";
-                HintTitle.text = "<SHOOT Title Text>";
-
-                break;
             default:
                 HintText.text = "<Default Hint Text>";
                 HintTitle.text = "<Default Title Text>";
-
                 break;
         }
     }
