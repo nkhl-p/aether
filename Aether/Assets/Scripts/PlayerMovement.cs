@@ -145,6 +145,7 @@ public class PlayerMovement : MonoBehaviour {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         Obstacle.IsSizePowerUpEnabled = false;
+        Gun.IsGunEnabled = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         audioManagerInstance.Play(SoundEnums.THEME.GetString());
     }
