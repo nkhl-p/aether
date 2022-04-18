@@ -51,13 +51,13 @@ public class PopUp : MonoBehaviour
     // Hide the PopUp Dialog Box
     void HideLayer()
     {
-        Layer.transform.localScale = new Vector3(0, 0, 0);
+        Layer.SetActive(false);
     }
     
     // Show the PopUp Dialog Box
     void ShowLayer()
     {
-        Layer.transform.localScale = new Vector3(1, 1, 1);
+        Layer.SetActive(true);
     }
 
     // Update is called once per frame

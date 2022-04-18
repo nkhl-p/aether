@@ -104,4 +104,13 @@ public class GameManager : MonoBehaviour {
         SceneManager.LoadScene(levelIndex);
     }
 
+    public void NextButtonClicked()
+    {
+        FindObjectOfType<PopUp>().NextButtonClicked();
+    }
+
+    public void SkipAllButtonClicked()
+    {
+        FindObjectOfType<PopUp>().SkipAllButtonClicked();
+    }
 }
