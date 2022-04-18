@@ -254,12 +254,9 @@ public class GroundSpawner : MonoBehaviour {
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates = new List<(int Z_Value, PopUpEnums popUpEnums)> {
         (5,PopUpEnums.CONTROLS),
         (10,PopUpEnums.BLUEPATH),
-        (15,PopUpEnums.GREENPATH),
-        (20,PopUpEnums.YELLOWPATH),
-        (25,PopUpEnums.REDPATH),
-        (30,PopUpEnums.TIME),
-        (35,PopUpEnums.SIZE),
-        (40,PopUpEnums.SPEED),
+        (15,PopUpEnums.TIME),
+        (20,PopUpEnums.SIZE),
+        (25,PopUpEnums.SPEED),
     };
 
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates2 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
