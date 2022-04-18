@@ -13,7 +13,8 @@ public class PopUp : MonoBehaviour
     // public Button SkipAllButton;
     
     public GameObject Layer;
-    
+    public GameObject pauseButton = null;
+
     public PlayerMovement pm;
 
     private static List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates;
@@ -52,12 +53,14 @@ public class PopUp : MonoBehaviour
     void HideLayer()
     {
         Layer.SetActive(false);
+        pauseButton.SetActive(true);
     }
     
     // Show the PopUp Dialog Box
     void ShowLayer()
     {
         Layer.SetActive(true);
+        pauseButton.SetActive(false);
     }
 
     // Update is called once per frame
