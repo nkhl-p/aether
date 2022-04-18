@@ -82,65 +82,65 @@ public class PopUp : MonoBehaviour
         {
             // Controls 
             case PopUpEnums.CONTROLS:
-                HintText.text = "<CONTROLS Hint Text>";
-                HintTitle.text = "<CONTROLS Title Text>";
+                HintTitle.text = "GAME CONTROLS";
+                HintText.text = "RIGHT ARROW KEY - Move Right\n\nLEFT ARROW KEY - Move Left\n\nSPACEBAR - Jump";
                 break;
             
             // Paths
             case PopUpEnums.BLUEPATH:
-                HintText.text = "<BLUEPATH Hint Text>";
-                HintTitle.text = "<BLUEPATH Title Text>";
+                HintTitle.text = "PATH - SPEED RELATIONSHIP";
+                HintText.text = "BLUE PATH - BASE SPEED\n\nGREEN PATH - SPEED INCREASES\n\nYELLOW PATH - SPEED DECREASES\n\nRED PATH - BASE SPEED & HEALTH LOSS";
                 break;
             
             case PopUpEnums.GREENPATH:
-                HintText.text = "<GREENPATH Hint Text>";
+                HintText.text = "GREEN PATH";
                 HintTitle.text = "<GREENPATH Title Text>";
                 break;
             
             case PopUpEnums.YELLOWPATH:
-                HintText.text = "<YELLOWPATH Hint Text>";
+                HintText.text = "YELLOW PATH";
                 HintTitle.text = "<YELLOWPATH Title Text>";
                 break;
             
             case PopUpEnums.REDPATH:
-                HintText.text = "<REDPATH Hint Text>";
+                HintText.text = "RED PATH";
                 HintTitle.text = "<REDPATH Title Text>";
                 break;
 
             // Power Ups
             case PopUpEnums.TIME:
-                HintText.text = "<TIME Hint Text>";
-                HintTitle.text = "<TIME Title Text>";
+                HintTitle.text = "TIME POWERUP";
+                HintText.text = "PICKUP TO ADD +5s\n\nTO YOUR TIMER";
                 break;
             
             case PopUpEnums.SIZE:
-                HintText.text = "<SIZE Hint Text>";
-                HintTitle.text = "<SIZE Title Text>";
+                HintTitle.text = "SIZE POWERUP";
+                HintText.text = "PICK UP TO INCREASE\n\nTHE SIZE OF THE PLAYER";
                 break;
             
             case PopUpEnums.SPEED:
-                HintText.text = "<SPEED Hint Text>";
-                HintTitle.text = "<SPEED Title Text>";
+                HintTitle.text = "SPEED POWERUP";
+                HintText.text = "PICK UP TO INCREASE\n\nTHE SPEED OF THE PLAYER";
                 break;
 
             case PopUpEnums.SHOOT:
-                HintText.text = "<SHOOT Hint Text>";
-                HintTitle.text = "<SHOOT Title Text>";
+                HintTitle.text = "SHOOT POWERUP";
+                HintText.text = "PICK UP TO GET ENABLE\n\nSHOOTING FUCNTIONALITY\n\n\nPRESS F TO SHOOT";
                 break;
             
             case PopUpEnums.PERMEATE:
-                HintText.text = "<PERMEATE Hint Text>";
-                HintTitle.text = "<PERMEATE Title Text>";
+                HintTitle.text = "IMMUNITY POWERUP";
+                HintText.text = "PICK UP TO BECOME\n\nIMMUNE TO OBSTACLES & RED PATH";
                 break;
 
             case PopUpEnums.LEVITATE:
-                HintText.text = "<LEVITATE Hint Text>";
-                HintTitle.text = "<LEVITATE Title Text>";
+                HintTitle.text = "LEVITATE POWERUP";
+                HintText.text = "PICK UP TO\n\nLEVITATE OVER THE PATHS";
                 break;
 
             case PopUpEnums.WORMHOLE:
-                HintText.text = "<WORMHOLE Hint Text>";
-                HintTitle.text = "<WORMHOLE Title Text>";
+                HintTitle.text = "WORMHOLE POWERUP";
+                HintText.text = "PICK UP TO\n\nTELEPORT TO A FURTHER LOCATION";
                 break;
 
             default:
