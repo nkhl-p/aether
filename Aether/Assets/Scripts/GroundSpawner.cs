@@ -265,7 +265,7 @@ public class GroundSpawner : MonoBehaviour {
     };
 	
 	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates3 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
-		(5,PopUpEnums.WORMHOLE),
+		(5,PopUpEnums.WORMHOME),
     };
 
     int i = 0;

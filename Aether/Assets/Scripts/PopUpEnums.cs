@@ -5,7 +5,7 @@ public enum PopUpEnums {
     SIZE,
     SPEED,
     SHOOT,
-    WORMHOLE,
+    WORMHOME,
     BLUEPATH,
     YELLOWPATH,
     REDPATH,
