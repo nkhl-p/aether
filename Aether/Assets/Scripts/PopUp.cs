@@ -138,8 +138,8 @@ public class PopUp : MonoBehaviour
                 HintText.text = "PICK UP TO\n\nLEVITATE OVER THE PATHS";
                 break;
 
-            case PopUpEnums.WORMHOLE:
-                HintTitle.text = "WORMHOLE POWERUP";
+            case PopUpEnums.WORMHOME:
+                HintTitle.text = "WORMHOME POWERUP";
                 HintText.text = "PICK UP TO\n\nTELEPORT TO A FURTHER LOCATION";
                 break;
 
