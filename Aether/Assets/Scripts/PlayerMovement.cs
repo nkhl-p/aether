@@ -104,7 +104,15 @@ public class PlayerMovement : MonoBehaviour {
                 Invoke("Restart", 1);
             }
         }
-        
+    }
+
+    public void Die(String name) {
+        Debug.Log("Overloaded" + name);
+        if (name.Equals("ObstacleTall(Clone)")) {
+            alive = false;
+            TakeDamage(currentHealth);
+            Invoke("Restart", 1);
+        }
     }
 
     public int getCurrentPosition()
