@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
+using UnityEngine.Video;
 
 public class PopUp : MonoBehaviour
 {
     public TMP_Text HintText;
     public TMP_Text HintTitle;
+	public string VideoURL;
 
     // public Button SkipOneButton;
     // public Button SkipAllButton;
     
     public GameObject Layer;
     public GameObject pauseButton = null;
+	
+	public VideoPlayer vidplayer;
 
     public PlayerMovement pm;
 
@@ -47,6 +51,9 @@ public class PopUp : MonoBehaviour
 
         // Get the Player Movement Object
         pm = FindObjectOfType<PlayerMovement>();
+
+		// Initialize Video Player
+    	// vidplayer = GetComponent<VideoPlayer>();
     }
 
     // Hide the PopUp Dialog Box
@@ -84,70 +91,89 @@ public class PopUp : MonoBehaviour
             case PopUpEnums.CONTROLS:
                 HintTitle.text = "GAME CONTROLS";
                 HintText.text = "RIGHT ARROW KEY - Move Right\n\nLEFT ARROW KEY - Move Left\n\nSPACEBAR - Jump";
-                break;
+                VideoURL = "https://nkhl-p.github.io/aether-vid/nahi.mp4";
+				break;
             
             // Paths
             case PopUpEnums.BLUEPATH:
                 HintTitle.text = "PATH - SPEED RELATIONSHIP";
                 HintText.text = "BLUE PATH - BASE SPEED\n\nGREEN PATH - SPEED INCREASES\n\nYELLOW PATH - SPEED DECREASES\n\nRED PATH - BASE SPEED & HEALTH LOSS";
-                break;
+                VideoURL = "https://nkhl-p.github.io/aether-vid/thats_what_she_said.mp4";
+				break;
             
             case PopUpEnums.GREENPATH:
                 HintText.text = "GREEN PATH";
                 HintTitle.text = "<GREENPATH Title Text>";
-                break;
+                VideoURL = "";
+				break;
             
             case PopUpEnums.YELLOWPATH:
                 HintText.text = "YELLOW PATH";
                 HintTitle.text = "<YELLOWPATH Title Text>";
-                break;
+                VideoURL = "";
+				break;
             
             case PopUpEnums.REDPATH:
                 HintText.text = "RED PATH";
                 HintTitle.text = "<REDPATH Title Text>";
-                break;
+                VideoURL = "";
+				break;
 
             // Power Ups
             case PopUpEnums.TIME:
                 HintTitle.text = "TIME POWERUP";
                 HintText.text = "PICKUP TO ADD +5s\n\nTO YOUR TIMER";
-                break;
+                VideoURL = "";
+				break;
             
             case PopUpEnums.SIZE:
                 HintTitle.text = "SIZE POWERUP";
                 HintText.text = "PICK UP TO INCREASE\n\nTHE SIZE OF THE PLAYER\n\nPLAYER CAN GO THROUGH OBSTACLES\n\nWHEN THIS IS PICKED UP";
-                break;
+                VideoURL = "";
+				break;
             
             case PopUpEnums.SPEED:
                 HintTitle.text = "SPEED POWERUP";
                 HintText.text = "PICK UP TO INCREASE\n\nTHE SPEED OF THE PLAYER";
-                break;
+                VideoURL = "";
+				break;
 
             case PopUpEnums.SHOOT:
                 HintTitle.text = "SHOOT POWERUP";
                 HintText.text = "PICK UP TO GET ENABLE\n\nSHOOTING FUCNTIONALITY\n\n\nPRESS F TO SHOOT";
-                break;
+                VideoURL = "https://nkhl-p.github.io/aether-vid/nahi.mp4";
+				break;
             
             case PopUpEnums.PERMEATE:
                 HintTitle.text = "IMMUNITY POWERUP";
                 HintText.text = "PICK UP TO BECOME\n\nIMMUNE TO OBSTACLES & RED PATH";
-                break;
+                VideoURL = "";
+				break;
 
             case PopUpEnums.LEVITATE:
                 HintTitle.text = "LEVITATE POWERUP";
                 HintText.text = "PICK UP TO\n\nLEVITATE OVER THE PATHS";
-                break;
+                VideoURL = "";
+				break;
 
             case PopUpEnums.WORMHOME:
                 HintTitle.text = "WORMHOME POWERUP";
                 HintText.text = "PICK UP TO\n\nTELEPORT TO A FURTHER LOCATION";
-                break;
+                VideoURL = "";
+				break;
 
             default:
                 HintText.text = "<Default Hint Text>";
                 HintTitle.text = "<Default Title Text>";
-                break;
+                VideoURL = "";
+				break;
         }
+		
+		if (VideoURL != "") {
+			vidplayer.url = VideoURL;
+			vidplayer.Play();
+       		vidplayer.isLooping = true;
+		}
     }
 
     public void NextButtonClicked()
