@@ -6437,21 +6437,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: SpaceTravel
-    clip: {fileID: 8300000, guid: 8440aaaac7ea841e2ad884bc06413fba, type: 3}
-    volume: 0.05
+    clip: {fileID: 8300000, guid: 836d5046357614a52beffc2f781fe6db, type: 3}
+    volume: 0.1
     pitch: 1
     source: {fileID: 0}
     loop: 1
   - name: Collision
     clip: {fileID: 8300000, guid: 32a85b0a5e6f94319b9449fc049b9c59, type: 3}
-    volume: 0.5
-    pitch: 1
+    volume: 0.4
+    pitch: 0.4
     source: {fileID: 0}
     loop: 0
   - name: Jump
     clip: {fileID: 8300000, guid: d8b29c1be000c49889086a5025bf8cb3, type: 3}
-    volume: 1
-    pitch: 1
+    volume: 0.5
+    pitch: 0.5
     source: {fileID: 0}
     loop: 0
   - name: Fall
@@ -6462,13 +6462,13 @@ MonoBehaviour:
     loop: 0
   - name: Win
     clip: {fileID: 8300000, guid: 48a59fd5486e64d9f9764bd7cf38a7b4, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: PowerUp
-    clip: {fileID: 8300000, guid: 5211eefb469e749369c39f232a6d4e34, type: 3}
-    volume: 0.5
+    clip: {fileID: 8300000, guid: 184c5201f9776405eb88aac19ac689cb, type: 3}
+    volume: 0.7
     pitch: 1
     source: {fileID: 0}
     loop: 0
@@ -6480,13 +6480,13 @@ MonoBehaviour:
     loop: 0
   - name: LaserShoot
     clip: {fileID: 8300000, guid: b58d9890a61db462283f4dffc848c221, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
     loop: 0
   - name: TargetMissLaser
     clip: {fileID: 8300000, guid: 4cbfc131d1bf1416ca57a20cf685f09c, type: 3}
-    volume: 0.5
+    volume: 0.3
     pitch: 1
     source: {fileID: 0}
     loop: 0
