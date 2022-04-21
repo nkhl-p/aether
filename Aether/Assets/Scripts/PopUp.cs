@@ -91,14 +91,14 @@ public class PopUp : MonoBehaviour
             case PopUpEnums.CONTROLS:
                 HintTitle.text = "GAME CONTROLS";
                 HintText.text = "RIGHT ARROW KEY - Move Right\n\nLEFT ARROW KEY - Move Left\n\nSPACEBAR - Jump";
-                VideoURL = "https://nkhl-p.github.io/aether-vid/nahi.mp4";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/arrows.mov";
 				break;
             
             // Paths
             case PopUpEnums.BLUEPATH:
                 HintTitle.text = "PATH - SPEED RELATIONSHIP";
                 HintText.text = "BLUE PATH - BASE SPEED\n\nGREEN PATH - SPEED INCREASES\n\nYELLOW PATH - SPEED DECREASES\n\nRED PATH - BASE SPEED & HEALTH LOSS";
-                VideoURL = "https://nkhl-p.github.io/aether-vid/thats_what_she_said.mp4";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/paths.mov";
 				break;
             
             case PopUpEnums.GREENPATH:
@@ -123,43 +123,43 @@ public class PopUp : MonoBehaviour
             case PopUpEnums.TIME:
                 HintTitle.text = "TIME POWERUP";
                 HintText.text = "PICKUP TO ADD +5s\n\nTO YOUR TIMER";
-                VideoURL = "";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/time.mov";
 				break;
             
             case PopUpEnums.SIZE:
                 HintTitle.text = "SIZE POWERUP";
                 HintText.text = "PICK UP TO INCREASE\n\nTHE SIZE OF THE PLAYER\n\nPLAYER CAN GO THROUGH OBSTACLES\n\nWHEN THIS IS PICKED UP";
-                VideoURL = "";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/size.mov";
 				break;
             
             case PopUpEnums.SPEED:
                 HintTitle.text = "SPEED POWERUP";
                 HintText.text = "PICK UP TO INCREASE\n\nTHE SPEED OF THE PLAYER";
-                VideoURL = "";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/speed.mov";
 				break;
 
             case PopUpEnums.SHOOT:
                 HintTitle.text = "SHOOT POWERUP";
                 HintText.text = "PICK UP TO GET ENABLE\n\nSHOOTING FUCNTIONALITY\n\n\nPRESS F TO SHOOT";
-                VideoURL = "https://nkhl-p.github.io/aether-vid/nahi.mp4";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/shoot.mov";
 				break;
             
             case PopUpEnums.PERMEATE:
                 HintTitle.text = "IMMUNITY POWERUP";
                 HintText.text = "PICK UP TO BECOME\n\nIMMUNE TO OBSTACLES & RED PATH";
-                VideoURL = "";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/permeate.mov";
 				break;
 
             case PopUpEnums.LEVITATE:
                 HintTitle.text = "LEVITATE POWERUP";
                 HintText.text = "PICK UP TO\n\nLEVITATE OVER THE PATHS";
-                VideoURL = "";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/levitate.mov";
 				break;
 
             case PopUpEnums.WORMHOME:
                 HintTitle.text = "WORMHOME POWERUP";
                 HintText.text = "PICK UP TO\n\nTELEPORT TO A FURTHER LOCATION";
-                VideoURL = "";
+                VideoURL = "https://nkhl-p.github.io/aether-vid/wormhole.mov";
 				break;
 
             default:

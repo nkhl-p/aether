@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.40403172, g: 0.14878377, b: 0.07016828, a: 1}
+  m_IndirectSpecularColor: {r: 0.40412268, g: 0.14874312, b: 0.07011243, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -7147,8 +7147,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0014454034, y: 29}
-  m_SizeDelta: {x: 250, y: 160}
+  m_AnchoredPosition: {x: -0.0014454034, y: 42.4}
+  m_SizeDelta: {x: 300, y: 160}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!328 &1577083717
 VideoPlayer:
@@ -8235,6 +8235,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1495332989}
     m_Modifications:
+    - target: {fileID: 152218772313702399, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 163.9
+      objectReference: {fileID: 0}
     - target: {fileID: 992542384351648004, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_fontSize
       value: 10
@@ -8279,6 +8283,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
+    - target: {fileID: 1735170490685822130, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -93.4
+      objectReference: {fileID: 0}
     - target: {fileID: 2632001056979160825, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 1
@@ -8306,6 +8314,10 @@ PrefabInstance:
     - target: {fileID: 2632001056979160825, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3729008441976107677, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -171
       objectReference: {fileID: 0}
     - target: {fileID: 4174865108486936962, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_WaitForFirstFrame
@@ -8347,6 +8359,10 @@ PrefabInstance:
       propertyPath: m_sharedMaterial
       value: 
       objectReference: {fileID: -4412434516704343087, guid: cdd69517372414d30a642bc96458f4b7, type: 2}
+    - target: {fileID: 7771955863082296851, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -171
+      objectReference: {fileID: 0}
     - target: {fileID: 8062675718542076352, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_Name
       value: PopUp
@@ -8405,11 +8421,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9098102181792796098, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_SizeDelta.x
-      value: 324.7699
+      value: 350
       objectReference: {fileID: 0}
     - target: {fileID: 9098102181792796098, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_SizeDelta.y
-      value: 360.7532
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 9098102181792796098, guid: eab0ec32143d942bf9d493dd5c778393, type: 3}
       propertyPath: m_LocalPosition.x
