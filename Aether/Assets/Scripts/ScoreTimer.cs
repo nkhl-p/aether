@@ -29,6 +29,10 @@ public class ScoreTimer : MonoBehaviour {
                 startingTime = 40f;
 				maxDistance = 900f;
                 break;
+            case "Level3":
+                startingTime = 10f;
+                maxDistance = 700f;
+                break;
             default:
                 Debug.Log("Code should not reach here!");
                 break;

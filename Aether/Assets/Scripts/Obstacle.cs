@@ -30,7 +30,6 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.name == "Player") {
-            Debug.Log("CurrentDebuggingSession " + gameObject.name);
             if (!gameObject.name.Equals("ObstacleTall(Clone)")) {
                 if (IsSizePowerUpEnabled) {
                     AudioManager temp = FindObjectOfType<AudioManager>();
@@ -45,7 +44,6 @@ public class Obstacle : MonoBehaviour
                     DestroyObstacleEffect(3, 3, 1);
                 }
             } else {
-                Debug.Log("CurrentDebuggingSession Else" + gameObject.name);
                 AudioManager temp = FindObjectOfType<AudioManager>();
                 temp.Play(SoundEnums.COLLISION.GetString());
                 //temp.StopPlaying(SoundEnums.THEME.GetString());
