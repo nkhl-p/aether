@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     private Transform transformCache;
     AudioManager audioManagerInstance = null;
     public Transform warpEffect;
+    public GameObject deathEffect;
 
     // variable declaration for unity analytics
     public static int blueCount = 0;
@@ -97,21 +98,24 @@ public class PlayerMovement : MonoBehaviour {
         if (currentHealth == 0) {
             alive = false;
             Gun.IsGunEnabled = false;
-            Invoke("Restart", 1);
+            Instantiate(deathEffect, transform.position, transform.rotation);
+            gameObject.SetActive(false);
+            Invoke("Restart", 2f);
         } else {
             TakeDamage(20);
             if (transformCache.position.y < 0) {
-                Invoke("Restart", 1);
+                Invoke("Restart", 2f);
             }
         }
     }
 
     public void Die(String name) {
-        Debug.Log("Overloaded" + name);
         if (name.Equals("ObstacleTall(Clone)")) {
             alive = false;
             TakeDamage(currentHealth);
-            Invoke("Restart", 1);
+            Instantiate(deathEffect, transform.position, transform.rotation);
+            gameObject.SetActive(false);
+            Invoke("Restart", 2f);
         }
     }
 
@@ -154,6 +158,7 @@ public class PlayerMovement : MonoBehaviour {
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
         Obstacle.IsSizePowerUpEnabled = false;
         Gun.IsGunEnabled = false;
+        gameObject.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         audioManagerInstance.Play(SoundEnums.THEME.GetString());
     }
@@ -238,7 +243,7 @@ public class PlayerMovement : MonoBehaviour {
             if (SceneManager.GetActiveScene().name.Equals("Level1")) {
                 SceneManager.LoadScene("Level2");
             } else if (SceneManager.GetActiveScene().name.Equals("Level2")) {
-                SceneManager.LoadScene("EndMenu");
+                SceneManager.LoadScene("Level3");
             } else if (SceneManager.GetActiveScene().name.Equals("Level3")) {
                 SceneManager.LoadScene("EndMenu");
             }
