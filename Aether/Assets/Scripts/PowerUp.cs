@@ -12,7 +12,7 @@ public class PowerUp : MonoBehaviour {
     int powerUpLeviationSpeed = 15;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
-    int wormholeTravelDistance = 350;
+    int wormholeTravelDistance = 260;
 
     void Start()
     {
