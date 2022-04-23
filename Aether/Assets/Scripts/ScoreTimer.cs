@@ -22,12 +22,16 @@ public class ScoreTimer : MonoBehaviour {
 		timerText.enabled = false;
         switch (scene.name) {
             case "Level1":
-                startingTime = 50f;
-				maxDistance = 600f;
+                startingTime = 45f;
+				maxDistance = 700f;
                 break;
             case "Level2":
+                startingTime = 45f;
+				maxDistance = 830f;
+                break;
+            case "Level3":
                 startingTime = 40f;
-				maxDistance = 695f;
+                maxDistance = 830f;
                 break;
             default:
                 Debug.Log("Code should not reach here!");
@@ -38,6 +42,10 @@ public class ScoreTimer : MonoBehaviour {
     }
 
     void Update() {
+		if (pm.getGameFreeze()) {
+			return;
+		}
+
         currentTime -= 1 * Time.deltaTime;
         scoreText.text = currentTime.ToString("0") + "s";
 		

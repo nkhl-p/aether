@@ -4,9 +4,7 @@ using UnityEngine;
 using UnityEngine.Analytics;
 using UnityEngine.SceneManagement;
 using System;
-
-
-
+using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
     // legacy variable declaration
@@ -21,6 +19,7 @@ public class PlayerMovement : MonoBehaviour {
     private Transform transformCache;
     AudioManager audioManagerInstance = null;
     public Transform warpEffect;
+    public GameObject deathEffect;
 
     // variable declaration for unity analytics
     public static int blueCount = 0;
@@ -36,6 +35,9 @@ public class PlayerMovement : MonoBehaviour {
     public static int deathByOutOfTimeCount = 0;
     public static int powerUpsLevelCount = 0;
     bool val = false;
+
+    // variable declaration for tutorial popup
+    private bool freezeGame = false;
 
     // variable declaration for player health
     public int maxHealth = 100;
@@ -55,6 +57,7 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     private void FixedUpdate() {
+        if (freezeGame) return;
         if (!alive) return;
         float curr_speed = speed;
         if (powerUpSpeed > 0) {
@@ -67,9 +70,10 @@ public class PlayerMovement : MonoBehaviour {
     }
 
     void Update() {
+        if (freezeGame) return;
         horizontalInput = Input.GetAxis("Horizontal");
 
-        if (Input.GetKeyDown(KeyCode.Space)) {
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.J)) {
             Jump();
         }
 
@@ -94,18 +98,25 @@ public class PlayerMovement : MonoBehaviour {
         if (currentHealth == 0) {
             alive = false;
             Gun.IsGunEnabled = false;
-            if (transformCache.position.y < 0) {
-                 audioManagerInstance.Play(SoundEnums.FALL.GetString());
-            }
-
-            Invoke("Restart", 1);
+            Instantiate(deathEffect, transform.position, transform.rotation);
+            gameObject.SetActive(false);
+            Invoke("Restart", 2f);
         } else {
             TakeDamage(20);
             if (transformCache.position.y < 0) {
-                Invoke("Restart", 1);
+                Invoke("Restart", 2f);
             }
         }
-        
+    }
+
+    public void Die(String name) {
+        if (name.Equals("ObstacleTall(Clone)")) {
+            alive = false;
+            TakeDamage(currentHealth);
+            Instantiate(deathEffect, transform.position, transform.rotation);
+            gameObject.SetActive(false);
+            Invoke("Restart", 2f);
+        }
     }
 
     public int getCurrentPosition()
@@ -145,8 +156,26 @@ public class PlayerMovement : MonoBehaviour {
     void Restart() {
         // Restart the game using Unity's Scene Manager
         // Depending on what is decided (restart same scene or show pause/quit menu, the following line of code will change
+        Obstacle.IsSizePowerUpEnabled = false;
+        Gun.IsGunEnabled = false;
+        gameObject.SetActive(true);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         audioManagerInstance.Play(SoundEnums.THEME.GetString());
+    }
+
+    public void FreezeGame()
+    {
+        freezeGame = true;
+    }
+
+    public void UnFreezeGame()
+    {
+        freezeGame = false;
+    }
+
+    public bool getGameFreeze()
+    {
+        return freezeGame;
     }
 
     void Jump() {
@@ -176,13 +205,16 @@ public class PlayerMovement : MonoBehaviour {
             prevColorTag = "BLUE";
 
         } else if (collision.gameObject.CompareTag("TileGreen")) {
-            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 10 ;
+            FindObjectOfType<PlayerMovement>().speed = baseSpeed + 15 ;
             if (prevColorTag != "GREEN") greenCount++;
             prevColorTag = "GREEN";
         } else if (collision.gameObject.CompareTag("TileRed") && PowerUp.immunityFlag == false) {
             // Manage sounds
             audioManagerInstance.Play(SoundEnums.YELLOW_LOSE.GetString());
-            audioManagerInstance.StopPlaying("SpaceTravel");
+            if (currentHealth <= 0) {
+                audioManagerInstance.StopPlaying("SpaceTravel");
+            }
+            
             deathByYellowPathCount++;
 
             SendPathSelectionAnalyticsData(GetLevelNumber(), blueCount, redCount, greenCount);
@@ -208,12 +240,14 @@ public class PlayerMovement : MonoBehaviour {
             SendTimeAnalyticsData(GetLevelNumber(), Convert.ToInt32(FindObjectOfType<ScoreTimer>().startingTime - FindObjectOfType<ScoreTimer>().currentTime));
             SendPowerUpsAnalyticsData(GetLevelNumber(), powerUpsLevelCount);
 
-            if(SceneManager.GetActiveScene().buildIndex == 2) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-            } else {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 3);
+            if (SceneManager.GetActiveScene().name.Equals("Level1")) {
+                SceneManager.LoadScene("Level2");
+            } else if (SceneManager.GetActiveScene().name.Equals("Level2")) {
+                SceneManager.LoadScene("Level3");
+            } else if (SceneManager.GetActiveScene().name.Equals("Level3")) {
+                SceneManager.LoadScene("EndMenu");
             }
-            
+
         } else if (collision.gameObject.CompareTag("Obstacle")) {
             Debug.Log("Player collided with an obstacle");
             deathByObstacleCount++;

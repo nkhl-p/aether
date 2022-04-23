@@ -11,7 +11,7 @@ public class GameManager : MonoBehaviour {
 
     // variables for level loading
     public Animator transition;
-    public float transitionTime = 1f;
+    public float transitionTime = 0.25f;
 
 
     void Start() {
@@ -21,8 +21,7 @@ public class GameManager : MonoBehaviour {
 
     public void MainMenu() {
         Time.timeScale = 1f;
-        StartCoroutine(LoadLevel(0));
-        //SceneManager.LoadScene(0);
+        StartCoroutine(LoadLevel("MainMenu"));
     }
 
     public void PauseGame() {
@@ -35,49 +34,21 @@ public class GameManager : MonoBehaviour {
         Time.timeScale = 1f;
     }
 
-    public void NextLevel() {
-        StartCoroutine(LoadLevel(SceneManager.GetActiveScene().buildIndex + 1));
-        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    public void LoadLevel1() {
+        StartCoroutine(LoadLevel("Level1"));
     }
 
-    public void EndGame() {
-        StartCoroutine(LoadLevel(7));
-        //SceneManager.LoadScene(7);
+    public void LoadLevel2() {
+        StartCoroutine(LoadLevel("Level2"));
     }
 
-    public void LevelInstructionsMenu() {
-        StartCoroutine(LoadLevel(5));
-        //SceneManager.LoadScene(5);
-    }
-
-    public void StartLevel1() {
-        StartCoroutine(LoadLevel(2));
-        //SceneManager.LoadScene(2);
-    }
-
-    public void NextInstructionLevel1() {
-        StartCoroutine(LoadLevel(6));
-        //SceneManager.LoadScene(6);
-    }
-
-    public void StartLevel2() {
-        StartCoroutine(LoadLevel(4));
-        //SceneManager.LoadScene(4);
-    }
-
-    public void NextInstructionLevel2() {
-        StartCoroutine(LoadLevel(3));
-        //SceneManager.LoadScene(3);
+    public void LoadLevel3() {
+        StartCoroutine(LoadLevel("Level3"));
     }
 
     public void CloseApplicationOnMainMenuExit() {
         Debug.Log("Quitting the application");
         Application.Quit();
-    }
-
-    public void InstructionsMenu() {
-        StartCoroutine(LoadLevel(1));
-        //SceneManager.LoadScene(1);
     }
 
     public void MuteSound() {
@@ -92,7 +63,7 @@ public class GameManager : MonoBehaviour {
         soundOnIcon.SetActive(true);
     }
 
-    IEnumerator LoadLevel(int levelIndex) {
+    IEnumerator LoadLevel(string sceneName) {
         // Play animation
         transition.SetTrigger("Start");
 
@@ -101,7 +72,17 @@ public class GameManager : MonoBehaviour {
         yield return new WaitForSeconds(transitionTime);
 
         // Load Scene
-        SceneManager.LoadScene(levelIndex);
+        SceneManager.LoadScene(sceneName);
+    }
+    
+    public void NextButtonClicked()
+    {
+        FindObjectOfType<PopUp>().NextButtonClicked();
+    }
+
+    public void SkipAllButtonClicked()
+    {
+        FindObjectOfType<PopUp>().SkipAllButtonClicked();
     }
 
 }

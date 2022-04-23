@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2786947045174050038}
   - component: {fileID: 2947254002272975392}
   - component: {fileID: -5114943378999970287}
-  - component: {fileID: 8795377155891579835}
+  - component: {fileID: 5309724851565498465}
   m_Layer: 0
   m_Name: ObstacleTall
   m_TagString: Obstacle
@@ -65,7 +65,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 879bc971cb8b34f11b3d702a40ab8c2d, type: 2}
+  - {fileID: 2100000, guid: 169f4a8bfcb274a10824db97bca16e77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -117,7 +117,7 @@ MonoBehaviour:
   cubesInRow: 4
   cubesInCol: 2
   cubesInDepth: 1
---- !u!114 &8795377155891579835
+--- !u!114 &5309724851565498465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,9 +133,9 @@ MonoBehaviour:
   cubeSize: 0.2
   cubesInRow: 5
   explosionRadius: 50
-  explosionForce: 150
-  explosionUpwards: 1
-  particleMaterialRef: {fileID: 2100000, guid: 879bc971cb8b34f11b3d702a40ab8c2d, type: 2}
+  explosionForce: 120
+  explosionUpwards: 0.2
+  particleMaterialRef: {fileID: 2100000, guid: 361bb6a35a85a4dbd91bf3ef3126a746, type: 2}
 --- !u!1 &6184911722114152009
 GameObject:
   m_ObjectHideFlags: 0
@@ -197,7 +197,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 879bc971cb8b34f11b3d702a40ab8c2d, type: 2}
+  - {fileID: 2100000, guid: 169f4a8bfcb274a10824db97bca16e77, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

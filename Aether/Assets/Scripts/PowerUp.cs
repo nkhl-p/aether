@@ -8,11 +8,11 @@ public class PowerUp : MonoBehaviour {
     public float turnSpeed = 90f;
     public GameObject pickupEffect;
     float powerUpApplicableDuration = 7f;
-	int powerUpSpeedBoost = 20;
+	int powerUpSpeedBoost = 30;
     int powerUpLeviationSpeed = 15;
     PlayerMovement playerMovement;
     public static bool immunityFlag = false;
-    int wormholeTravelDistance = 50;
+    int wormholeTravelDistance = 260;
 
     void Start()
     {
@@ -170,13 +170,11 @@ public class PowerUp : MonoBehaviour {
         yield return new WaitForSeconds(powerUpApplicableDuration);
 
         // reverting the changes made by the power-up to its original state
-        Debug.Log("Before position: " + player.transform.position);
         Vector3 currentPosAfterLevitation = player.transform.position;
         Vector3 playerNewPosAfter = new Vector3(currentPosAfterLevitation.x, 1, currentPosAfterLevitation.z);
         player.transform.position = playerNewPosAfter;
         player.GetComponent<Rigidbody>().useGravity = true;
         playerMovement.powerUpSpeed = 0;
-        Debug.Log("After position: " + player.transform.position);
 
         // breaking out of the case.
     }
@@ -235,6 +233,7 @@ public class PowerUp : MonoBehaviour {
             case "PowerupLevitate": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
             case "PowerupSpeed": transform.Rotate(0, 0, turnSpeed * Time.deltaTime); break;
             case "PowerupShoot": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
+            case "PowerupWormhole": transform.Rotate(0, turnSpeed * Time.deltaTime, 0); break;
         }
     }
 

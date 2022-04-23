@@ -30,19 +30,27 @@ public class Obstacle : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) {
         if (collision.gameObject.name == "Player") {
-            if (IsSizePowerUpEnabled) {
-                AudioManager temp = FindObjectOfType<AudioManager>();
-                temp.Play(SoundEnums.COLLISION.GetString());
-                //temp.StopPlaying(SoundEnums.THEME.GetString());
-                DestroyObstacleEffect(5, 5, 1);
-            } else if (PowerUp.immunityFlag == false) {
+            if (!gameObject.name.Equals("ObstacleTall(Clone)")) {
+                if (IsSizePowerUpEnabled) {
+                    AudioManager temp = FindObjectOfType<AudioManager>();
+                    temp.Play(SoundEnums.COLLISION.GetString());
+                    //temp.StopPlaying(SoundEnums.THEME.GetString());
+                    DestroyObstacleEffect(5, 5, 1);
+                } else if (PowerUp.immunityFlag == false) {
                     AudioManager temp = FindObjectOfType<AudioManager>();
                     temp.Play(SoundEnums.COLLISION.GetString());
                     //temp.StopPlaying(SoundEnums.THEME.GetString());
                     playerMovement.Die();
                     DestroyObstacleEffect(3, 3, 1);
                 }
-           }
+            } else {
+                AudioManager temp = FindObjectOfType<AudioManager>();
+                temp.Play(SoundEnums.COLLISION.GetString());
+                //temp.StopPlaying(SoundEnums.THEME.GetString());
+                playerMovement.Die(gameObject.name);
+            }
+        }
+            
     }
 
     public void DestroyObstacleEffect(int cubesInRow, int cubesInCol, int cubesInDepth) {

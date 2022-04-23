@@ -20,7 +20,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,20,"Blue",PowerupEnums.NONE),
         (0,30,"Blue",PowerupEnums.NONE),
         (0,40,"Blue",PowerupEnums.NONE),
-        (0,50,"Blue",PowerupEnums.WORMHOME),
+        (0,50,"Blue",PowerupEnums.NONE),
         (0,60,"Blue",PowerupEnums.NONE),
 
         (0,75,"Blue",PowerupEnums.NONE),
@@ -138,7 +138,7 @@ public class GroundSpawner : MonoBehaviour {
         (0,170,"Red",PowerupEnums.NONE),
         (10,170,"Green",PowerupEnums.NONE),
         (0,180,"Red",PowerupEnums.NONE),
-        (10,180,"Green",PowerupEnums.NONE),
+        (10,180,"Green",PowerupEnums.LEVITATE),
         (0,190,"Red",PowerupEnums.NONE),
         (10,190,"Green",PowerupEnums.NONE),
         (0,200,"Red",PowerupEnums.NONE),
@@ -154,7 +154,7 @@ public class GroundSpawner : MonoBehaviour {
         (10,265,"Blue",PowerupEnums.NONE),
         (-10,275,"Green",PowerupEnums.NONE),
         (0,275,"Yellow",PowerupEnums.NONE),
-        (10,275,"Blue",PowerupEnums.PERMEATE),
+        (10,275,"Blue",PowerupEnums.NONE),
         (-10,285,"Green",PowerupEnums.NONE),
         (0,285,"Yellow",PowerupEnums.NONE),
         (-10,285,"Green",PowerupEnums.NONE),
@@ -205,7 +205,9 @@ public class GroundSpawner : MonoBehaviour {
         (0,560,"Red",PowerupEnums.NONE),
         (10,560,"Red",PowerupEnums.PERMEATE),
 
-        (0,575,"Green",PowerupEnums.SHOOT),
+        (0,575,"Green",PowerupEnums.NONE),
+        (0,585,"Green",PowerupEnums.SHOOT),
+        (0,595,"Green",PowerupEnums.NONE),
 
         (10,590,"Blue",PowerupEnums.NONE),
         (10,600,"Blue",PowerupEnums.NONE),
@@ -249,6 +251,156 @@ public class GroundSpawner : MonoBehaviour {
         (0,900,"Finish",PowerupEnums.NONE),
       };
 
+    List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)> pathCoordinates3 = new List<(int X_Value, int Z_Value, string Name, PowerupEnums powerupEnums)>
+      {
+        (0,0,"Blue",PowerupEnums.NONE),
+        (0,10,"Blue",PowerupEnums.NONE),
+        (0,20,"Blue",PowerupEnums.NONE),
+        (0,30,"Blue",PowerupEnums.NONE),
+        (0,40,"Blue",PowerupEnums.NONE),
+        (0,50,"Blue",PowerupEnums.NONE),
+        (0,60,"Blue",PowerupEnums.NONE),
+
+        (10,75,"Green",PowerupEnums.NONE),
+        (10,85,"Green",PowerupEnums.SHOOT),
+
+        (0,100,"Red",PowerupEnums.NONE),
+        (-10,100,"Green",PowerupEnums.NONE),
+        (0,110,"Red",PowerupEnums.NONE),
+        (-10,110,"Green",PowerupEnums.NONE),
+        (0,120,"Blue",PowerupEnums.NONE),
+        (-10,120,"Green",PowerupEnums.NONE),
+        (0,130,"Blue",PowerupEnums.NONE),
+        (-10,130,"Green",PowerupEnums.NONE),
+        (0,140,"Blue",PowerupEnums.NONE),
+        (-10,140,"Green",PowerupEnums.NONE),
+        (-10,150,"Green",PowerupEnums.NONE),
+        (-10,160,"Green",PowerupEnums.NONE),
+        (-10,170,"Green",PowerupEnums.NONE),
+
+        (0,180,"Blue",PowerupEnums.NONE),
+        (0,190,"Blue",PowerupEnums.SHOOT),
+        (0,200,"Blue",PowerupEnums.NONE),
+
+        (10,215,"Yellow",PowerupEnums.NONE),
+        (10,225,"Yellow",PowerupEnums.NONE),
+
+        (0,240,"Green",PowerupEnums.NONE),
+        (0,250,"Red",PowerupEnums.NONE),
+        (-10,250,"Green",PowerupEnums.NONE),
+        (0,260,"Red",PowerupEnums.SHOOT),
+        (-10,260,"Green",PowerupEnums.NONE),
+        (0,270,"Red",PowerupEnums.NONE),
+        (-10,270,"Green",PowerupEnums.NONE),
+        (-10,280,"Green",PowerupEnums.NONE),
+        (-10,290,"Green",PowerupEnums.TIME),
+
+        (-10,305,"Yellow",PowerupEnums.NONE),
+        (0,305,"Red",PowerupEnums.NONE),
+        (-10,315,"Red",PowerupEnums.NONE),
+        (0,315,"Red",PowerupEnums.NONE),
+        (-10,325,"Red",PowerupEnums.NONE),
+        (0,325,"Blue",PowerupEnums.NONE),
+        (-10,335,"Red",PowerupEnums.WORMHOME),
+        (0,335,"Blue",PowerupEnums.NONE),
+        (0,345,"Blue",PowerupEnums.NONE),
+
+        (10,360,"Green",PowerupEnums.NONE),
+        (10,370,"Green",PowerupEnums.NONE),
+        (10,380,"Green",PowerupEnums.NONE),
+        (10,390,"Green",PowerupEnums.NONE),
+        (10,400,"Green",PowerupEnums.NONE),
+        (10,410,"Green",PowerupEnums.NONE),
+
+        (0,425,"Blue",PowerupEnums.NONE),
+        (0,435,"Blue",PowerupEnums.NONE),
+        (0,445,"Blue",PowerupEnums.SPEED),
+        (0,455,"Red",PowerupEnums.NONE),
+        (0,465,"Blue",PowerupEnums.NONE),
+        (0,475,"Blue",PowerupEnums.NONE),
+        (0,485,"Blue",PowerupEnums.NONE),
+        (0,495,"Red",PowerupEnums.NONE),
+        (0,505,"Green",PowerupEnums.NONE),
+        (0,515,"Green",PowerupEnums.NONE),
+
+        (-10,530,"Red",PowerupEnums.NONE),
+        (0,530,"Red",PowerupEnums.NONE),
+        (10,530,"Blue",PowerupEnums.NONE),
+        (-10,540,"Red",PowerupEnums.SPEED),
+        (0,540,"Red",PowerupEnums.NONE),
+        (10,540,"Blue",PowerupEnums.SIZE),
+        (-10,550,"Red",PowerupEnums.NONE),
+        (0,550,"Red",PowerupEnums.NONE),
+        (10,550,"Blue",PowerupEnums.NONE),
+
+        (0,565,"Blue",PowerupEnums.NONE),
+        (0,575,"Blue",PowerupEnums.NONE),
+
+        (-10,580,"Red",PowerupEnums.NONE),
+        (-10,590,"Green",PowerupEnums.NONE),
+        (-10,600,"Green",PowerupEnums.NONE),
+        (-10,610,"Green",PowerupEnums.NONE),
+        (-10,620,"Green",PowerupEnums.NONE),
+
+        (-10,635,"Blue",PowerupEnums.NONE),
+        (0,635,"Red",PowerupEnums.NONE),
+        (10,635,"Yellow",PowerupEnums.NONE),
+        (-10,645,"Blue",PowerupEnums.NONE),
+        (0,645,"Blue",PowerupEnums.NONE),
+        (10,645,"Yellow",PowerupEnums.SHOOT),
+        (-10,655,"Red",PowerupEnums.NONE),
+        (0,655,"Blue",PowerupEnums.NONE),
+        (10,655,"Yellow",PowerupEnums.NONE),
+
+        (0,670,"Green",PowerupEnums.NONE),
+        (-10,680,"Yellow",PowerupEnums.NONE),
+        (0,680,"Green",PowerupEnums.NONE),
+        (10,680,"Blue",PowerupEnums.NONE),
+        (-10,690,"Yellow",PowerupEnums.TIME),
+        (10,690,"Blue",PowerupEnums.NONE),
+        (-10,700,"Green",PowerupEnums.NONE),
+        (10,700,"Blue",PowerupEnums.NONE),
+
+        (0,715,"Red",PowerupEnums.NONE),
+        (0,725,"Blue",PowerupEnums.NONE),
+        (0,735,"Blue",PowerupEnums.NONE),
+
+        (0,750,"Green",PowerupEnums.NONE),
+        (0,760,"Green",PowerupEnums.SHOOT),
+        (0,770,"Green",PowerupEnums.NONE),
+
+        (0,785,"Blue",PowerupEnums.NONE),
+
+        (0,800,"Blue",PowerupEnums.NONE),
+        (0,810,"Blue",PowerupEnums.NONE),
+        (0,820,"Blue",PowerupEnums.NONE),
+        (0,830,"Finish",PowerupEnums.NONE),
+        (0,840,"Finish",PowerupEnums.NONE),
+        (0,850,"Finish",PowerupEnums.NONE),
+        (0,860,"Finish",PowerupEnums.NONE),
+        (0,870,"Finish",PowerupEnums.NONE),
+        (0,880,"Finish",PowerupEnums.NONE),
+        (0,890,"Finish",PowerupEnums.NONE),
+        (0,900,"Finish",PowerupEnums.NONE),
+      };
+
+    public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates = new List<(int Z_Value, PopUpEnums popUpEnums)> {
+        (5,PopUpEnums.CONTROLS),
+        (10,PopUpEnums.BLUEPATH),
+        (15,PopUpEnums.TIME),
+        (20,PopUpEnums.SIZE),
+        (25,PopUpEnums.SPEED),
+    };
+
+	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates2 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
+		(5,PopUpEnums.SHOOT),
+		(10,PopUpEnums.LEVITATE),
+    };
+	
+	public List<(int Z_Value, PopUpEnums popUpEnums)> tutorialCoordinates3 = new List<(int Z_Value, PopUpEnums popUpEnums)> {
+		(5,PopUpEnums.WORMHOME),
+    };
+
     int i = 0;
 
     string powerupType = "";
@@ -266,10 +418,17 @@ public class GroundSpawner : MonoBehaviour {
         switch (scene.name) {
             case "Level1":
                 obstacleSpawningChance = 0.65f;
+				PopUp.setTutorialCoordinates(1);
                 break;
             case "Level2":
                 pathCoordinates = pathCoordinates2;
                 obstacleSpawningChance = 0.55f;
+				PopUp.setTutorialCoordinates(2);
+                break;
+            case "Level3":
+                pathCoordinates = pathCoordinates3;
+                obstacleSpawningChance = 0.65f;
+                PopUp.setTutorialCoordinates(3);
                 break;
             default:
                 Debug.Log("Code should not reach here!");
@@ -365,7 +524,7 @@ public class GroundSpawner : MonoBehaviour {
 
     void Start() {
         for (int i = 0; i < 120; i++) {
-            if (i > 3) {
+            if (i > 4) {
                 SpawnTile(true);
             } else {
                 SpawnTile(false);
