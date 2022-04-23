@@ -161,3 +161,4 @@ a warp-drive, increasing your speed.
 | ![chart](https://raw.githubusercontent.com/ruch0401/resources/main/csci-526-images/speed-powerup.png) |
 |:-----------------------------------------------------------------------------------------------------:|
 |                                       In Action: Speed Powerup                                        |
+
