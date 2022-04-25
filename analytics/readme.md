@@ -134,7 +134,7 @@ backed by analytics as well) -
 
 > "I think the game is too easy overall for power ups. The game needs to be a bit harder for the power ups to be useful"   -_Anonymous Sherlock_
 
-> "Yellow and red could switch colors. It's easier to understand that red is DANGER and the game would end"
+> "Speed is too slow" -_Anonymous Dodo_
 
 | ![chart](https://raw.githubusercontent.com/ruch0401/resources/main/csci-526-images/time-taken-vs-level.png) |
 |:-----------------------------------------------------------------------------------------------------------:|
@@ -149,7 +149,7 @@ So, it was time to address the last elephant in the room - **MAKE GAME CHALLENGI
 | Feedback                                                                                                                                   | Solution                                             |
 |--------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | "I think the game is too easy overall for power ups. The game needs to be a bit harder for the power ups to be useful" - _Anonymous Goose_ | Designed difficult Level1 and Level2 & Added Level 3 |
-| "Yellow and red could switch colors. It's easier to understand that red is DANGER and the game would end" - _Anonymous Dodo_               | [Speed Powerup](#speed-powerup)                      |
+| "Speed is too slow" - _Anonymous Dodo_               | [Speed Powerup](#speed-powerup)                      |
 
 <div id="speed-powerup"></div>
 
