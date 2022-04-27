@@ -30,13 +30,14 @@
 
 ## Important Links
 
-| Title                | URL                                                                                                     |
-| -------------------- | ------------------------------------------------------------------------------------------------------- |
-| Game Design Document | [GDD](https://docs.google.com/document/d/1wB56yjw9R_AxoA5LrVRk3oKGFXYquV6rQ3EZCfRp4go/edit?usp=sharing) |
-| Playable URL         | [WebGL Build](https://aether-official.netlify.app/)                                                     |
-| Final Video          | [Final Video Demo](https://www.youtube.com/watch?v=tBkqc7SCS0g)                                         |
-| Analytics Report     | [Analytics Report](https://aether-analytics.netlify.app/readme.pdf)                                     |
-| Analytics Dashboard  | [Analytics Dashboard](https://aether-analytics.netlify.app)                                                |
+| Title                     | URL                                                                                                     |
+| ------------------------- | ------------------------------------------------------------------------------------------------------- |
+| Game Design Document      | [GDD](https://docs.google.com/document/d/1wB56yjw9R_AxoA5LrVRk3oKGFXYquV6rQ3EZCfRp4go/edit?usp=sharing) |
+| Playable URL              | [WebGL Build](https://aether-official.netlify.app/)                                                     |
+| Final Video               | [Final Video Demo](https://www.youtube.com/watch?v=tBkqc7SCS0g)                                         |
+| Analytics Report          | [Analytics Report](https://aether-analytics.netlify.app/readme.pdf)                                     |
+| Analytics Dashboard       | [Analytics Dashboard](https://aether-analytics.netlify.app)                                             |
+| Final Presentation Script | [Final Presentation Script](resources/presentation.md)                                                  |
 
 ## Credits
 
